@@ -1,0 +1,51 @@
+<?php
+    $form = $this->loginForm;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('login'));
+    $form->setAttribute('method', 'post');
+?>
+
+<section class="ts-login-wrapper">
+    <?php if (getenv('APPLICATION_ENV') != "production"): ?>
+    <h1 class="ts-qa-logo"><span></span>
+    <?php else: ?>
+    <h1 class="ts-logo"><span></span>
+    <?php endif; ?>
+    <!--img src="/images/qgrid_big_logo.png" alt="Qgrid" title="Qgrid" /--></h1>
+    <section class="ts-login">
+        <h3>Login</h3>
+        <?php echo $this->form()->openTag($form); ?>            
+            <div class="ts-login-cont">
+                <?php if ($this->errorMessage) { ?>
+                    <div class="ts-errormsg"><?php echo $this->errorMessage; ?></div>
+                <?php } ?>
+                    
+                <?php if ($this->messageArray['successMessage'] != '') { ?>
+                    <script>
+                        setTimeout("$('.ts-success').hide();", 6000);
+                        $('.ts-success').ts-success('close');
+                    </script>
+                    <div class="ts-success">                   
+                        <?php echo $this->messageArray['successMessage']; ?>
+                    </div>
+                <?php } ?>                    
+                    <label>Username</label>
+                    <div class="ts-fl">                        
+                        <?php echo $this->formRow($form->get('user_name')); ?>
+                        <p id="user_nameErrorMsg" class="ts-error"></p>
+                    </div>
+                    <label class="mar-t15">Password</label>
+                    <div class="ts-fl pad-t15">
+                        <?php echo $this->formRow($form->get('password')); ?>
+                        <p id="passwordErrorMsg" class="ts-error"></p>
+                        <div class="ts-overfl">
+                            <a href="<?php echo $this->url('forgot_password'); ?>">Forgot Password?</a>
+                        </div>                        
+                    </div>
+                <div class="ts-fr pad-t15">
+                    <?php echo $this->formRow($form->get('submit_button')); ?>
+                </div>												
+            </div>
+        <?php echo $this->form()->closeTag($form); ?>
+    </section>				
+</section>
