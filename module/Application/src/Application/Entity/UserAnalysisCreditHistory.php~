@@ -1,0 +1,67 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UserAnalysisCreditHistory
+ *
+ * @ORM\Table(name="user_analysis_credit_history", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class UserAnalysisCreditHistory
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_credit_analysis_points", type="integer", nullable=true)
+     */
+    private $totalCreditAnalysisPoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="credit_analysis_points_used", type="integer", nullable=true)
+     */
+    private $creditAnalysisPointsUsed;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=false)
+     */
+    private $deleteFlag = '0';
+
+
+}

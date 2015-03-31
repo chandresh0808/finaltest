@@ -1,0 +1,60 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * JobFunctionHasTransaction
+ *
+ * @ORM\Table(name="job_function_has_transaction", indexes={@ORM\Index(name="job_function_id", columns={"job_function_id", "transaction_id"})})
+ * @ORM\Entity
+ */
+class JobFunctionHasTransaction
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="job_function_id", type="integer", nullable=false)
+     */
+    private $jobFunctionId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="transaction_id", type="integer", nullable=false)
+     */
+    private $transactionId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=false)
+     */
+    private $deleteFlag = '0';
+
+
+}

@@ -1,0 +1,109 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * OrderDetails
+ *
+ * @ORM\Table(name="order_details", indexes={@ORM\Index(name="order_id", columns={"order_id"})})
+ * @ORM\Entity
+ */
+class OrderDetails
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_id", type="string", length=45, nullable=true)
+     */
+    private $orderId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_first_name", type="string", length=50, nullable=true)
+     */
+    private $orderFirstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_last_name", type="string", length=50, nullable=true)
+     */
+    private $orderLastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_address_1", type="string", length=255, nullable=true)
+     */
+    private $orderAddress1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_address_2", type="string", length=255, nullable=true)
+     */
+    private $orderAddress2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_state", type="string", length=45, nullable=true)
+     */
+    private $orderState;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_country", type="string", length=45, nullable=true)
+     */
+    private $orderCountry;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_zipcode", type="string", length=45, nullable=true)
+     */
+    private $orderZipcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_phone", type="string", length=45, nullable=true)
+     */
+    private $orderPhone;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=false)
+     */
+    private $deleteFlag = '0';
+
+
+}

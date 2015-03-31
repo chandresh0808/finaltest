@@ -1,0 +1,81 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Item
+ *
+ * @ORM\Table(name="item", indexes={@ORM\Index(name="cart_id", columns={"cart_id"}), @ORM\Index(name="user_id", columns={"user_id"}), @ORM\Index(name="package_id", columns={"package_id"})})
+ * @ORM\Entity
+ */
+class Item
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cart_id", type="integer", nullable=false)
+     */
+    private $cartId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="package_id", type="integer", nullable=false)
+     */
+    private $packageId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="item_price", type="string", length=45, nullable=true)
+     */
+    private $itemPrice;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quantity", type="string", length=45, nullable=true)
+     */
+    private $quantity;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=true)
+     */
+    private $deleteFlag = '0';
+
+
+}

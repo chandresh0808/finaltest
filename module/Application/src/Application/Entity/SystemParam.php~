@@ -1,0 +1,60 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SystemParam
+ *
+ * @ORM\Table(name="system_param")
+ * @ORM\Entity
+ */
+class SystemParam
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="param_key", type="string", length=45, nullable=true)
+     */
+    private $paramKey;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="param_value", type="string", length=45, nullable=true)
+     */
+    private $paramValue;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=false)
+     */
+    private $deleteFlag = '0';
+
+
+}

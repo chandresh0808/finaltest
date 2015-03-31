@@ -1,0 +1,95 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Order
+ *
+ * @ORM\Table(name="order", indexes={@ORM\Index(name="cart_id", columns={"cart_id"}), @ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Order
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cart_id", type="integer", nullable=false)
+     */
+    private $cartId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="order_total", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $orderTotal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_session_id", type="string", length=45, nullable=true)
+     */
+    private $orderSessionId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_ip_address", type="string", length=45, nullable=true)
+     */
+    private $orderIpAddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_status", type="string", nullable=false)
+     */
+    private $orderStatus = 'Pending';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_email", type="string", length=100, nullable=true)
+     */
+    private $orderEmail;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_dt_tm", type="datetime", nullable=true)
+     */
+    private $createdDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_dt_tm", type="datetime", nullable=true)
+     */
+    private $updatedDtTm;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delete_flag", type="boolean", nullable=false)
+     */
+    private $deleteFlag = '0';
+
+
+}
