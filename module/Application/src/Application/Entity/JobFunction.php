@@ -13,6 +13,13 @@ use Application\Entity\AbstractEntity as AbstractEntity;
  */
 class JobFunction extends AbstractEntity
 {
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    protected $name;
 
     /**
      * @var integer

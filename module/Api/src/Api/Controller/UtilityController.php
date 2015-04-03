@@ -19,13 +19,14 @@
 
 namespace Api\Controller;
 
-use Application\Controller\AbstractCoreController as AbstractCoreController;
+use Api\Controller\AbstractCoreController as AbstractCoreController;
 use Zend\View\Model\ViewModel;
 
-class UtilityApiController extends AbstractCoreController
+class UtilityController extends AbstractCoreController
 {
-    public function indexAction()
-    {
-        return new ViewModel();
-    }
+     
+    public function getList() {        
+        echo $email = $this->params()->fromQuery('email') . " From Utility";       
+        return new JsonModel($result);
+    }    
 }

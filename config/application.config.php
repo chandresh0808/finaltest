@@ -16,6 +16,9 @@ $config = array(
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
+        'Api',
+        'Auth',
+        'User'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

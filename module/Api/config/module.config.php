@@ -19,20 +19,65 @@
 namespace Api;
 
 return array(
-    'router' => array(
-        'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),            
+    
+    'controllers' => array(
+        'invokables' => array(
+            'Api\Controller\Auth' => 'Api\Controller\AuthController',
+            'Api\Controller\Utility' => 'Api\Controller\UtilityController',
+            'Api\Controller\PreAuth' => 'Api\Controller\PreAuthController',
+            'Api\Controller\S3Bucket' => 'Api\Controller\S3BucketController',
         ),
     ),
+    
+ // routing information
+    'router' => array(
+        'routes' => array(         
+            'auth_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/auth[/:id]',
+                    'constraints' => array(
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\Auth',
+                    ),
+                ),
+            ),       
+            
+            'utility_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/utility[/:id]',
+                    'constraints' => array(
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\Utility',
+                    ),
+                ),
+            ),       
+            'pre_auth_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/preAuth',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\PreAuth',
+                    ),
+                ),
+            ),     
+            's3_backet_config' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/s3_credentials',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\S3Bucket',
+                    ),
+                ),
+            ),     
+            
+        ),
+    ),    
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -42,12 +87,31 @@ return array(
             'translator' => 'MvcTranslator',
         ),
     ),
-
-    'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+    'view_manager' => array(
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),        
+        'template_path_stack' => array(
+            'api' => __DIR__ . '/../view',
         ),
     ),
-
-
+    
+    's3_bucket_configuration'   => array(
+        'development' => array(
+            'backet_name' => 'dev.wadyaknow',
+            'access_key'   => "AKIAIMZZ6D7PBOVYZYQQ",
+            'secret_key' => "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"
+        ),
+        'staging'     => array(
+            'backet_name' => 'staging.wadyaknow',
+            'access_key'   => "############################",
+            'secret_key' => "############################"
+        ),
+        'production'  => array(
+            'backet_name' => 'prod.wadyaknow',
+            'access_key'   => "@@@@@@@@@@@@@@@@@@@@@@",
+            'secret_key' => "@@@@@@@@@@@@@@@@@@@@@@"
+        ),
+    )
+    
 );

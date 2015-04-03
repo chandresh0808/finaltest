@@ -38,7 +38,35 @@ namespace Application\Model;
 
 class Utility 
 {
-   
- 
+    
+    /**
+     * Set data time fields for updation
+     * 
+     * @param Doctrine\ORM\Entity
+     *
+     * @return Doctrine\ORM\Entity
+     */
+    public function setDateTimeForUpdation($object)
+    {
+        $date = date_create(date('Y-m-d H:i:s'));
+        $object->setUpdatedDtTm($date);
+        return $object;
+    }
+    
+    /**
+     * Set default fields for creation
+     * 
+     * @param Doctrine\ORM\Entity
+     *
+     * @return Doctrine\ORM\Entity
+     */
+    public function setDateTimeForCreation($object)
+    { 
+        $date = date_create(date('Y-m-d H:i:s'));        
+        $object->setUpdatedDtTm($date);
+        $object->setCreatedDtTm($date);
+        $object->setDeleteFlag(0);
+        return $object;
+    }
     
 }

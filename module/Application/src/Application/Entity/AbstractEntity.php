@@ -68,12 +68,6 @@ abstract class AbstractEntity
      */
     protected $updatedDtTm;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     */
-    protected $name;
     
     /**
      * Get id

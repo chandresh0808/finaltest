@@ -36,4 +36,17 @@ class Module
             ),
         );
     }
+    
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                // Doctine
+                'entity_manager' => function($sm) {
+                    return $sm->get('doctrine.entitymanager.orm_default');
+                },                                 
+            ),
+        );
+    }   
+    
 }

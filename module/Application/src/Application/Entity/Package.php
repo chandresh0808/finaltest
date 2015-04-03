@@ -17,6 +17,13 @@ class Package extends AbstractEntity
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    protected $name;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=45, nullable=true)
      */
     private $type;

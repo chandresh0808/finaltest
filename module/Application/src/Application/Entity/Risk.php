@@ -15,6 +15,13 @@ class Risk extends AbstractEntity
 {
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    protected $name;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="rulebook_id", type="integer", nullable=false)
