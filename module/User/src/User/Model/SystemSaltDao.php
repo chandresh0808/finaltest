@@ -35,7 +35,7 @@ use Application\Model\Constant as Constant;
  * 
  */
 
-class SystemSaltDao extends \Application\Model\AbstractCommonServiceMutator
+class SystemSaltDao extends \Application\Model\AbstractDao
 {
     
            

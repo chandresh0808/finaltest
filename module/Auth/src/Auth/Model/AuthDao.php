@@ -34,7 +34,7 @@ namespace Auth\Model;
  * 
  */
 
-class AuthDao extends \Application\Model\AbstractCommonServiceMutator
+class AuthDao extends \Application\Model\AbstractDao
 {
         
 }
