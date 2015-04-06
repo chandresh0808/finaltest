@@ -28,6 +28,26 @@ class UserHasPackage extends AbstractEntity
      */
     private $packageId;
 
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="package_has_credits_id", type="integer", nullable=false)
+     */
+    private $packageHasCreditsId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="package_effective_dt_tm", type="datetime", nullable=false)
+     */
+    private $packageEffectiveDtTm;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="package_expiry_dt_tm", type="datetime", nullable=false)
+     */
+    private $packageExpiryDtTm;
     
     /**
      * Set userId
@@ -73,6 +93,75 @@ class UserHasPackage extends AbstractEntity
     public function getPackageId()
     {
         return $this->packageId;
+    }
+    
+    /**
+     * Set packageHasCreditsId
+     *
+     * @param integer $packageHasCreditsId
+     * @return UserHasPackage
+     */
+    public function setPackageHasCreditsId($packageHasCreditsId)
+    {
+        $this->packageHasCreditsId = $packageHasCreditsId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageHasCreditsId
+     *
+     * @return integer 
+     */
+    public function getPackageHasCreditsId()
+    {
+        return $this->packageHasCreditsId;
+    }
+
+    /**
+     * Set packageEffectiveDtTm
+     *
+     * @param \DateTime $packageEffectiveDtTm
+     * @return UserHasPackage
+     */
+    public function setPackageEffectiveDtTm($packageEffectiveDtTm)
+    {
+        $this->packageEffectiveDtTm = $packageEffectiveDtTm;
+
+        return $this;
+    }
+
+    /**
+     * Get packageEffectiveDtTm
+     *
+     * @return \DateTime 
+     */
+    public function getPackageEffectiveDtTm()
+    {
+        return $this->packageEffectiveDtTm;
+    }
+
+    /**
+     * Set packageExpiryDtTm
+     *
+     * @param \DateTime $packageExpiryDtTm
+     * @return UserHasPackage
+     */
+    public function setPackageExpiryDtTm($packageExpiryDtTm)
+    {
+        $this->packageExpiryDtTm = $packageExpiryDtTm;
+
+        return $this;
+    }
+
+    /**
+     * Get packageExpiryDtTm
+     *
+     * @return \DateTime 
+     */
+    public function getPackageExpiryDtTm()
+    {
+        return $this->packageExpiryDtTm;
     }
    
 }

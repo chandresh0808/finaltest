@@ -93,6 +93,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
 
         $salt = $apiService->generateSalt(Constant::SALT_CHAR_LENGTH);
         $inputArray['salt'] = $salt;
+        $inputArray['type'] = Constant::SALT_AUTH_TYPE;
         $userHasSaltObject = $userManagerService->createUserHasSaltEntry($inputArray);
 
         if (is_object($userHasSaltObject)) {

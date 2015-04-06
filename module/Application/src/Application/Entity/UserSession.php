@@ -29,12 +29,11 @@ class UserSession extends AbstractEntity
     private $sessionGuid;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="analysis_request_guid", type="string", length=50, nullable=true)
+     * @ORM\Column(name="last_request_dt_tm", type="integer", nullable=true)
      */
-    private $analysisRequestGuid;
-
+    private $lastRequestDtTm;
     
     /**
      * Set userId
@@ -83,26 +82,26 @@ class UserSession extends AbstractEntity
     }
 
     /**
-     * Set analysisRequestGuid
+     * Set lastRequestDtTm
      *
-     * @param string $analysisRequestGuid
+     * @param integer $lastRequestDtTm
      * @return UserSession
      */
-    public function setAnalysisRequestGuid($analysisRequestGuid)
+    public function setLastRequestDtTm($lastRequestDtTm)
     {
-        $this->analysisRequestGuid = $analysisRequestGuid;
+        $this->lastRequestDtTm = $lastRequestDtTm;
 
         return $this;
     }
 
     /**
-     * Get analysisRequestGuid
+     * Get lastRequestDtTm
      *
-     * @return string 
+     * @return integer 
      */
-    public function getAnalysisRequestGuid()
+    public function getLastRequestDtTm()
     {
-        return $this->analysisRequestGuid;
+        return $this->lastRequestDtTm;
     }
    
 }

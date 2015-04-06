@@ -20,6 +20,7 @@ namespace Api\Controller;
 
 use Zend\View\Model\JsonModel;
 use Api\Controller\AbstractCoreController as AbstractCoreController;
+use Application\Model\Constant as Constant;
 
 class S3BucketController extends AbstractCoreController
 {
@@ -31,9 +32,8 @@ class S3BucketController extends AbstractCoreController
      * @return json Description
      */
     public function create()
-    {
-        $request  = $this->getRequest();
-        $sessionGuid = $request->getHeaders('session_guid')->getFieldValue();                
+    {        
+        $sessionGuid = $this->getValueFromHeader(Constant::USER_SESSION_GUID);
         $result = $this->getApiManagerService()->getS3BacketConfig($sessionGuid);       
         return new JsonModel($result);
     }

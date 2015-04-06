@@ -32,8 +32,7 @@ class AuthController extends AbstractCoreController
      */
     public function create()
     {
-        $request  = $this->getRequest();
-        $encryptedString = $request->getHeaders('credentials')->getFieldValue();                
+        $encryptedString = $this->getValueFromHeader('credentials');
         $result = $this->getApiManagerService()->authenticateUser($encryptedString);       
         return new JsonModel($result);
     }

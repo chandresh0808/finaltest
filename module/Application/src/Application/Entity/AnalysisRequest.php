@@ -15,11 +15,11 @@ class AnalysisRequest extends AbstractEntity
 {
     
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="analysis_request_guid", type="string", length=50, nullable=false)
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
-    private $analysisRequestGuid;
+    private $userId;
 
     /**
      * @var integer
@@ -34,6 +34,13 @@ class AnalysisRequest extends AbstractEntity
      * @ORM\Column(name="extract_name", type="string", length=100, nullable=true)
      */
     private $extractName;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="system_salt_id", type="integer", nullable=false)
+     */
+    private $systemSaltId;
 
     /**
      * @var string
@@ -44,26 +51,26 @@ class AnalysisRequest extends AbstractEntity
 
     
     /**
-     * Set analysisRequestGuid
+     * Set userId
      *
-     * @param string $analysisRequestGuid
+     * @param integer $userId
      * @return AnalysisRequest
      */
-    public function setAnalysisRequestGuid($analysisRequestGuid)
+    public function setUserId($userId)
     {
-        $this->analysisRequestGuid = $analysisRequestGuid;
+        $this->userId = $userId;
 
         return $this;
     }
 
     /**
-     * Get analysisRequestGuid
+     * Get userId
      *
-     * @return string 
+     * @return integer 
      */
-    public function getAnalysisRequestGuid()
+    public function getUserId()
     {
-        return $this->analysisRequestGuid;
+        return $this->userId;
     }
 
     /**
@@ -135,4 +142,28 @@ class AnalysisRequest extends AbstractEntity
         return $this->status;
     }
     
+    
+    /**
+     * Set systemSaltId
+     *
+     * @param integer $systemSaltId
+     * @return AnalysisRequest
+     */
+    public function setSystemSaltId($systemSaltId)
+    {
+        $this->systemSaltId = $systemSaltId;
+
+        return $this;
+    }
+
+    /**
+     * Get systemSaltId
+     *
+     * @return integer 
+     */
+    public function getSystemSaltId()
+    {
+        return $this->systemSaltId;
+    }
+
 }

@@ -17,6 +17,7 @@
  */
 
 namespace User\Model;
+use Application\Model\Constant as Constant;
  
 /**
  * Define a interface between CMSApiController and other modules
@@ -34,7 +35,7 @@ namespace User\Model;
  * 
  */
 
-class UserSessionDao extends \Application\Model\AbstractCommonServiceMutator
+class SystemSaltDao extends \Application\Model\AbstractCommonServiceMutator
 {
     
            
@@ -46,23 +47,20 @@ class UserSessionDao extends \Application\Model\AbstractCommonServiceMutator
      * 
      * @return object userSession
      */
-    public function exchangeArray($postDataArray, $userSessionObject = null)
+    public function exchangeArray($inputDataArray, $systemSaltObject = null)
     {
 
-        if ($userSessionObject) {
-            $userSessionObject = \Application\Model\Utility::setDateTimeForUpdation($userSessionObject);
+        if ($systemSaltObject) {
+            $systemSaltObject = \Application\Model\Utility::setDateTimeForUpdation($systemSaltObject);
         } else {
-            $userSessionObject = new \Application\Entity\UserSession();
-            $userSessionObject = \Application\Model\Utility::setDateTimeForCreation($userSessionObject);
+            $systemSaltObject = new \Application\Entity\SystemSalt();
+            $systemSaltObject = \Application\Model\Utility::setDateTimeForCreation($systemSaltObject);
         }
         
-        $epochTime = \Application\Model\Utility::getCurrentEpochTime();
-        $userSessionObject->setUserId($postDataArray['user_id']);
-        $userSessionObject->setSessionGuid($postDataArray['session_guid']);
-        $userSessionObject->setLastRequestDtTm($epochTime);
+        $systemSaltObject->setType($inputDataArray['type']);   
+        $systemSaltObject->setSalt($inputDataArray['salt']);        
 
-        return $userSessionObject;
+        return $systemSaltObject;
     }
-        
-    
+
 }

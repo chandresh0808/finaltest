@@ -56,7 +56,7 @@ class Module
                 'user_manager_service' => function($sm) {
                     $userManager = new Model\UserManager();
                     $serviceList = array('entity_manager','user_session_dao_service',
-                        'user_has_salt_dao_service');
+                        'system_salt_dao_service');
                     $userManager->setServiceList($serviceList, $sm);
                     return $userManager;
                 },           
@@ -66,8 +66,8 @@ class Module
                     $userSessionDao->setServiceList($serviceList, $sm);
                     return $userSessionDao;
                 },    
-                'user_has_salt_dao_service' => function($sm) {
-                    $userHasSaltDao = new Model\UserHasSaltDao();
+                'system_salt_dao_service' => function($sm) {
+                    $userHasSaltDao = new Model\SystemSaltDao();
                     $serviceList = array('entity_manager');
                     $userHasSaltDao->setServiceList($serviceList, $sm);
                     return $userHasSaltDao;

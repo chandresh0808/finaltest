@@ -69,4 +69,11 @@ class Utility
         return $object;
     }
     
+    /*
+     *  return CurrentDateTime Object
+     */
+    public function getCurrentEpochTime() {
+        $epochTime = time();   
+        return $epochTime;
+    }
 }

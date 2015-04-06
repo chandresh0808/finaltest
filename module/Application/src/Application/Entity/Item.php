@@ -27,6 +27,13 @@ class Item extends AbstractEntity
      * @ORM\Column(name="package_id", type="integer", nullable=false)
      */
     private $packageId;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="package_has_credits_id", type="integer", nullable=false)
+     */
+    private $packageHasCreditsId;
 
     /**
      * @var integer
@@ -165,4 +172,26 @@ class Item extends AbstractEntity
         return $this->quantity;
     }
     
+    /**
+     * Set packageHasCreditsId
+     *
+     * @param integer $packageHasCreditsId
+     * @return Item
+     */
+    public function setPackageHasCreditsId($packageHasCreditsId)
+    {
+        $this->packageHasCreditsId = $packageHasCreditsId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageHasCreditsId
+     *
+     * @return integer 
+     */
+    public function getPackageHasCreditsId()
+    {
+        return $this->packageHasCreditsId;
+    }
 }

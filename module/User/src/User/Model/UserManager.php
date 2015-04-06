@@ -17,6 +17,7 @@
  */
 
 namespace User\Model;
+use Application\Model\Constant as Constant;
  
 /**
  * Define a interface between CMSApiController and other modules
@@ -51,9 +52,9 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
     */
    
     public function createUserHasSaltEntry($inputDataArray) {
-       $userHasSaltDaoService = $this->getUserHasSaltDaoService();
-       $userHasSaltObject = $userHasSaltDaoService->createUpdateEntity($inputDataArray);
-       return $userHasSaltObject;
+       $systemSaltDaoService = $this->getSystemSaltDaoService();
+       $systemSaltObject = $systemSaltDaoService->createUpdateEntity($inputDataArray);
+       return $systemSaltObject;
    }
    
    /*
@@ -67,7 +68,8 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
    public function isUserHasSession($sessionGuid) {
        $userSessionDaoService = $this->getUserSessionDaoService();
        $queryParamArray['sessionGuid'] = $sessionGuid;
-       $userSessionObject = $userSessionDaoService->getUserSessionByParameterList($queryParamArray);
+       $entity = Constant::ENTITY_USER_SESSION;
+       $userSessionObject = $userSessionDaoService->getEntityByParameterList($queryParamArray, $entity);
        $result = false;
        if(is_object($userSessionObject)) {
            $result = true;

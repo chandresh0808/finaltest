@@ -22,6 +22,7 @@ namespace Api\Controller;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\ViewModel;
 
+
 /**
  * Common Controller functionality inherited by other controllers
  * 
@@ -48,4 +49,15 @@ class AbstractCoreController extends AbstractRestfulController
         return $this->getServiceLocator()->get('api_manager_service');
     }
     
+    /*
+     * Return value from header paramter
+     * @param string $headerName
+     * 
+     * @return string $headerValue
+     */
+    public function getValueFromHeader($headerName) {
+        $request  = $this->getRequest();
+        $headerValue = $request->getHeaders($headerName)->getFieldValue();
+        return $headerValue;
+    }
 }

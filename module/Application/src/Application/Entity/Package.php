@@ -27,15 +27,7 @@ class Package extends AbstractEntity
      * @ORM\Column(name="type", type="string", length=45, nullable=true)
      */
     private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="expiry_duration", type="string", length=45, nullable=false)
-     */
-    private $expiryDuration;
-
-        
+      
     /**
      * Set type
      *
@@ -57,29 +49,6 @@ class Package extends AbstractEntity
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set expiryDuration
-     *
-     * @param string $expiryDuration
-     * @return Package
-     */
-    public function setExpiryDuration($expiryDuration)
-    {
-        $this->expiryDuration = $expiryDuration;
-
-        return $this;
-    }
-
-    /**
-     * Get expiryDuration
-     *
-     * @return string 
-     */
-    public function getExpiryDuration()
-    {
-        return $this->expiryDuration;
     }
     
 }

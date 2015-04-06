@@ -41,6 +41,20 @@ class User extends AbstractEntity
      * @ORM\Column(name="last_name", type="string", length=50, nullable=true)
      */
     private $lastName;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="free_trial_flag", type="boolean", nullable=false)
+     */
+    private $freeTrialFlag = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active_package_flag", type="boolean", nullable=false)
+     */
+    private $activePackageFlag = '0';
 
     
     /**
@@ -143,6 +157,53 @@ class User extends AbstractEntity
         return $this->lastName;
     }
    
+    
+     /**
+     * Set freeTrialFlag
+     *
+     * @param boolean $freeTrialFlag
+     * @return User
+     */
+    public function setFreeTrialFlag($freeTrialFlag)
+    {
+        $this->freeTrialFlag = $freeTrialFlag;
+
+        return $this;
+    }
+
+    /**
+     * Get freeTrialFlag
+     *
+     * @return boolean 
+     */
+    public function getFreeTrialFlag()
+    {
+        return $this->freeTrialFlag;
+    }
+
+    /**
+     * Set activePackageFlag
+     *
+     * @param boolean $activePackageFlag
+     * @return User
+     */
+    public function setActivePackageFlag($activePackageFlag)
+    {
+        $this->activePackageFlag = $activePackageFlag;
+
+        return $this;
+    }
+
+    /**
+     * Get activePackageFlag
+     *
+     * @return boolean 
+     */
+    public function getActivePackageFlag()
+    {
+        return $this->activePackageFlag;
+    }
+    
     /**
      * Set activationCode
      *

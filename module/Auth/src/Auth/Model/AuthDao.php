@@ -36,28 +36,5 @@ namespace Auth\Model;
 
 class AuthDao extends \Application\Model\AbstractCommonServiceMutator
 {
-    
-    /**
-     * Get a user object using paramters
-     * 
-     * @param List $paramList paramter list
-     * 
-     * @return User\Entity\User
-     */
-    public function getUserByParameterList($paramList)
-    {
-        try {
-            if (!empty($paramList)) {
-                $paramList['deleteFlag'] = 0;
-                $returnObject = $this->getEntityManager()
-                    ->getRepository('Application\Entity\User')
-                    ->findOneBy($paramList);
-                return $returnObject;
-            }
-        } catch (\Exception $exc) {
-           //@TODO: Need log this error
-            throw new \Exception($exc);
-        }
-    }
-    
+        
 }

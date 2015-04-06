@@ -17,6 +17,7 @@
  */
 
 namespace Auth\Model;
+use Application\Model\Constant as Constant;
  
 /**
  * Define a interface between CMSApiController and other modules
@@ -40,8 +41,11 @@ class AuthManager extends \Application\Model\AbstractCommonServiceMutator
     {        
         $authDaoService = $this->getAuthDaoService();        
         $queryParameterArray['username'] = $userName;
-        $queryParameterArray['password']  = $userEmailId;        
-        $user = $authDaoService->getUserByParameterList($queryParameterArray);                
+        $queryParameterArray['password']  = $userEmailId;     
+        
+        $entity = Constant::ENTITY_USER;
+        
+        $user = $authDaoService->getEntityByParameterList($queryParameterArray, $entity);                
         if(is_object($user)) {
             return $user; 
         }        

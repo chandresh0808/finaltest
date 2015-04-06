@@ -20,6 +20,13 @@ class AnalysisRequestReportFile extends AbstractEntity
      * @ORM\Column(name="analysis_request_id", type="string", length=50, nullable=false)
      */
     private $analysisRequestId;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="package_has_credits_id", type="integer", nullable=false)
+     */
+    private $packageHasCreditsId;
    
     /**
      * Set analysisRequestId
@@ -44,4 +51,26 @@ class AnalysisRequestReportFile extends AbstractEntity
         return $this->analysisRequestId;
     }
     
+     /**
+     * Set packageHasCreditsId
+     *
+     * @param integer $packageHasCreditsId
+     * @return AnalysisRequestReportFile
+     */
+    public function setPackageHasCreditsId($packageHasCreditsId)
+    {
+        $this->packageHasCreditsId = $packageHasCreditsId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageHasCreditsId
+     *
+     * @return integer 
+     */
+    public function getPackageHasCreditsId()
+    {
+        return $this->packageHasCreditsId;
+    }
 }

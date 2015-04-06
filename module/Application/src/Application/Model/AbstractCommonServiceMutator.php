@@ -114,6 +114,12 @@ abstract class AbstractCommonServiceMutator
      */
     protected $_s3BucketConfiguration;
     
+    /**
+     * userSessionDao Service instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_systemSaltDaoService;
     
     /**
      * Set or Returns an instance of the Doctrine entity manager
@@ -416,5 +422,53 @@ abstract class AbstractCommonServiceMutator
         $this->_s3BucketConfiguration = $s3BucketConfiguration;
         return $this;
     }
+    
+    /**
+     * Get Api Manager Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    public function getSystemSaltDaoService()
+    {
+        return $this->_systemSaltDaoService;
+    }
+
+    /**
+     * Set Api Manager Service instance
+     *
+     * @param Api\Model\Api $systemSaltDaoService 
+     *
+     * @return currentObject
+     */
+    public function setSystemSaltDaoService($systemSaltDaoService)
+    {
+        $this->_systemSaltDaoService = $systemSaltDaoService;
+        return $this;
+    }
+    
+    
+    /**
+     * Get a user object using paramters
+     * 
+     * @param List $paramList paramter list
+     * 
+     * @return User\Entity\User
+     */
+    public function getEntityByParameterList($paramList, $entity)
+    {
+        try {
+            if (!empty($paramList)) {
+                $paramList['deleteFlag'] = 0;
+                $returnObject = $this->getEntityManager()
+                    ->getRepository($entity)
+                    ->findOneBy($paramList);
+                return $returnObject;
+            }
+        } catch (\Exception $exc) {
+           //@TODO: Need log this error
+            throw new \Exception($exc);
+        }
+    }
+    
     
 }
