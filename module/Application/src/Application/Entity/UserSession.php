@@ -15,13 +15,6 @@ class UserSession extends AbstractEntity
 {
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
-     */
-    private $userId;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="session_guid", type="string", length=50, nullable=true)
@@ -104,4 +97,30 @@ class UserSession extends AbstractEntity
         return $this->lastRequestDtTm;
     }
    
+    
+     
+    /**
+     * Create User
+     * 
+     * @var Application\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     * 
+     */
+    private $user;
+    
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    public function setUser($user)
+    {
+        return $this->user = $user;
+    }
+    
+    
 }
