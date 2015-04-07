@@ -43,7 +43,8 @@ $custom_theme_options = custom_theme_options();
 
 	<div id="page">
 
-		<header class="navbar-inverse navbar navbar" role="navigation">
+    <header class="navbar-inverse navbar navbar" role="navigation">
+    <div class="container">
 		
 				        <div class="navbar-header">
 				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,26 +53,32 @@ $custom_theme_options = custom_theme_options();
 					            <span class="icon-bar"></span>
 							</button>
 				            
-				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><?php bloginfo( 'name' ); ?></a>
+				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/Audit_Logo.png"></a>
 				            
 				        </div>
+				        
+				       
 						
 						<?php 
 						$args = array('theme_location' => 'primary', 
-							'container_class' => 'navbar-collapse collapse', 
+							'container_class' => 'navbar-collapse collapse navbar-right', 
 							'menu_class' => 'nav navbar-nav', 
 							'fallback_cb' => '', 
 							'menu_id' => 'main-menu',
 							'walker' => new Cyber_DC_Walker_Nav_Menu()); 
 						wp_nav_menu($args);
 						?>
+						 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?>
+						 
+						 <div><?php get_search_form(); ?></div>
+						
 					
-			
+		</div>	
 		</header>
 
 <?php
 			custom_jumbotron();
-			custom_home_page_default_widgets(); ?>
+			//custom_home_page_default_widgets(); ?>
 
 		<div id="main">
 			<div class="row">

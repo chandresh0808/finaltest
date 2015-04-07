@@ -445,4 +445,21 @@ function custom_add_class( $format ){
 	return str_replace( 'href=', 'class="btn btn-primary" href=', $format );
 }
 
+function wpgyan_widgets_init() {
+
+	register_sidebar( array(
+			'name' => 'header text',
+			'id' => 'header_sidebar',
+			'before_widget' => '<div>',
+			'after_widget' => '</div>',
+			//'before_title' => '<h2 class="rounded">',
+			//'after_title' => '</h2>',
+	) );
+
+	
+}
+
+
+add_action( 'widgets_init', 'wpgyan_widgets_init' );
+
 
