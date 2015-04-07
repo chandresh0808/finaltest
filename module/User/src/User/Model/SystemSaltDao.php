@@ -62,5 +62,5 @@ class SystemSaltDao extends \Application\Model\AbstractDao
 
         return $systemSaltObject;
     }
-
+        
 }

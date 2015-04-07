@@ -16,7 +16,7 @@
  * 
  */
 
-namespace Auth\Model;
+namespace RuleBook\Model;
 use Application\Model\Constant as Constant;
  
 /**
@@ -35,20 +35,20 @@ use Application\Model\Constant as Constant;
  * 
  */
 
-class AuthManager extends \Application\Model\AbstractCommonServiceMutator
+class RuleBookManager extends \Application\Model\AbstractCommonServiceMutator
 {
-    public function authenticateUser($userName, $password)
-    {        
-        $authDaoService = $this->getAuthDaoService();        
-        $queryParameterArray['username'] = $userName;
-        $queryParameterArray['password']  = $password;     
+     /*
+     * Get user rule book list
+     * @param string session_guid
+     * 
+     * @return array  $userRuleBookList
+     * 
+     */
+    
+    public function getUserRuleBookList ($sessionGuid) {
         
-        $entity = Constant::ENTITY_USER;
-        
-        $user = $authDaoService->getEntityByParameterList($queryParameterArray, $entity);                
-        if(is_object($user)) {
-            return $user; 
-        }        
-        return false;        
+        $ruleBookDaoService = $this->getRuleBookDaoService();             
+        $userRuleBookList = $ruleBookDaoService->getEntityByParameterList($sessionGuid);
+        return $userRuleBookList;        
     }
 }

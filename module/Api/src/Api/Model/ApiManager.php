@@ -17,8 +17,9 @@
  */
 
 namespace Api\Model;
+
 use Application\Model\Constant as Constant;
- 
+
 /**
  * Define a interface between CMSApiController and other modules
  * 
@@ -34,35 +35,39 @@ use Application\Model\Constant as Constant;
  * @link       http://www.costrategix.com 
  * 
  */
-
 class ApiManager extends \Application\Model\AbstractCommonServiceMutator
 {
-    
     /*
      * authenticate user
      * 
      * @return array $response
      */
-    
-    public function authenticateUser($encryptedString)
+
+    public function authenticateUser($encryptedString, $refId)
     {
         $authManagerService = $this->getAuthManagerService();
         $userManagerService = $this->getUserManagerService();
-        $apiService = $this->getApiService();        
+        $apiService = $this->getApiService();
+
+        /* Get auth salt using ref id */
+        $authSaltObject = $userManagerService->getAuthSaltUsingId($refId);
+        $authSalt = $authSaltObject->getSalt();
         
-        $userCredentialArray = $apiService->decryptUserCredential($encryptedString);
-        
+        /* Get user credentials */
+        $userCredentialArray = $apiService->decryptUserCredential($encryptedString, $authSalt);
+
+        /* authenticate the user*/
         $userObject = $authManagerService->authenticateUser(
-            $userCredentialArray['user_name'], $userCredentialArray['password']
+                $userCredentialArray['user_name'], $userCredentialArray['password']
         );
-        
-        if (is_object($userObject)) {                        
+
+        if (is_object($userObject)) {
             $userId = $userObject->getId();
-            $guid = $apiService->getGUID();                                               
+            $guid = $apiService->getGUID();
             $inputDataArray['user_id'] = $userId;
             $inputDataArray['session_guid'] = $guid;
-            $userSessionObject = $userManagerService->createUserSessionEntry($inputDataArray);            
-            if(is_object($userSessionObject)) {
+            $userSessionObject = $userManagerService->createUserSessionEntry($inputDataArray);
+            if (is_object($userSessionObject)) {
                 $response['success'] = true;
                 $response['session_guid'] = $guid;
                 $response['user_id'] = $userId;
@@ -70,15 +75,14 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
                 $response['success'] = false;
                 $response['message'] = Constant::ERR_MSG_AUTH_NOT_ABLE_TO_CREATE_USERSESSION_ENTRY;
             }
-                        
         } else {
             $response['success'] = false;
             $response['message'] = Constant::ERR_MSG_AUTH_UNAUTHORIZED;
-        }      
-        
+        }
+
         return $response;
     }
-    
+
     /*
      * Generate salt for Authentication
      * 
@@ -94,42 +98,71 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         $salt = $apiService->generateSalt(Constant::SALT_CHAR_LENGTH);
         $inputArray['salt'] = $salt;
         $inputArray['type'] = Constant::SALT_AUTH_TYPE;
-        $userHasSaltObject = $userManagerService->createUserHasSaltEntry($inputArray);
+        $authSaltObject = $userManagerService->createAuthSaltEntry($inputArray);
 
-        if (is_object($userHasSaltObject)) {
+        if (is_object($authSaltObject)) {
             $responseArray['success'] = true;
-            $responseArray['ref_id'] = $userHasSaltObject->getId();
-            $responseArray['salt'] = $userHasSaltObject->getSalt();
+            $responseArray['ref_id'] = $authSaltObject->getId();
+            $responseArray['salt'] = $authSaltObject->getSalt();
         } else {
             $responseArray['success'] = false;
             $responseArray['message'] = Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT;
         }
-        
+
         return $responseArray;
     }
-    
+
     /*
      * Get s3 bucket configuration
      * 
      * @return array $responseArray
      */
-    
-    public function getS3BacketConfig($sessionGuid) {
-        
+
+    public function getS3BacketConfig($sessionGuid)
+    {
+
         $userManagerService = $this->getUserManagerService();
-        
+
         //@TODO : Need to move this function call to on bootstrap 
-        $result = $userManagerService->isUserHasSession($sessionGuid);        
+        $result = $userManagerService->isUserHasSession($sessionGuid);
         if (!$result) {
             $responseArray['success'] = false;
             $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
             return $responseArray;
         }
-        
+
         $applicationEnv = getenv('APPLICATION_ENV');
         $s3BucketConfiguration = $this->getS3BucketConfiguration();
         $envSpecificS3BucketConfiguration = $s3BucketConfiguration[$applicationEnv];
-        return $envSpecificS3BucketConfiguration;        
+        return $envSpecificS3BucketConfiguration;
     }
-    
+
+    /*
+     * Get user rule book list
+     * @param string session_guid
+     * 
+     * @return array  $userRuleBookList
+     * 
+     */
+
+    public function getUserRuleBookList($sessionGuid)
+    {
+
+        $userManagerService = $this->getUserManagerService();
+        $ruleBookManagerService = $this->getRuleBookManagerService();
+
+        //@TODO : Need to move this function call to on bootstrap 
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        if (!$userHasSession) {
+            $responseArray['success'] = false;
+            $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
+            return $responseArray;
+        }
+
+        $ruleBookObject = $userHasSession->getUser()->getRuleBook();
+
+        $userRuleBookList = $ruleBookManagerService->getUserRuleBookList($sessionGuid);
+        return $userRuleBookList;
+    }
+
 }

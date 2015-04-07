@@ -71,13 +71,13 @@ class Api extends \Application\Model\AbstractCommonServiceMutator
      * 
      */
 
-    public function decryptUserCredential($encryptedString)
+    public function decryptUserCredential($encryptedString, $authSalt)
     {
 
-        $decryptedString = $this->decryptData($encryptedString);
+        $decryptedString = $this->decryptData($encryptedString, $authSalt);
         $userCredentialArray = explode(Constant::USER_CREDENTIALS_SEPARATOR, $decryptedString, 2);
-        $responseArray['user_name'] = $userCredentialArray[0];
-        $responseArray['password'] = $userCredentialArray[1];
+        $responseArray['user_name'] = trim($userCredentialArray[0]);
+        $responseArray['password'] = trim($userCredentialArray[1]);
 
         return $responseArray;
     }
@@ -90,9 +90,11 @@ class Api extends \Application\Model\AbstractCommonServiceMutator
      * @return string $decryptedString
      */
 
-    public function decryptData($encryptedString)
+    public function decryptData($encryptedString, $salt)
     {
-        return $encryptedString;
+        $decrypted = mcrypt_decrypt(
+                MCRYPT_RIJNDAEL_128, $salt, base64_decode($encryptedString), MCRYPT_MODE_ECB);
+        return $decrypted;
     }
 
     /*

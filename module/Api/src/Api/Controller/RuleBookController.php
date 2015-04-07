@@ -20,8 +20,9 @@ namespace Api\Controller;
 
 use Zend\View\Model\JsonModel;
 use Api\Controller\AbstractCoreController as AbstractCoreController;
+use Application\Model\Constant as Constant;
 
-class AuthController extends AbstractCoreController
+class RuleBookController extends AbstractCoreController
 {
     /**
      * check for user authentication
@@ -32,10 +33,9 @@ class AuthController extends AbstractCoreController
      */
     public function create()
     {
-        $encryptedString = $this->getValueFromHeader('credentials');
-        $refId = $this->getValueFromHeader('ref_id');
-        $result = $this->getApiManagerService()->authenticateUser($encryptedString, $refId);       
+        $sessionGuid = $this->getValueFromHeader(Constant::USER_SESSION_GUID);
+        $result = $this->getApiManagerService()->getUserRuleBookList($sessionGuid);       
         return new JsonModel($result);
     }
-    
+ 
 }

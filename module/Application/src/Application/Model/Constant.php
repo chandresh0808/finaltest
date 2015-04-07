@@ -31,4 +31,5 @@ class Constant
     /* Entities */    
     const ENTITY_USER_SESSION = 'Application\Entity\UserSession';
     const ENTITY_USER = 'Application\Entity\User';
+    const ENTITY_SYSTEM_SALT = 'Application\Entity\SystemSalt';
 }
