@@ -13,38 +13,5 @@
  */
 $custom_theme_options = custom_theme_options();
 get_header(); ?>
-	<?php if ( ( $custom_theme_options['home_posts'] && is_front_page() ) || ! is_front_page() ) { ?>
-	<div id="primary" <?php custom_primary_attr(); ?>>
-		<?php
-		if ( have_posts() ) :
-			while ( have_posts() ) : the_post();
-				get_template_part( 'content', get_post_format() );
-			endwhile;
 
-			custom_pagination();
-		else :
-			?>
-			<article id="post-0" class="post no-results not-found">
-
-			<?php if ( current_user_can( 'edit_posts' ) ) :
-				// Show a different message to a logged-in user who can add posts.
-				?>
-				<h1 class="entry-title"><?php _e( 'No posts to display', 'custom' ); ?></h1>
-
-				<div class="entry-content">
-					<p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'custom' ), admin_url( 'post-new.php' ) ); ?></p>
-				</div><!-- .entry-content -->
-
-				<?php
-			else :
-				get_template_part( 'content', 'none' );
-			endif; // end current_user_can() check
-			?>
-
-			</article><!-- #post-0 -->
-		    <?php
-		endif;
-		?>
-	</div>
-	<?php }	?>
 <?php get_footer(); ?>

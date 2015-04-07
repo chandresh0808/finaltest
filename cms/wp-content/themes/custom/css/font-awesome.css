@@ -1477,3 +1477,13 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
+
+.pull-right
+{
+display:none !important;
+}
+
+.sldr_title
+{
+display:none !important;
+}

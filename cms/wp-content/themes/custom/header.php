@@ -44,6 +44,7 @@ $custom_theme_options = custom_theme_options();
 	<div id="page">
 
     <header class="navbar-inverse navbar navbar" role="navigation">
+    <div class="container">
 		
 				        <div class="navbar-header">
 				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,7 +61,7 @@ $custom_theme_options = custom_theme_options();
 						
 						<?php 
 						$args = array('theme_location' => 'primary', 
-							'container_class' => 'navbar-collapse collapse', 
+							'container_class' => 'navbar-collapse collapse navbar-right', 
 							'menu_class' => 'nav navbar-nav', 
 							'fallback_cb' => '', 
 							'menu_id' => 'main-menu',
@@ -68,9 +69,11 @@ $custom_theme_options = custom_theme_options();
 						wp_nav_menu($args);
 						?>
 						 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?>
+						 
+						 <div><?php get_search_form(); ?></div>
 						
 					
-			
+		</div>	
 		</header>
 
 <?php
