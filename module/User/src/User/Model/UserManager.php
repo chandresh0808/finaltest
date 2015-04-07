@@ -51,7 +51,7 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
     * 
     */
    
-    public function createUserHasSaltEntry($inputDataArray) {
+    public function createAuthSaltEntry($inputDataArray) {
        $systemSaltDaoService = $this->getSystemSaltDaoService();
        $systemSaltObject = $systemSaltDaoService->createUpdateEntity($inputDataArray);
        return $systemSaltObject;
@@ -76,4 +76,19 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
        }
        return $result;
    }
+   
+   /*
+    * Read user salt using ref_id
+    * @param int $refId
+    * 
+    * @return object $systemSaltObject
+    */
+   public function getAuthSaltUsingId($refId)
+    {
+        $systemSaltDaoService = $this->getSystemSaltDaoService();
+        $queryParamArray['id'] = $refId;
+        $entity = Constant::ENTITY_SYSTEM_SALT;
+        $systemSaltObject = $systemSaltDaoService->getEntityByParameterList($queryParamArray, $entity);
+        return $systemSaltObject;
+    }
 }
