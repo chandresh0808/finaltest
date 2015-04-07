@@ -18,6 +18,8 @@
 namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Criteria;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 
 /**
@@ -33,17 +35,18 @@ use Doctrine\Common\Collections\Criteria;
 * @license    http://www.costrategix.com 
 * @version    GIT: 1.7
 * @link      http://www.costrategix.com
-*
+* @ExclusionPolicy("all")
 */
 
 abstract class AbstractEntity
 {
-     /**
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Expose
      */
     protected $id;
     

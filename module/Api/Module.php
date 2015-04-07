@@ -57,7 +57,7 @@ class Module
                     $apiManager = new Model\ApiManager();     
                     $configArray = $sm->get('Config');
                     $apiManager->setS3BucketConfiguration($configArray['s3_bucket_configuration']);                    
-                    //$apiManager->setJmsSerializerService($sm->get('jms_serializer.serializer'));
+                    $apiManager->setJmsSerializerService($sm->get('jms_serializer.serializer'));
                     $serviceList = array('entity_manager','auth_manager_service',
                         'api_service','user_manager_service');
                     $apiManager->setServiceList($serviceList, $sm);

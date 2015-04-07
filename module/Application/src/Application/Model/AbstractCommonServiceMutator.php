@@ -476,7 +476,9 @@ abstract class AbstractCommonServiceMutator
     protected function convertObjectToArrayUsingJmsSerializer($inputObject)
     {
         $serializer = $this->getJmsSerializerService();
-        $serializedObject = $serializer->serialize($inputObject, 'json');
+        $serializedString = $serializer->serialize($inputObject, 'json');
+        /* Decoding here coz jsonmodel whil encode again while returning */
+        $serializedObject = json_decode($serializedString);
         return $serializedObject;
     }
     

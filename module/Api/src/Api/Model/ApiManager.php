@@ -151,17 +151,17 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         $userManagerService = $this->getUserManagerService();
         $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
         
-        if (!$userHasSession) {
+        if (!is_object($userHasSession)) {
             $responseArray['success'] = false;
             $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
             return $responseArray;
         }
-
+        
         $ruleBookObject = $userHasSession->getUser()->getRoleBookList();  
         
         if (is_object($ruleBookObject)) {
             $responseArray['success'] = true;
-            $responseArray['rule_book_list'] = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            $responseArray['rule_book_list'] =  $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
         } else {
             $responseArray['success'] = false;
             $responseArray['message'] = \Constant::MSG_NO_RECORD_FOUND;

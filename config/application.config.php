@@ -18,7 +18,8 @@ $config = array(
         'DoctrineORMModule',
         'Api',
         'Auth',
-        'User'
+        'User',
+        'JMSSerializerModule',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

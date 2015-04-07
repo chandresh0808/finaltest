@@ -72,7 +72,7 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
        $userSessionObject = $userSessionDaoService->getEntityByParameterList($queryParamArray, $entity);
        $result = false;
        if(is_object($userSessionObject)) {
-           $result = true;
+           $result = $userSessionObject;
        }
        return $result;
    }

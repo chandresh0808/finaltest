@@ -11,6 +11,6 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "~2.3",
         "doctrine/doctrine-orm-module": "0.*",
-        "sp/jms-serializer-module": "dev-master"
+        "sp/jms-serializer-module": "dev-master" 
     }
 }
