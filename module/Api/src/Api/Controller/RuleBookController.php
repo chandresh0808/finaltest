@@ -37,5 +37,5 @@ class RuleBookController extends AbstractCoreController
         $ruleBookList = $this->getApiManagerService()->getUserRuleBookList($sessionGuid);   
         return new JsonModel($ruleBookList);
     }
-     
+         
 }
