@@ -32,4 +32,7 @@ class Constant
     const ENTITY_USER_SESSION = 'Application\Entity\UserSession';
     const ENTITY_USER = 'Application\Entity\User';
     const ENTITY_SYSTEM_SALT = 'Application\Entity\SystemSalt';
+    
+    /* Rule Book */
+    const MSG_NO_RECORD_FOUND = 'No Record Found';
 }

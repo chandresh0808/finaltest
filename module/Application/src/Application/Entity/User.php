@@ -14,6 +14,14 @@ use Application\Entity\AbstractEntity as AbstractEntity;
 class User extends AbstractEntity
 {
 
+    
+    function __construct()
+    {
+        $arrayCollection =   new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setRoleBookList($arrayCollection);
+    }
+    
+    
     /**
      * @var string
      *
@@ -227,4 +235,26 @@ class User extends AbstractEntity
         return $this->activationCode;
     }
    
+    
+    /**
+     * Collection for Rule book list 
+     * 
+     * @var \Application\Entity\RuleBook Description
+     *
+     * @param \Application\Entity\RuleBook Rule Book List
+     * @ORM\OneToMany(targetEntity="Rulebook", mappedBy="userId")
+     */
+    private $ruleBookList;
+
+    public function setRoleBookList($arrayCollection)
+    {
+        $this->ruleBookList = $arrayCollection;
+        return $this;
+    }
+
+    public function getRoleBookList()
+    {
+        return $this->ruleBookList;
+    }
+    
 }

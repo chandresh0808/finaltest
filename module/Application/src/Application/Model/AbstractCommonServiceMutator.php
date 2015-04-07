@@ -122,6 +122,13 @@ abstract class AbstractCommonServiceMutator
     protected $_systemSaltDaoService;
     
     /**
+     * jms serializer Service instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_jmsSerializerService;
+    
+    /**
      * Set or Returns an instance of the Doctrine entity manager
      * 
      * @param Doctrine\ORM\EntityManager $entityManager EntityManager
@@ -434,5 +441,43 @@ abstract class AbstractCommonServiceMutator
         return $this;
     }
            
+    
+    /**
+     * Get Jms serializer Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    public function getJmsSerializerService()
+    {
+        return $this->_jmsSerializerService;
+    }
+
+    /**
+     * Set Jms serializer Service instance
+     *
+     * @param Api\Model\Api $jmsSerializerService 
+     *
+     * @return currentObject
+     */
+    public function setJmsSerializerService($jmsSerializerService)
+    {
+        $this->_jmsSerializerService = $jmsSerializerService;
+        return $this;
+    }
+    
+        /*
+     * Convert object to array using jms serializer
+     * @param object $inputObject
+     * 
+     * @return array $responseArray
+     * 
+     */
+
+    protected function convertObjectToArrayUsingJmsSerializer($inputObject)
+    {
+        $serializer = $this->getJmsSerializerService();
+        $serializedObject = $serializer->serialize($inputObject, 'json');
+        return $serializedObject;
+    }
     
 }

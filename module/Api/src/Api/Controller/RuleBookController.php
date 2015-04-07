@@ -34,8 +34,8 @@ class RuleBookController extends AbstractCoreController
     public function create()
     {
         $sessionGuid = $this->getValueFromHeader(Constant::USER_SESSION_GUID);
-        $result = $this->getApiManagerService()->getUserRuleBookList($sessionGuid);       
-        return new JsonModel($result);
+        $ruleBookList = $this->getApiManagerService()->getUserRuleBookList($sessionGuid);   
+        return new JsonModel($ruleBookList);
     }
- 
+     
 }

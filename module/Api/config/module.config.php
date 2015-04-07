@@ -26,6 +26,7 @@ return array(
             'Api\Controller\Utility' => 'Api\Controller\UtilityController',
             'Api\Controller\PreAuth' => 'Api\Controller\PreAuthController',
             'Api\Controller\S3Bucket' => 'Api\Controller\S3BucketController',
+            'Api\Controller\RuleBook' => 'Api\Controller\RuleBookController',
         ),
     ),
     
@@ -75,6 +76,15 @@ return array(
                     ),
                 ),
             ),     
+            'list_rule_book_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/list_rule_book',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\RuleBook',
+                    ),
+                ),
+            ),   
             
         ),
     ),    
