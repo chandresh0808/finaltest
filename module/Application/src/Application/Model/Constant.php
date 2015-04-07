@@ -28,8 +28,7 @@ class Constant
     const ERR_MSG_NOT_ABLE_TO_GENERATE_SALT = 'Not able to generate salt';
     const ERR_MSG_AUTH_TOKEN_EXPIRED = 'Access token expired';
     
-    /* Entities */
-    
+    /* Entities */    
     const ENTITY_USER_SESSION = 'Application\Entity\UserSession';
     const ENTITY_USER = 'Application\Entity\User';
 }

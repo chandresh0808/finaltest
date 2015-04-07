@@ -34,7 +34,7 @@ namespace User\Model;
  * 
  */
 
-class UserDao extends \Application\Model\AbstractCommonServiceMutator
+class UserDao extends \Application\Model\AbstractDao
 {
        
 }

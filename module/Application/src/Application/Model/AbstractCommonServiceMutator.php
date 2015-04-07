@@ -375,19 +375,7 @@ abstract class AbstractCommonServiceMutator
     }
     
                 
-    /**
-     *Persist and flush
-     * 
-     * @param Object $inputObject Description
-     *  
-     **/
-    function persistFlush($inputObject)
-    {
-        $this->getEntityManager()->persist($inputObject);
-        $this->getEntityManager()->flush();
-        return $inputObject;
-    }
-    
+
     /*
      * Create or unpdate the given entity
      * @param array $dataList
@@ -445,30 +433,6 @@ abstract class AbstractCommonServiceMutator
         $this->_systemSaltDaoService = $systemSaltDaoService;
         return $this;
     }
-    
-    
-    /**
-     * Get a user object using paramters
-     * 
-     * @param List $paramList paramter list
-     * 
-     * @return User\Entity\User
-     */
-    public function getEntityByParameterList($paramList, $entity)
-    {
-        try {
-            if (!empty($paramList)) {
-                $paramList['deleteFlag'] = 0;
-                $returnObject = $this->getEntityManager()
-                    ->getRepository($entity)
-                    ->findOneBy($paramList);
-                return $returnObject;
-            }
-        } catch (\Exception $exc) {
-           //@TODO: Need log this error
-            throw new \Exception($exc);
-        }
-    }
-    
+           
     
 }
