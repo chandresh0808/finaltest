@@ -74,14 +74,30 @@ class Api extends \Application\Model\AbstractCommonServiceMutator
     public function decryptUserCredential($encryptedString, $authSalt)
     {
 
-        $decryptedString = $this->decryptData($encryptedString, $authSalt);
+        $decryptedString = $this->decryptData($encryptedString, $authSalt);        
+        $decryptedString = $this->pkcs5Unpad($decryptedString);        
         $userCredentialArray = explode(Constant::USER_CREDENTIALS_SEPARATOR, $decryptedString, 2);
         $responseArray['user_name'] = trim($userCredentialArray[0]);
-        $responseArray['password'] = trim($userCredentialArray[1]);
+        $responseArray['password']  = trim($userCredentialArray[1]);
 
         return $responseArray;
     }
 
+    /*
+     * removing padding from decrypted string
+     * @param string $decryptedString
+     * 
+     * @return string $decryptedString
+     * 
+     */
+    function pkcs5Unpad($decryptedString)
+    {
+       $pad = ord($decryptedString{strlen($decryptedString)-1});
+       if ($pad > strlen($decryptedString)) return false;
+       return substr($decryptedString, 0, -1 * $pad);
+    }
+
+    
     /*
      * Decrypt the data
      * 

@@ -29,29 +29,6 @@ class UserSession extends AbstractEntity
     private $lastRequestDtTm;
     
     /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return UserSession
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
      * Set sessionGuid
      *
      * @param string $sessionGuid

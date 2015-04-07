@@ -57,7 +57,7 @@ class UserSessionDao extends \Application\Model\AbstractDao
         }
         
         $epochTime = \Application\Model\Utility::getCurrentEpochTime();
-        $userSessionObject->setUserId($postDataArray['user_id']);
+        $userSessionObject->setUser($postDataArray['user_id']);
         $userSessionObject->setSessionGuid($postDataArray['session_guid']);
         $userSessionObject->setLastRequestDtTm($epochTime);
 

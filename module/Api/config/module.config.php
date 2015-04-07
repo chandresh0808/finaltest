@@ -108,17 +108,17 @@ return array(
     
     's3_bucket_configuration'   => array(
         'development' => array(
-            'backet_name' => 'dev.wadyaknow',
+            'bucket_name' => 'dev.wadyaknow',
             'access_key'   => "AKIAIMZZ6D7PBOVYZYQQ",
             'secret_key' => "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"
         ),
         'staging'     => array(
-            'backet_name' => 'staging.wadyaknow',
+            'bucket_name' => 'staging.wadyaknow',
             'access_key'   => "############################",
             'secret_key' => "############################"
         ),
         'production'  => array(
-            'backet_name' => 'prod.wadyaknow',
+            'bucket_name' => 'prod.wadyaknow',
             'access_key'   => "@@@@@@@@@@@@@@@@@@@@@@",
             'secret_key' => "@@@@@@@@@@@@@@@@@@@@@@"
         ),

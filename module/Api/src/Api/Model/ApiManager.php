@@ -64,7 +64,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         if (is_object($userObject)) {
             $userId = $userObject->getId();
             $guid = $apiService->getGUID();
-            $inputDataArray['user_id'] = $userId;
+            $inputDataArray['user_id'] = $userObject;
             $inputDataArray['session_guid'] = $guid;
             $userSessionObject = $userManagerService->createUserSessionEntry($inputDataArray);
             if (is_object($userSessionObject)) {
