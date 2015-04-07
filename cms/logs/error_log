@@ -1,0 +1,15 @@
+[Fri Mar 27 06:19:20 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Fri Mar 27 06:22:29 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Fri Mar 27 09:57:49 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Fri Mar 27 12:19:01 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Fri Mar 27 12:19:01 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Fri Mar 27 12:19:01 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Mon Apr 06 05:30:36 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/audit-companion-app/cms/favicon.ico
+[Mon Apr 06 09:57:46 2015] [error] [client 203.109.117.114] Directory index forbidden by Options directive: /var/www/vhosts/auditcompanion-portal/cms/
+[Mon Apr 06 09:57:50 2015] [error] [client 203.109.117.114] Directory index forbidden by Options directive: /var/www/vhosts/auditcompanion-portal/cms/
+[Mon Apr 06 09:58:06 2015] [error] [client 203.109.117.114] Directory index forbidden by Options directive: /var/www/vhosts/auditcompanion-portal/cms/
+[Mon Apr 06 10:03:52 2015] [error] [client 203.109.117.114] Directory index forbidden by Options directive: /var/www/vhosts/auditcompanion-portal/cms/
+[Mon Apr 06 10:03:52 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/auditcompanion-portal/cms/favicon.ico
+[Mon Apr 06 10:03:54 2015] [error] [client 203.109.117.114] Directory index forbidden by Options directive: /var/www/vhosts/auditcompanion-portal/cms/
+[Mon Apr 06 11:26:12 2015] [error] [client 203.109.117.114] File does not exist: /var/www/vhosts/auditcompanion-portal/cms/favicon.ico
+[Tue Apr 07 04:40:55 2015] [error] [client 180.151.199.94] File does not exist: /var/www/vhosts/auditcompanion-portal/cms/favicon.ico
