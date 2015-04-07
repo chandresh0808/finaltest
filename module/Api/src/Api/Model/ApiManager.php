@@ -157,17 +157,32 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
             return $responseArray;
         }
         
+        /* Gets Role book list from user sessoin object */
         $ruleBookObject = $userHasSession->getUser()->getRoleBookList();  
-        
-        if (is_object($ruleBookObject)) {
-            $responseArray['success'] = true;
-            $responseArray['rule_book_list'] =  $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+                
+        if (is_object($ruleBookObject)) {                       
+            $serializedData = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            if(empty($serializedData)) {
+               $responseArray = $this->_getNoRecordMessage();
+            } else {
+                $responseArray['success'] = true;
+                $responseArray['rule_book_list'] =  $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            }
+            
         } else {
-            $responseArray['success'] = false;
-            $responseArray['message'] = \Constant::MSG_NO_RECORD_FOUND;
+            $responseArray = $this->_getNoRecordMessage();
         }
                 
         return $responseArray;
     }
 
+    
+    /*
+     * Returns no record found message
+     */
+    private function _getNoRecordMessage () {
+        $responseArray['success'] = false;
+        $responseArray['message'] = Constant::MSG_NO_RECORD_FOUND;
+        return $responseArray;
+    }
 }

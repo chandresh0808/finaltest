@@ -176,4 +176,24 @@ abstract class AbstractEntity
         return $this->name;
     }
     
+    
+    /**
+     * Set the condition for deleteFlag
+     * 
+     *@param Object $entityObject Description
+     * 
+     *@return Object 
+     **/
+    public function setConditionActiveFlag($entityObject)
+    {
+        if (is_object($entityObject)) {
+            $criteria = Criteria::create()
+                ->where(Criteria::expr()->eq("deleteFlag", 0));
+            $entityObjectWithFilter = $entityObject->matching($criteria);
+
+            return $entityObjectWithFilter;
+        }
+
+    }
+    
 }

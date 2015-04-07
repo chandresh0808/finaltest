@@ -254,7 +254,7 @@ class User extends AbstractEntity
 
     public function getRoleBookList()
     {
-        return $this->ruleBookList;
+        return $this->setConditionActiveFlag($this->ruleBookList);
     }
     
 }
