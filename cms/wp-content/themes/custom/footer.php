@@ -31,7 +31,7 @@ $custom_theme_options = custom_theme_options();
 				<?php $class = ( is_active_sidebar( 'extended-footer' ) ) ? ' active' : ''; ?>
 				<span class="line<?php echo $class; ?>"></span>
 				<span class="pull-left">Copyright &copy; <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>. All Rights Reserved.</span>
-				<span class="credit-link pull-right"><?php printf( __( '%s created by %s.', 'custom' ), CYBER_DC_custom, '<a href="http://cyberdesigncraft.com/custom/">Cyberdesign Craft</a>' ); ?></span>
+				<!--<span class="credit-link pull-right"><?php printf( __( '%s created by %s.', 'custom' ), CYBER_DC_custom, '<a href="http://cyberdesigncraft.com/custom/">Cyberdesign Craft</a>' ); ?></span>-->
 			</div><!-- .col-lg-12 -->
 		</div><!-- .row -->
 	</div><!-- #footer-content.container -->
