@@ -149,20 +149,25 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
     {
 
         $userManagerService = $this->getUserManagerService();
-        $ruleBookManagerService = $this->getRuleBookManagerService();
-
-        //@TODO : Need to move this function call to on bootstrap 
         $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        
         if (!$userHasSession) {
             $responseArray['success'] = false;
             $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
             return $responseArray;
         }
 
-        $ruleBookObject = $userHasSession->getUser()->getRuleBook();
-
-        $userRuleBookList = $ruleBookManagerService->getUserRuleBookList($sessionGuid);
-        return $userRuleBookList;
+        $ruleBookObject = $userHasSession->getUser()->getRoleBookList();  
+        
+        if (is_object($ruleBookObject)) {
+            $responseArray['success'] = true;
+            $responseArray['rule_book_list'] = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+        } else {
+            $responseArray['success'] = false;
+            $responseArray['message'] = \Constant::MSG_NO_RECORD_FOUND;
+        }
+                
+        return $responseArray;
     }
 
 }
