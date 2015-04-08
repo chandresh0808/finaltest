@@ -63,4 +63,17 @@ class SystemSaltDao extends \Application\Model\AbstractDao
         return $systemSaltObject;
     }
         
+    
+    /*
+     * delete user session
+     * @param object $userSession
+     * 
+     * @return object $userSession
+     */
+    
+    public function update($userSession) {
+       $userSession = $this->persistFlush($userSession);   
+       return $userSession;
+    }
+    
 }

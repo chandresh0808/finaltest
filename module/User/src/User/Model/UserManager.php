@@ -17,8 +17,9 @@
  */
 
 namespace User\Model;
+
 use Application\Model\Constant as Constant;
- 
+
 /**
  * Define a interface between CMSApiController and other modules
  * 
@@ -34,56 +35,60 @@ use Application\Model\Constant as Constant;
  * @link       http://www.costrategix.com 
  * 
  */
-
 class UserManager extends \Application\Model\AbstractCommonServiceMutator
 {
-   public function createUserSessionEntry($inputDataArray) {
-       $userSessionDaoService = $this->getUserSessionDaoService();
-       $userSessionObject = $userSessionDaoService->createUpdateEntity($inputDataArray);
-       return $userSessionObject;
-   }
-   
-   /*
-    * Create a entry in user_has_salt table
-    * @param array $inputDataArray
-    * 
-    * @return object $userHasSalt
-    * 
-    */
-   
-    public function createAuthSaltEntry($inputDataArray) {
-       $systemSaltDaoService = $this->getSystemSaltDaoService();
-       $systemSaltObject = $systemSaltDaoService->createUpdateEntity($inputDataArray);
-       return $systemSaltObject;
-   }
-   
-   /*
-    * Check for user has session
-    * @param string $sessionGuid
-    * 
-    * @return bool $result
-    * 
-    */
-   
-   public function isUserHasSession($sessionGuid) {
-       $userSessionDaoService = $this->getUserSessionDaoService();
-       $queryParamArray['sessionGuid'] = $sessionGuid;
-       $entity = Constant::ENTITY_USER_SESSION;
-       $userSessionObject = $userSessionDaoService->getEntityByParameterList($queryParamArray, $entity);
-       $result = false;
-       if(is_object($userSessionObject)) {
-           $result = $userSessionObject;
-       }
-       return $result;
-   }
-   
-   /*
-    * Read user salt using ref_id
-    * @param int $refId
-    * 
-    * @return object $systemSaltObject
-    */
-   public function getAuthSaltUsingId($refId)
+
+    public function createUserSessionEntry($inputDataArray)
+    {
+        $userSessionDaoService = $this->getUserSessionDaoService();
+        $userSessionObject = $userSessionDaoService->createUpdateEntity($inputDataArray);
+        return $userSessionObject;
+    }
+
+    /*
+     * Create a entry in user_has_salt table
+     * @param array $inputDataArray
+     * 
+     * @return object $userHasSalt
+     * 
+     */
+
+    public function createAuthSaltEntry($inputDataArray)
+    {
+        $systemSaltDaoService = $this->getSystemSaltDaoService();
+        $systemSaltObject = $systemSaltDaoService->createUpdateEntity($inputDataArray);
+        return $systemSaltObject;
+    }
+
+    /*
+     * Check for user has session
+     * @param string $sessionGuid
+     * 
+     * @return bool $result
+     * 
+     */
+
+    public function isUserHasSession($sessionGuid)
+    {
+        $userSessionDaoService = $this->getUserSessionDaoService();
+        $queryParamArray['sessionGuid'] = $sessionGuid;
+        $entity = Constant::ENTITY_USER_SESSION;
+        $userSessionObject = $userSessionDaoService->getEntityByParameterList($queryParamArray, $entity);
+        $result = false;
+        if (is_object($userSessionObject)) {
+            $result = $userSessionObject;
+        }
+        return $result;
+    }
+
+    /*
+     * Read user salt using ref_id
+     * @param int $refId
+     * 
+     * @return object $systemSaltObject
+     */
+
+    public function getAuthSaltUsingId($refId)
     {
         $systemSaltDaoService = $this->getSystemSaltDaoService();
         $queryParamArray['id'] = $refId;
@@ -91,4 +96,20 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
         $systemSaltObject = $systemSaltDaoService->getEntityByParameterList($queryParamArray, $entity);
         return $systemSaltObject;
     }
+
+    /*
+     * delete user session
+     * @param object $userSession
+     * 
+     * @return object $userSession
+     */
+
+    public function deleteUserSession($userSession)
+    {
+        $systemSaltDaoService = $this->getSystemSaltDaoService();
+        $userSession->setDeleteFlag(Constant::SET_DELETE_FLAG);
+        $userSession = $systemSaltDaoService->update($userSession);
+        return $userSession;
+    }
+
 }

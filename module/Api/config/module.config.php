@@ -27,6 +27,7 @@ return array(
             'Api\Controller\PreAuth' => 'Api\Controller\PreAuthController',
             'Api\Controller\S3Bucket' => 'Api\Controller\S3BucketController',
             'Api\Controller\RuleBook' => 'Api\Controller\RuleBookController',
+            'Api\Controller\Logout' => 'Api\Controller\LogoutController',
         ),
     ),
     
@@ -85,7 +86,15 @@ return array(
                     ),
                 ),
             ),   
-            
+            'logout_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/logout',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\Logout',
+                    ),
+                ),
+            ),   
         ),
     ),    
     'service_manager' => array(

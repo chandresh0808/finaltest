@@ -35,4 +35,11 @@ class Constant
     
     /* Rule Book */
     const MSG_NO_RECORD_FOUND = 'No Record Found';
+    
+    /* DB config */
+    const SET_DELETE_FLAG = '1';
+    
+    /* Success message */
+    const MSG_USER_SESSION_DELETED_SUCCESS = 'User session deleted successfully';
+    const MSG_USER_SESSION_NOT_DELETED_SUCCESS = 'User session not deleted successfully';
 }

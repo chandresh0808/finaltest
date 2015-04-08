@@ -52,11 +52,11 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         /* Get auth salt using ref id */
         $authSaltObject = $userManagerService->getAuthSaltUsingId($refId);
         $authSalt = $authSaltObject->getSalt();
-        
+
         /* Get user credentials */
         $userCredentialArray = $apiService->decryptUserCredential($encryptedString, $authSalt);
 
-        /* authenticate the user*/
+        /* authenticate the user */
         $userObject = $authManagerService->authenticateUser(
                 $userCredentialArray['user_name'], $userCredentialArray['password']
         );
@@ -72,12 +72,10 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
                 $response['session_guid'] = $guid;
                 $response['user_id'] = $userId;
             } else {
-                $response['success'] = false;
-                $response['message'] = Constant::ERR_MSG_AUTH_NOT_ABLE_TO_CREATE_USERSESSION_ENTRY;
+                $response = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_NOT_ABLE_TO_CREATE_USERSESSION_ENTRY);
             }
         } else {
-            $response['success'] = false;
-            $response['message'] = Constant::ERR_MSG_AUTH_UNAUTHORIZED;
+            $response = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_UNAUTHORIZED);
         }
 
         return $response;
@@ -105,8 +103,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
             $responseArray['ref_id'] = $authSaltObject->getId();
             $responseArray['salt'] = $authSaltObject->getSalt();
         } else {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT;
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
         }
 
         return $responseArray;
@@ -126,8 +123,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         //@TODO : Need to move this function call to on bootstrap 
         $result = $userManagerService->isUserHasSession($sessionGuid);
         if (!$result) {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
             return $responseArray;
         }
 
@@ -150,39 +146,65 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
 
         $userManagerService = $this->getUserManagerService();
         $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
-        
+
         if (!is_object($userHasSession)) {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
             return $responseArray;
         }
-        
+
         /* Gets Role book list from user sessoin object */
-        $ruleBookObject = $userHasSession->getUser()->getRoleBookList();  
-                
-        if (is_object($ruleBookObject)) {                       
+        $ruleBookObject = $userHasSession->getUser()->getRoleBookList();
+
+        if (is_object($ruleBookObject)) {
             $serializedData = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
-            if(empty($serializedData)) {
-               $responseArray = $this->_getNoRecordMessage();
+            if (empty($serializedData)) {
+                $responseArray = $this->_getResponseArray(false, Constant::MSG_NO_RECORD_FOUND);
             } else {
                 $responseArray['success'] = true;
-                $responseArray['rule_book_list'] =  $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+                $responseArray['rule_book_list'] = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
             }
-            
         } else {
-            $responseArray = $this->_getNoRecordMessage();
+            $responseArray = $this->_getResponseArray(false, Constant::MSG_NO_RECORD_FOUND);
         }
-                
+
         return $responseArray;
     }
 
-    
     /*
      * Returns no record found message
      */
-    private function _getNoRecordMessage () {
-        $responseArray['success'] = false;
-        $responseArray['message'] = Constant::MSG_NO_RECORD_FOUND;
+
+    private function _getResponseArray($status, $message)
+    {
+        $responseArray['success'] = $status;
+        $responseArray['message'] = $message;
         return $responseArray;
     }
+
+    /*
+     * logout session
+     * @param string $sessionGuid
+     * 
+     * @return array $responseArray
+     */
+
+    public function deleteUserSession($sessionGuid)
+    {
+        $userManagerService = $this->getUserManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+
+        $userSessionObject = $userManagerService->deleteUserSession($userHasSession);
+
+        if (is_object($userSessionObject)) {
+            $responseArray = $this->_getResponseArray(true, Constant::MSG_USER_SESSION_DELETED_SUCCESS);
+        } else {
+            $responseArray = $this->_getResponseArray(false, Constant::MSG_USER_SESSION_NOT_DELETED_SUCCESS);
+        }
+        return $responseArray;
+    }
+
 }
