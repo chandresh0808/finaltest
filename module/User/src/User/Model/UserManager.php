@@ -88,7 +88,7 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
      * @return object $systemSaltObject
      */
 
-    public function getAuthSaltUsingId($refId)
+    public function getSystemSaltUsingId($refId)
     {
         $systemSaltDaoService = $this->getSystemSaltDaoService();
         $queryParamArray['id'] = $refId;

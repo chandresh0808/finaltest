@@ -119,11 +119,25 @@ abstract class AbstractCommonServiceMutator
     protected $_systemSaltDaoService;
 
     /**
+     * Analysis request instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_analysisRequestService;
+    
+     /**
      * jms serializer Service instance
      *
      * @var Api\Model\Api
      */
     protected $_jmsSerializerService;
+    
+     /**
+     * Analytics manager instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_analyticsManagerService;
 
     /**
      * Set or Returns an instance of the Doctrine entity manager
@@ -469,4 +483,51 @@ abstract class AbstractCommonServiceMutator
         return $serializedData;
     }
 
+    
+    /**
+     * Set Api Manager Service instance
+     *
+     * @param Api\Model\Api $analysisRequestDaoService 
+     *
+     * @return currentObject
+     */
+    protected function setAnalysisRequestDaoService($analysisRequestDaoService)
+    {
+        $this->_analysisRequestService = $analysisRequestDaoService;
+        return $this;
+    }
+
+    /**
+     * Get Jms serializer Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    protected function getAnalysisRequestDaoService()
+    {
+        return $this->_analysisRequestService;
+    }
+    
+    /**
+     * Set Api Manager Service instance
+     *
+     * @param Api\Model\Api $analyticsManagerService 
+     *
+     * @return currentObject
+     */
+    protected function setAnalyticsManagerService($analyticsManagerService)
+    {
+        $this->_analyticsManagerService = $analyticsManagerService;
+        return $this;
+    }
+
+    /**
+     * Get Jms serializer Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    protected function getAnalyticsManagerService()
+    {
+        return $this->_analyticsManagerService;
+    }
+    
 }

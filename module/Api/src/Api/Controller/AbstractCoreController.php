@@ -57,7 +57,9 @@ class AbstractCoreController extends AbstractRestfulController
      */
     public function getValueFromHeader($headerName) {
         $request  = $this->getRequest();
-        $headerValue = $request->getHeaders($headerName)->getFieldValue();
+        if(!empty($headerName)) {
+             $headerValue = $request->getHeaders($headerName)->getFieldValue();
+        }       
         return $headerValue;
     }
 }

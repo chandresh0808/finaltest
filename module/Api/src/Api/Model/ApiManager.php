@@ -50,7 +50,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         $apiService = $this->getApiService();
 
         /* Get auth salt using ref id */
-        $authSaltObject = $userManagerService->getAuthSaltUsingId($refId);
+        $authSaltObject = $userManagerService->getSystemSaltUsingId($refId);
         $authSalt = $authSaltObject->getSalt();
 
         /* Get user credentials */
@@ -205,6 +205,115 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
             $responseArray = $this->_getResponseArray(false, Constant::MSG_USER_SESSION_NOT_DELETED_SUCCESS);
         }
         return $responseArray;
+    }
+    
+    /*
+     * Generate Password for extract
+     * @param string $sessionGuid
+     * 
+     * @return string $responseArray
+     */
+    
+    public function generatePasswordForExtract ($sessionGuid) {
+        
+        
+        $apiService = $this->getApiService();
+        $userManagerService = $this->getUserManagerService();
+
+
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+                
+        $salt = $apiService->generateSalt(Constant::SALT_CHAR_LENGTH);
+        $inputArray['salt'] = $salt;
+        $inputArray['type'] = Constant::SALT_AUDIT_REQUEST_TYPE;
+        $authSaltObject = $userManagerService->createAuthSaltEntry($inputArray);
+
+        if (is_object($authSaltObject)) {
+            $responseArray['success'] = true;
+            $responseArray['ref_id'] = $authSaltObject->getId();
+            $responseArray['salt'] = $authSaltObject->getSalt();
+        } else {
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
+        }
+
+        return $responseArray;
+        
+    }
+    /*
+     * Get user credits
+     * 
+     * @param string $sessionGuid
+     */
+    public function getUserCredits($sessionGuid) {
+        
+        $userManagerService = $this->getUserManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+                
+         /* Gets user has package list from user sessoin object */
+        $userHasPackageObjectList = $userHasSession->getUser()->getUserHasPackageList();
+        
+        $totalPoints = 0;
+        $creditPoints = 0;
+        foreach($userHasPackageObjectList as $userHasPackageObject) {
+            $userCreditHistoryObject = $userHasPackageObject->getUserCreditHistory()->first();
+            $totalPoints += $userCreditHistoryObject->getTotalCreditAnalysisPoints();
+            $creditPoints += $userCreditHistoryObject->getCreditAnalysisPointsUsed();
+        }
+       
+        $availablePoints = ($totalPoints - $creditPoints);
+        $responseArray['available_credits'] = $availablePoints;
+        return $responseArray;
+    }
+    
+    /*
+     * Save analysis request
+     * @param string $sessionGuid
+     * @param int $ruleBookId
+     * @param string $extractName
+     * @param string $extractFileName
+     * @param int $refId
+     */
+    
+    public function saveAnalysisRequest($sessionGuid, $ruleBookId, $extractName, $extractFileName, $refId)
+    {
+        
+        $userManagerService = $this->getUserManagerService();
+        $analyticsManagerService = $this->getAnalyticsManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+                
+         
+          /* Get analysis request salt using ref id */
+        $authSaltObject = $userManagerService->getSystemSaltUsingId($refId);
+        $analysisRequestSalt = $authSaltObject->getSalt();
+                
+        $userId = $userHasSession->getUser()->getId();        
+        $inputArray['user_id'] = $userId;
+        $inputArray['rule_book_id'] = $ruleBookId;
+        $inputArray['extract_name'] = $extractName;
+        $inputArray['extract_file_name'] = $extractFileName;
+        $inputArray['status'] = Constant::ANALYSIS_REQUEST_PENDING_STATUS;
+        $inputArray['system_salt'] = $refId;
+        
+        $analysisRequestObject = $analyticsManagerService->createAnalysisReqeustEntry($inputArray);
+               
+        if (is_object($analysisRequestObject)) {
+           $responseArray = $this->_getResponseArray(true, Constant::MSG_ANALYSIS_REQUEST_SUCCESS);
+        } else {
+           $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
+        }
+
+        return $responseArray;
+        
     }
 
 }

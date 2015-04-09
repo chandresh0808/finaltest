@@ -16,7 +16,7 @@
  * 
  */
 
-namespace Api;
+namespace Analytics;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -47,32 +47,29 @@ class Module
     }
     
     
-      public function getServiceConfig()
+    public function getServiceConfig()
     {
         return array(            
             'invokables' => array(                                       
             ),
-            'factories' => array(
-                'api_manager_service' => function($sm) {
-                    $apiManager = new Model\ApiManager();     
-                    $configArray = $sm->get('Config');
-                    $apiManager->setS3BucketConfiguration($configArray['s3_bucket_configuration']);                    
-                    $apiManager->setJmsSerializerService($sm->get('jms_serializer.serializer'));
-                    $serviceList = array('entity_manager','auth_manager_service',
-                        'api_service','user_manager_service','analytics_manager_service');
-                    $apiManager->setServiceList($serviceList, $sm);
-                    return $apiManager;
-                },       
-                'api_service' => function($sm) {
-                    $api = new Model\Api();                   
-                    $serviceList = array('log_service');
-                    $api->setServiceList($serviceList, $sm);
-                    return $api;
-                },   
-            ),
+           'factories' => array(
+                'analytics_manager_service' => function($sm) {
+                    $analyticsManager = new Model\AnalyticsManager();
+                    $serviceList = array('entity_manager','analysis_request_dao_service');
+                    $analyticsManager->setServiceList($serviceList, $sm);
+                    return $analyticsManager;
+                },           
+                'analysis_request_dao_service' => function($sm) {
+                    $analysisRequestDao = new Model\AnalysisRequestDao();
+                    $serviceList = array('entity_manager');
+                    $analysisRequestDao->setServiceList($serviceList, $sm);
+                    return $analysisRequestDao;
+                },        
+            ),   
         );
     }
 
     
 }
+
 

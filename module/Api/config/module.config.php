@@ -28,6 +28,9 @@ return array(
             'Api\Controller\S3Bucket' => 'Api\Controller\S3BucketController',
             'Api\Controller\RuleBook' => 'Api\Controller\RuleBookController',
             'Api\Controller\Logout' => 'Api\Controller\LogoutController',
+            'Api\Controller\ExtractPassword' => 'Api\Controller\ExtractPasswordController',
+            'Api\Controller\UserCredit' => 'Api\Controller\UserCreditController',
+            'Api\Controller\AnalysisRequest' => 'Api\Controller\AnalysisRequestController',
         ),
     ),
     
@@ -92,6 +95,33 @@ return array(
                     'route' => '/api/v1/logout',                    
                     'defaults' => array(
                         'controller' => 'Api\Controller\Logout',
+                    ),
+                ),
+            ),   
+            'extract_password_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/password_for_extract',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\ExtractPassword',
+                    ),
+                ),
+            ),   
+            'user_credit_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/user_credits',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\UserCredit',
+                    ),
+                ),
+            ),   
+            'analysis_request_api' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/api/v1/analysis_request',                    
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\AnalysisRequest',
                     ),
                 ),
             ),   

@@ -35,6 +35,14 @@ class AnalysisRequest extends AbstractEntity
      */
     private $extractName;
     
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extract_file_name", type="text", nullable=true)
+     */
+    private $extractFileName;
+    
     /**
      * @var integer
      *
@@ -166,4 +174,28 @@ class AnalysisRequest extends AbstractEntity
         return $this->systemSaltId;
     }
 
+    
+    /**
+     * Set extractName
+     *
+     * @param string $extractFileName
+     * @return AnalysisRequest
+     */
+    public function setExtractFileName($extractFileName)
+    {
+        $this->extractFileName = $extractFileName;
+
+        return $this;
+    }
+
+    /**
+     * Get extractName
+     *
+     * @return string 
+     */
+    public function getExtractFileName()
+    {
+        return $this->extractFileName;
+    }
+    
 }
