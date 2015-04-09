@@ -126,4 +126,61 @@ class Api extends \Application\Model\AbstractCommonServiceMutator
     return $str;
     }
 
+    
+    /*
+     * Log API request
+     */
+    
+    public function logApiRequest($e)
+    {
+        $logService = $e->getApplication()->getServiceManager()->get('log_service');
+      
+        $apiUri = $_SERVER['REDIRECT_URL'];
+        
+        $apiParamArray = $this->apiRequestParameterList($apiUri);   
+        
+        $message = "Request Api: " . $apiUri . " @@@@ Input Param: ";        
+        foreach($apiParamArray as $k => $v) {             
+            $tempArray = explode("_", $v, 2); 
+            $param_key = strtolower($tempArray[1]);
+            $param_value =  $_SERVER[$v];
+            
+            if ($param_value) {
+                $message .= $param_key . " => " . $param_value . " &&& ";
+            }
+                                   
+        }   
+        $logService->debug($message);        
+    }
+       
+    /*
+     * return url paramter based on api uri
+     * @param string $apiUri
+     * 
+     * @return array $responseArray
+     * 
+     */
+    public function apiRequestParameterList ($apiUri) {
+                
+        $apiParamArray = array('HTTP_SESSION_GUID');
+        $apiParamArray[Constant::URL_AUTH_API] = array('HTTP_CREDENTIALS', 'HTTP_REF_ID');            
+        $responseArray = $apiParamArray[$apiUri];
+        
+        if (!count($responseArray)) {
+            $responseArray = array('HTTP_SESSION_GUID');
+        }
+        return $responseArray;
+    }
+    
+    /*
+     * log API response
+     */
+    public function logApiResponse($e) {
+              
+        $logService = $e->getApplication()->getServiceManager()->get('log_service');  
+        $apiUri = $_SERVER['REDIRECT_URL'];
+        $responce = $e->getApplication()->getResponse()->getContent();
+        $message = "Responce for Api: " . $apiUri . " @@@@ Output: " . print_r($responce, 1);          
+        $logService->debug($message);        
+    }
 }

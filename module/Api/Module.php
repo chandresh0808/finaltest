@@ -65,7 +65,7 @@ class Module
                 },       
                 'api_service' => function($sm) {
                     $api = new Model\Api();                   
-                    $serviceList = array('entity_manager');
+                    $serviceList = array('log_service');
                     $api->setServiceList($serviceList, $sm);
                     return $api;
                 },   
