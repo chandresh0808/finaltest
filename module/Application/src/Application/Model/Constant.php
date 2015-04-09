@@ -42,4 +42,8 @@ class Constant
     /* Success message */
     const MSG_USER_SESSION_DELETED_SUCCESS = 'User session deleted successfully';
     const MSG_USER_SESSION_NOT_DELETED_SUCCESS = 'User session not deleted successfully';
+    
+    /* api url */
+    const URL_AUTH_API = '/api/v1/auth';
+    
 }
