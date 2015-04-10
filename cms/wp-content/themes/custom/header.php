@@ -110,9 +110,7 @@ input[type="searchdd"] {
 				            
 				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/Audit_Logo.png"></a>
 				            
-				            <div><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
-						 
-						 <div><?php get_search_form(); ?></div>
+				          
 				            
 				            
 				            
@@ -122,13 +120,17 @@ input[type="searchdd"] {
 						
 						<?php 
 						$args = array('theme_location' => 'primary', 
-							'container_class' => 'navbar-collapse collapse navbar-right', 
+							'container_class' => 'nav navbar-collapse collapse navbar-right custom-nav', 
 							'menu_class' => 'nav navbar-nav', 
 							'fallback_cb' => '', 
 							'menu_id' => 'main-menu',
 							'walker' => new Cyber_DC_Walker_Nav_Menu()); 
 						wp_nav_menu($args);
 						?>
+						
+						  <div class="header_cart"><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
+						 
+						 <div class="header_search"><?php get_search_form(); ?></div>
 						
 						
 						
