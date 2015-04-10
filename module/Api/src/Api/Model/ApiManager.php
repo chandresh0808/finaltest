@@ -50,13 +50,13 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         $apiService = $this->getApiService();
 
         /* Get auth salt using ref id */
-        $authSaltObject = $userManagerService->getAuthSaltUsingId($refId);
+        $authSaltObject = $userManagerService->getSystemSaltUsingId($refId);
         $authSalt = $authSaltObject->getSalt();
-        
+
         /* Get user credentials */
         $userCredentialArray = $apiService->decryptUserCredential($encryptedString, $authSalt);
 
-        /* authenticate the user*/
+        /* authenticate the user */
         $userObject = $authManagerService->authenticateUser(
                 $userCredentialArray['user_name'], $userCredentialArray['password']
         );
@@ -72,12 +72,10 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
                 $response['session_guid'] = $guid;
                 $response['user_id'] = $userId;
             } else {
-                $response['success'] = false;
-                $response['message'] = Constant::ERR_MSG_AUTH_NOT_ABLE_TO_CREATE_USERSESSION_ENTRY;
+                $response = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_NOT_ABLE_TO_CREATE_USERSESSION_ENTRY);
             }
         } else {
-            $response['success'] = false;
-            $response['message'] = Constant::ERR_MSG_AUTH_UNAUTHORIZED;
+            $response = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_UNAUTHORIZED);
         }
 
         return $response;
@@ -105,8 +103,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
             $responseArray['ref_id'] = $authSaltObject->getId();
             $responseArray['salt'] = $authSaltObject->getSalt();
         } else {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT;
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
         }
 
         return $responseArray;
@@ -126,8 +123,7 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         //@TODO : Need to move this function call to on bootstrap 
         $result = $userManagerService->isUserHasSession($sessionGuid);
         if (!$result) {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
             return $responseArray;
         }
 
@@ -150,24 +146,174 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
 
         $userManagerService = $this->getUserManagerService();
         $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
-        
-        if (!$userHasSession) {
-            $responseArray['success'] = false;
-            $responseArray['message'] = Constant::ERR_MSG_AUTH_TOKEN_EXPIRED;
+
+        if (!is_object($userHasSession)) {
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
             return $responseArray;
         }
 
-        $ruleBookObject = $userHasSession->getUser()->getRoleBookList();  
-        
+        /* Gets Role book list from user sessoin object */
+        $ruleBookObject = $userHasSession->getUser()->getRoleBookList();
+
         if (is_object($ruleBookObject)) {
-            $responseArray['success'] = true;
-            $responseArray['rule_book_list'] = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            $serializedData = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            if (empty($serializedData)) {
+                $responseArray = $this->_getResponseArray(false, Constant::MSG_NO_RECORD_FOUND);
+            } else {
+                $responseArray['success'] = true;
+                $responseArray['rule_book_list'] = $this->convertObjectToArrayUsingJmsSerializer($ruleBookObject);
+            }
         } else {
-            $responseArray['success'] = false;
-            $responseArray['message'] = \Constant::MSG_NO_RECORD_FOUND;
+            $responseArray = $this->_getResponseArray(false, Constant::MSG_NO_RECORD_FOUND);
+        }
+
+        return $responseArray;
+    }
+
+    /*
+     * Returns no record found message
+     */
+
+    private function _getResponseArray($status, $message)
+    {
+        $responseArray['success'] = $status;
+        $responseArray['message'] = $message;
+        return $responseArray;
+    }
+
+    /*
+     * logout session
+     * @param string $sessionGuid
+     * 
+     * @return array $responseArray
+     */
+
+    public function deleteUserSession($sessionGuid)
+    {
+        $userManagerService = $this->getUserManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+
+        $userSessionObject = $userManagerService->deleteUserSession($userHasSession);
+
+        if (is_object($userSessionObject)) {
+            $responseArray = $this->_getResponseArray(true, Constant::MSG_USER_SESSION_DELETED_SUCCESS);
+        } else {
+            $responseArray = $this->_getResponseArray(false, Constant::MSG_USER_SESSION_NOT_DELETED_SUCCESS);
+        }
+        return $responseArray;
+    }
+    
+    /*
+     * Generate Password for extract
+     * @param string $sessionGuid
+     * 
+     * @return string $responseArray
+     */
+    
+    public function generatePasswordForExtract ($sessionGuid) {
+        
+        
+        $apiService = $this->getApiService();
+        $userManagerService = $this->getUserManagerService();
+
+
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
         }
                 
+        $salt = $apiService->generateSalt(Constant::SALT_CHAR_LENGTH);
+        $inputArray['salt'] = $salt;
+        $inputArray['type'] = Constant::SALT_AUDIT_REQUEST_TYPE;
+        $authSaltObject = $userManagerService->createAuthSaltEntry($inputArray);
+
+        if (is_object($authSaltObject)) {
+            $responseArray['success'] = true;
+            $responseArray['ref_id'] = $authSaltObject->getId();
+            $responseArray['salt'] = $authSaltObject->getSalt();
+        } else {
+            $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
+        }
+
         return $responseArray;
+        
+    }
+    /*
+     * Get user credits
+     * 
+     * @param string $sessionGuid
+     */
+    public function getUserCredits($sessionGuid) {
+        
+        $userManagerService = $this->getUserManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+                
+         /* Gets user has package list from user sessoin object */
+        $userHasPackageObjectList = $userHasSession->getUser()->getUserHasPackageList();
+        
+        $totalPoints = 0;
+        $creditPoints = 0;
+        foreach($userHasPackageObjectList as $userHasPackageObject) {
+            $userCreditHistoryObject = $userHasPackageObject->getUserCreditHistory()->first();
+            $totalPoints += $userCreditHistoryObject->getTotalCreditAnalysisPoints();
+            $creditPoints += $userCreditHistoryObject->getCreditAnalysisPointsUsed();
+        }
+       
+        $availablePoints = ($totalPoints - $creditPoints);
+        $responseArray['available_credits'] = $availablePoints;
+        return $responseArray;
+    }
+    
+    /*
+     * Save analysis request
+     * @param string $sessionGuid
+     * @param int $ruleBookId
+     * @param string $extractName
+     * @param string $extractFileName
+     * @param int $refId
+     */
+    
+    public function saveAnalysisRequest($sessionGuid, $ruleBookId, $extractName, $extractFileName, $refId)
+    {
+        
+        $userManagerService = $this->getUserManagerService();
+        $analyticsManagerService = $this->getAnalyticsManagerService();
+        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
+        if (!is_object($userHasSession)) {
+            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
+        }
+                
+         
+          /* Get analysis request salt using ref id */
+        $authSaltObject = $userManagerService->getSystemSaltUsingId($refId);
+        $analysisRequestSalt = $authSaltObject->getSalt();
+                
+        $userId = $userHasSession->getUser()->getId();        
+        $inputArray['user_id'] = $userId;
+        $inputArray['rule_book_id'] = $ruleBookId;
+        $inputArray['extract_name'] = $extractName;
+        $inputArray['extract_file_name'] = $extractFileName;
+        $inputArray['status'] = Constant::ANALYSIS_REQUEST_PENDING_STATUS;
+        $inputArray['system_salt'] = $refId;
+        
+        $analysisRequestObject = $analyticsManagerService->createAnalysisReqeustEntry($inputArray);
+               
+        if (is_object($analysisRequestObject)) {
+           $responseArray = $this->_getResponseArray(true, Constant::MSG_ANALYSIS_REQUEST_SUCCESS);
+        } else {
+           $responseArray = $this->_getResponseArray(false, Constant::ERR_MSG_NOT_ABLE_TO_GENERATE_SALT);
+        }
+
+        return $responseArray;
+        
     }
 
 }

@@ -20,6 +20,13 @@ class UserAnalysisCreditHistory extends AbstractEntity
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_has_package_id", type="integer", nullable=false)
+     */
+    private $userHasPackageId;
 
     /**
      * @var integer
@@ -105,4 +112,27 @@ class UserAnalysisCreditHistory extends AbstractEntity
         return $this->creditAnalysisPointsUsed;
     }
    
+    
+    /**
+     * Set creditAnalysisPointsUsed
+     *
+     * @param integer $userHasPackageId
+     * @return userHasPackageId
+     */
+    public function setUserHasPackageId($userHasPackageId)
+    {
+        $this->userHasPackageId = $userHasPackageId;
+
+        return $this;
+    }
+
+    /**
+     * Get creditAnalysisPointsUsed
+     *
+     * @return integer 
+     */
+    public function getUserHasPackageId()
+    {
+        return $this->userHasPackageId;
+    }
 }

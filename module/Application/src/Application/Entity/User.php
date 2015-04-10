@@ -4,7 +4,7 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Application\Entity\AbstractEntity as AbstractEntity;
-
+use Doctrine\Common\Collections\Criteria;
 /**
  * User
  *
@@ -19,6 +19,7 @@ class User extends AbstractEntity
     {
         $arrayCollection =   new \Doctrine\Common\Collections\ArrayCollection();
         $this->setRoleBookList($arrayCollection);
+        $this->setUserHasPackageList($arrayCollection);
     }
     
     
@@ -254,7 +255,49 @@ class User extends AbstractEntity
 
     public function getRoleBookList()
     {
-        return $this->ruleBookList;
+        return $this->setConditionActiveFlag($this->ruleBookList);
+    }
+    
+    /**
+     * Collection for User has package
+     * 
+     * @var \Application\Entity\UserHasPackage Description
+     *
+     * @param \Application\Entity\UserHasPackage Rule Book List
+     * @ORM\OneToMany(targetEntity="UserHasPackage", mappedBy="userId")
+     */
+    private $userHasPackageList;
+
+    public function setUserHasPackageList($arrayCollection)
+    {
+        $this->userHasPackageList = $arrayCollection;
+        return $this;
+    }
+
+    public function getUserHasPackageList()
+    {
+        return $this->filterExpiredPackage($this->userHasPackageList);
+    }
+    
+    /**
+     * Set the condition for deleteFlag
+     * 
+     *@param Object $entityObject Description
+     * 
+     *@return Object 
+     **/
+    public function filterExpiredPackage($entityObject)
+    {                
+        $currentDtTm = new \DateTime("now");
+        if (is_object($entityObject)) {
+            $criteria = Criteria::create()
+                ->where(Criteria::expr()->eq("deleteFlag", 0))
+                ->where(Criteria::expr()->lte("packageExpiryDtTm", $currentDtTm));                    
+            $entityObjectWithFilter = $entityObject->matching($criteria);
+
+            return $entityObjectWithFilter;
+        }
+
     }
     
 }

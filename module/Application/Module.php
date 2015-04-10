@@ -19,6 +19,19 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        
+        /* Log APi request */
+         $e->getApplication()->getEventManager()->getSharedManager()->attach(
+            'Zend\Mvc\Controller\AbstractRestfulController', 
+            'dispatch', 
+            array(new \Api\Model\Api, 'logApiRequest'),
+            100
+        );     
+         
+        /* Log APi Response */         
+        $eventManager->attach(MvcEvent::EVENT_FINISH, array('\Api\Model\Api', 'logApiResponse'),1);
+        
+        
     }
 
     public function getConfig()

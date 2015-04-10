@@ -3,6 +3,7 @@
 require_once __DIR__ . '/autoload/local.php';
 use Zend\Stdlib\ArrayUtils;
 
+defined('STORAGE_PATH') || define('STORAGE_PATH', realpath(dirname(__FILE__) . '/../data'));
 
 $applicationEnv = 'development';
 // Based on the environment add additional config (like cache)
@@ -18,7 +19,10 @@ $config = array(
         'DoctrineORMModule',
         'Api',
         'Auth',
-        'User'
+        'User',
+        'JMSSerializerModule',
+        'Log',
+        'Analytics'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

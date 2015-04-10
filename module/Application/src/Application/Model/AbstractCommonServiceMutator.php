@@ -18,9 +18,9 @@
  */
 
 namespace Application\Model;
+
 use Doctrine\Common\Collections\Criteria;
 use Zend\Session\Container as SessionContainer;
-
 
 /**
  * Abstract class which will be inheritted by DOAs.
@@ -38,96 +38,107 @@ use Zend\Session\Container as SessionContainer;
  * @link       http://www.costrategix.com 
  * 
  */
-
 abstract class AbstractCommonServiceMutator
 {
+
     /**
      * Entity manager instance
      *
      * @var Doctrine\ORM\EntityManager
      */
     protected $_entityManager;
-    
+
     /**
      * Log Service instance
      *
      * @var Log\Model\Log
      */
     protected $_logService;
-    
+
     /**
      * Api Manager Service instance
      *
      * @var Api\Model\ApiManager
      */
     protected $_apiManagerService;
-    
+
     /**
      * Auth Manager Service instance
      *
      * @var Auth\Model\AuthManager
      */
     protected $_authManagerService;
-    
+
     /**
      * Auth Dao Service instance
      *
      * @var Auth\Model\AuthManager
      */
     protected $_authDaoService;
-    
+
     /**
      * Api Service instance
      *
      * @var Api\Model\Api
      */
     protected $_apiService;
-    
-    
+
     /**
      * userSessionDao Service instance
      *
      * @var Api\Model\Api
      */
     protected $_userSessionDaoService;
-    
+
     /**
      * userManagerService Service instance
      *
      * @var Api\Model\Api
      */
     protected $_userManagerService;
-    
-    
+
     /**
      * userManagerService Service instance
      *
      * @var Api\Model\Api
      */
     protected $_userHasSaltService;
-    
-    
+
     /**
      * userManagerService Service instance
      *
      * @var Api\Model\Api
      */
     protected $_s3BucketConfiguration;
-    
+
     /**
      * userSessionDao Service instance
      *
      * @var Api\Model\Api
      */
     protected $_systemSaltDaoService;
-    
+
     /**
+     * Analysis request instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_analysisRequestService;
+    
+     /**
      * jms serializer Service instance
      *
      * @var Api\Model\Api
      */
     protected $_jmsSerializerService;
     
+     /**
+     * Analytics manager instance
+     *
+     * @var Api\Model\Api
+     */
+    protected $_analyticsManagerService;
+
     /**
      * Set or Returns an instance of the Doctrine entity manager
      * 
@@ -137,7 +148,7 @@ abstract class AbstractCommonServiceMutator
      *  
      */
     public function setEntityManager($entityManager)
-    { 
+    {
         if (!isset($this->_entityManager)) {
             $this->_entityManager = $entityManager;
         }
@@ -153,7 +164,7 @@ abstract class AbstractCommonServiceMutator
     {
         return $this->_entityManager;
     }
-                    
+
     /**
      * Persist and flush
      * 
@@ -161,11 +172,11 @@ abstract class AbstractCommonServiceMutator
      *  
      * @return void
      * 
-     **/
-   function save($inputObject)
+     * */
+    function save($inputObject)
     {
         if (is_object($inputObject)) {
-           
+
             $this->getEntityManager()->persist($inputObject);
             $this->getEntityManager()->flush();
             return $inputObject;
@@ -173,23 +184,20 @@ abstract class AbstractCommonServiceMutator
             throw new \Exception('Its not an object');
         }
     }
-    
-    
+
     /**
-     *Set the services in the arrayList
+     * Set the services in the arrayList
      * 
      * @param List $serviceList Names of the services 
-     **/
+     * */
     public function setServiceList($serviceList, $sm)
     {
         foreach ($serviceList as $serviceName) {
             $tempName = str_replace(' ', '', ucwords(str_replace('_', ' ', $serviceName)));
-            $functionName ='set' . $tempName;
+            $functionName = 'set' . $tempName;
             $this->$functionName($sm->get($serviceName));
-        }       
+        }
     }
-    
-
 
     /**
      * Get Log service instance
@@ -213,7 +221,6 @@ abstract class AbstractCommonServiceMutator
         $this->_logService = $logService;
         return $this;
     }
-    
 
     /**
      * Get Api Manager Service instance
@@ -237,8 +244,7 @@ abstract class AbstractCommonServiceMutator
         $this->_apiManagerService = $apiManagerService;
         return $this;
     }
-    
-        
+
     /**
      * Get Api Manager Service instance
      *
@@ -261,7 +267,7 @@ abstract class AbstractCommonServiceMutator
         $this->_authManagerService = $authManagerService;
         return $this;
     }
-                 
+
     /**
      * Get Api Manager Service instance
      *
@@ -284,8 +290,7 @@ abstract class AbstractCommonServiceMutator
         $this->_authDaoService = $authDaoService;
         return $this;
     }
-    
-    
+
     /**
      * Get Api Manager Service instance
      *
@@ -308,7 +313,7 @@ abstract class AbstractCommonServiceMutator
         $this->_apiService = $apiService;
         return $this;
     }
-    
+
     /**
      * Get Api Manager Service instance
      *
@@ -331,9 +336,8 @@ abstract class AbstractCommonServiceMutator
         $this->_userSessionDaoService = $userSessionDaoService;
         return $this;
     }
-        
 
-     /**
+    /**
      * Get Api Manager Service instance
      *
      * @return Auth\Model\AuthManager
@@ -355,10 +359,8 @@ abstract class AbstractCommonServiceMutator
         $this->_userManagerService = $userManagerService;
         return $this;
     }
-    
-    
-    
-     /**
+
+    /**
      * Get Api Manager Service instance
      *
      * @return Auth\Model\AuthManager
@@ -380,21 +382,20 @@ abstract class AbstractCommonServiceMutator
         $this->_userHasSaltService = $userHasSaltService;
         return $this;
     }
-    
-                
 
     /*
      * Create or unpdate the given entity
      * @param array $dataList
      * 
      * @return object $entityObject
-     */  
+     */
+
     public function createUpdateEntity($dataList)
     {
         $entityObject = $this->exchangeArray($dataList);
-        return $this->persistFlush($entityObject);   
+        return $this->persistFlush($entityObject);
     }
-    
+
     /**
      * Get s3BucketConfiguration
      *
@@ -417,7 +418,7 @@ abstract class AbstractCommonServiceMutator
         $this->_s3BucketConfiguration = $s3BucketConfiguration;
         return $this;
     }
-    
+
     /**
      * Get Api Manager Service instance
      *
@@ -440,8 +441,7 @@ abstract class AbstractCommonServiceMutator
         $this->_systemSaltDaoService = $systemSaltDaoService;
         return $this;
     }
-           
-    
+
     /**
      * Get Jms serializer Service instance
      *
@@ -464,8 +464,8 @@ abstract class AbstractCommonServiceMutator
         $this->_jmsSerializerService = $jmsSerializerService;
         return $this;
     }
-    
-        /*
+
+    /*
      * Convert object to array using jms serializer
      * @param object $inputObject
      * 
@@ -476,8 +476,58 @@ abstract class AbstractCommonServiceMutator
     protected function convertObjectToArrayUsingJmsSerializer($inputObject)
     {
         $serializer = $this->getJmsSerializerService();
-        $serializedObject = $serializer->serialize($inputObject, 'json');
-        return $serializedObject;
+        $serializedString = $serializer->serialize($inputObject, 'json');
+
+        /* Decoding here coz jsonmodel whil encode again while returning */
+        $serializedData = json_decode($serializedString);
+        return $serializedData;
+    }
+
+    
+    /**
+     * Set Api Manager Service instance
+     *
+     * @param Api\Model\Api $analysisRequestDaoService 
+     *
+     * @return currentObject
+     */
+    protected function setAnalysisRequestDaoService($analysisRequestDaoService)
+    {
+        $this->_analysisRequestService = $analysisRequestDaoService;
+        return $this;
+    }
+
+    /**
+     * Get Jms serializer Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    protected function getAnalysisRequestDaoService()
+    {
+        return $this->_analysisRequestService;
+    }
+    
+    /**
+     * Set Api Manager Service instance
+     *
+     * @param Api\Model\Api $analyticsManagerService 
+     *
+     * @return currentObject
+     */
+    protected function setAnalyticsManagerService($analyticsManagerService)
+    {
+        $this->_analyticsManagerService = $analyticsManagerService;
+        return $this;
+    }
+
+    /**
+     * Get Jms serializer Service instance
+     *
+     * @return Auth\Model\AuthManager
+     */
+    protected function getAnalyticsManagerService()
+    {
+        return $this->_analyticsManagerService;
     }
     
 }

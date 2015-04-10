@@ -22,20 +22,27 @@ use Zend\View\Model\JsonModel;
 use Api\Controller\AbstractCoreController as AbstractCoreController;
 use Application\Model\Constant as Constant;
 
-class RuleBookController extends AbstractCoreController
+class UserCreditController extends AbstractCoreController
 {
     /**
-     * check for user authentication
+     * Generate Password for extract 
      *  
      * @param type $postData
      * 
      * @return json Description
      */
     public function create()
-    {
+    {        
         $sessionGuid = $this->getValueFromHeader(Constant::USER_SESSION_GUID);
-        $ruleBookList = $this->getApiManagerService()->getUserRuleBookList($sessionGuid);   
-        return new JsonModel($ruleBookList);
+        $result = $this->getApiManagerService()->getUserCredits($sessionGuid);       
+        return new JsonModel($result);
     }
-       
+    
+    public function getList()
+    {        
+        $sessionGuid = '83DDA515-E656-FDEE-4728-2A1417E3649F';
+        $result = $this->getApiManagerService()->getUserCredits($sessionGuid);       
+        return new JsonModel($result);
+    }
+ 
 }

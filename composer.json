@@ -9,8 +9,9 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "~2.3",
+        "zendframework/zendframework": "2.*",
         "doctrine/doctrine-orm-module": "0.*",
-        "sp/jms-serializer-module": "dev-master"
+        "sp/jms-serializer-module": "dev-master",
+        "monolog/monolog": "1.11.*@dev"
     }
 }

@@ -14,6 +14,13 @@ use Application\Entity\AbstractEntity as AbstractEntity;
 class UserHasPackage extends AbstractEntity
 {
 
+    
+    function __construct()
+    {
+        $arrayCollection =   new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setUserCreditHistory($arrayCollection);
+    }
+    
     /**
      * @var string
      *
@@ -164,4 +171,26 @@ class UserHasPackage extends AbstractEntity
         return $this->packageExpiryDtTm;
     }
    
+    
+    /**
+     * Collection for User has package
+     * 
+     * @var \Application\Entity\UserHasPackage Description
+     *
+     * @param \Application\Entity\UserHasPackage Rule Book List
+     * @ORM\OneToMany(targetEntity="UserAnalysisCreditHistory", mappedBy="userHasPackageId")
+     */
+    private $userCreditHistory;
+
+    public function setUserCreditHistory($arrayCollection)
+    {
+        $this->userCreditHistory = $arrayCollection;
+        return $this;
+    }
+
+    public function getUserCreditHistory()
+    {
+        return $this->setConditionActiveFlag($this->userCreditHistory);
+    }
+    
 }
