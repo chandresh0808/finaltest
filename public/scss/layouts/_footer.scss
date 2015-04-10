@@ -1,0 +1,32 @@
+footer {
+  background-color: $dark-color;
+  color: $light-color;
+    
+  a {
+    color: $light-color;
+      
+    &:hover {
+      color: darken($light-color,30);
+      text-decoration: none;
+    }
+  }
+}
+.footer-social {
+  li { 
+    float: left;
+      a {
+        width: 32px;
+        height: 32px;
+        @include transition(all, 0.3s, ease-in);          
+      }
+  }
+  li + li {
+    @include pad(20px, 'left');
+  }
+}
+.footer-nav {
+  text-transform: uppercase;  
+  li + li {
+    @include pad(20px, 'top');
+  }    
+}

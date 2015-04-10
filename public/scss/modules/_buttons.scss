@@ -1,0 +1,65 @@
+$btn-name: 'btn' !default;
+$btn-hover: darken 10% !default;
+$btn-schemes: (
+  default: $brand-color,
+  secondary: $secondary-color,
+  light:  $light-color
+) !default;
+
+@mixin btn-style($font-size, $border-radius) {
+  font-size: $font-size;
+  border-radius: $border-radius;  
+  font-family: $base-font-family-md;
+  border-color: $transparent-color;
+  @include pad(15px 30px 11px 30px, 'all');
+  @include transition(all, 0.1s, ease-in); 
+  text-transform: uppercase;      
+}
+
+@function text-color($color) {
+    @if (lightness( $color ) > 60) {
+      @return $secondary-color; // Lighter color, return black
+    }
+    @else {
+      @return $light-color; // Darker color, return white
+    }
+}
+
+@mixin btn-bg($bg-color) {
+  background-color: $bg-color;
+  color: text-color($bg-color);
+  
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: darken($bg-color, 10);
+    color: text-color(darken($bg-color, 10));      
+  }
+}
+
+.#{$btn-name}, .custom-nav.custom-nav.custom-nav .#{$btn-name} {
+  // Default styles
+  @include btn-style($font-size-m, 3px);
+  
+  // Modifiers  
+  &-small { 
+    font-size: $font-size-base;
+    @include pad(5px 15px 1px 15px, 'all');
+  }
+  &-link {
+    color: $dark-color;
+  }
+  &-block { 
+    display: block;
+    width: 100%;
+  }
+  &-pill{
+    border-radius:25px;
+  }
+  
+  @each $key, $value in $btn-schemes { 
+    &-#{$key} {
+      @include btn-bg($value);
+    }
+  }
+}

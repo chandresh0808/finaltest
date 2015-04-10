@@ -1,0 +1,52 @@
+//***** Include All Margins And Paddings Here
+
+$value: 5 10 15 20 25 30 35 40;
+
+@each $mar in $value {
+  .mar-t#{$mar} {
+    @include mar(($mar)+px, 'top');
+  }
+}
+
+@each $mar in $value {
+  .mar-b#{$mar} {
+    @include mar(($mar)+px, 'bottom');
+  }
+}
+
+@each $mar in $value {
+  .mar-l#{$mar} {
+    @include mar(($mar)+px, 'left');
+  }
+}
+
+@each $mar in $value {
+  .mar-r#{$mar} {
+    @include mar(($mar)+px, 'right');
+  }
+}
+
+
+@each $pad in $value {
+  .pad-t#{$pad} {
+    @include pad(($pad)+px, 'top');
+  }
+}
+
+@each $pad in $value {
+  .pad-b#{$pad} {
+    @include pad(($pad)+px, 'bottom');
+  }
+}
+
+@each $pad in $value {
+  .pad-l#{$pad} {
+    @include pad(($pad)+px, 'left');
+  }
+}
+
+@each $pad in $value {
+  .pad-r#{$pad} {
+    @include pad(($pad)+px, 'right');
+  }
+}

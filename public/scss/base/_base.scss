@@ -1,0 +1,38 @@
+@font-face {
+  font-weight: $font-weight-default;
+  font-style : normal;
+}
+
+@include font-face('dinregular', 'DIN-Regular-webfont', 'serif');
+@include font-face('dinmedium', 'DIN-Medium-webfont', 'serif');
+@include font-face('dinbold', 'DIN-Bold-webfont', 'serif');
+
+body {
+  color: $dark-color;
+  font-size: $font-size-base;
+  font-family: $base-font-family;  
+  @include pad(100px,'top');   
+}
+
+ul, ol {
+  list-style: none; 
+  @include mar(0, 'all'); 
+  @include pad(0, 'all');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-default;
+}
+
+.txtc {
+  text-align: $text-center;
+}
+
+.text-replace {
+  display: block;
+  text-indent: -9999px;
+}
+
+.m-h550 {
+  min-height: 550px;
+}

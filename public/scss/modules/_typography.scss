@@ -1,0 +1,27 @@
+// Font Size Loop
+
+$font-style-list: font-size-xl font-size-l font-size-m font-size-small font-size-xsmall;
+$font-size-list: $font-size-xl $font-size-l $font-size-m $font-size-small $font-size-xsmall;
+
+@each $current-size in $font-size-list {
+    $i: index($font-size-list, $current-size );
+    .#{nth($font-style-list, $i)} {
+        font-size: $current-size;
+    }
+}
+
+// Font Family Loop
+
+$font-list: font-family-md font-family-bold;
+$font-family-list: $base-font-family-md $base-font-family-bold;  
+
+@each $current-font in $font-family-list {  
+    $i: index($font-family-list, $current-font );
+    .#{nth($font-list, $i)} {
+        font-family: $current-font;
+    }
+}
+
+.font-caps-up {
+  text-transform: uppercase;
+}

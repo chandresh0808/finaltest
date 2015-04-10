@@ -1,0 +1,60 @@
+.custom-table.custom-table.custom-table.custom-table.custom-table {
+    th {
+      text-transform: uppercase;
+      background-color:lighten($dark-color, 57);
+      @include add-border(3px, lighten(#545454, 52), 'top');        
+      @include add-border(0px, lighten(#545454, 52), 'bottom');        
+    }
+    
+    th, td {
+      @include pad(10px 15px, 'all');
+    }    
+}
+
+.arrow {
+  width: 30px;
+  height: 10px;
+  display: inline-block;
+  @include transform(translateY(-4px));
+  
+  .icon-bar {
+      display: inline-block;
+      width: 10px;
+      height: 2px;
+      background-color: $dark-color;
+      @include transform(rotate(45deg)); 
+      @include transition(all, 0.3s, ease-in);
+  }
+  .icon-bar:nth-child(2){      
+      @include transform(rotate(-45deg) translateX(-4px) translatey(-5px));
+  }
+}
+.arrow.collapsed {
+  .icon-bar {
+    @include transform(rotate(-45deg));
+  }
+  .icon-bar:nth-child(2){      
+      @include transform(rotate(45deg) translateX(-4px) translatey(5px)); 
+  }    
+}
+
+.custom-panel {
+    background-color: lighten(#1e96d9, 47);
+    ul {      
+      li + li {
+        @include pad(10px, 'top'); 
+      }
+    }
+}
+
+.action-icon {
+  width: 22px;
+  height: 22px;
+  float: left;
+}
+
+.captcha-box {
+   border-radius: 5px;
+    min-height: 62px;
+   @include add-border(1px, lighten($dark-color, 52), 'all');   
+}

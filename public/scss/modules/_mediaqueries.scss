@@ -1,0 +1,32 @@
+@media (min-width: 768px) {    
+.custom-nav {
+  @include mar(23px, 'top');
+  
+  > li + li {
+    @include pad(30px, 'left');
+  }
+}
+    
+.custom-dd {
+  .dropdown-menu {
+    text-align: right;
+    a {
+      @include pad-horizontal(10px, 10px);
+    }
+    li + li {
+      @include add-border(1px, rgba($dark-color,0.15), 'top');
+    }
+  }
+}    
+
+}
+
+@media (min-width: 768px) and (max-width:991px){  
+
+}
+@media (min-width: 480px) and (max-width:767px){
+
+}
+@media (max-width: 767px) { 
+
+}
