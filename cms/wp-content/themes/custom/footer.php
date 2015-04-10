@@ -37,7 +37,7 @@ $custom_theme_options = custom_theme_options();
 				<?php 
 				 $args = array('theme_location' => 'footer_left', 
 				 'container_class' => 'navbar-collapse collapse navbar-right', 
-				 'menu_class' => 'nav navbar-nav', 
+				 'menu_class' => 'nav navbar-nav footer-left	-menu', 
 				 'fallback_cb' => '', 
 				  'menu_id' => 'footer-menu',
 				  'walker' => new Cyber_DC_Walker_Nav_Menu()); 
@@ -48,7 +48,7 @@ $custom_theme_options = custom_theme_options();
 				<?php 
 				 $args = array('theme_location' => 'footer_right', 
 				 'container_class' => 'navbar-collapse collapse navbar-right', 
-				 'menu_class' => 'nav navbar-nav', 
+				 'menu_class' => 'nav navbar-nav footer-right-menu', 
 				 'fallback_cb' => '', 
 				  'menu_id' => 'footer-menu-right',
 				  'walker' => new Cyber_DC_Walker_Nav_Menu()); 

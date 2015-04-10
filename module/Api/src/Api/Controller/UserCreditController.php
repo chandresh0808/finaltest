@@ -38,11 +38,5 @@ class UserCreditController extends AbstractCoreController
         return new JsonModel($result);
     }
     
-    public function getList()
-    {        
-        $sessionGuid = '83DDA515-E656-FDEE-4728-2A1417E3649F';
-        $result = $this->getApiManagerService()->getUserCredits($sessionGuid);       
-        return new JsonModel($result);
-    }
- 
+
 }

@@ -468,6 +468,15 @@ function wpgyan_widgets_init() {
 			//'before_title' => '<h2 class="rounded">',
 			//'after_title' => '</h2>',
 	) );
+	
+	register_sidebar( array(
+			'name' => 'Testimonials',
+			'id' => 'home_testimonials',
+			'before_widget' => '<div>',
+			'after_widget' => '</div>',
+			//'before_title' => '<h2 class="rounded">',
+			//'after_title' => '</h2>',
+	) );
 
 	
 }

@@ -22,7 +22,8 @@ $config = array(
         'User',
         'JMSSerializerModule',
         'Log',
-        'Analytics'
+        'Analytics',
+        'Cron'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

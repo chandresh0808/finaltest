@@ -110,6 +110,12 @@ input[type="searchdd"] {
 				            
 				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/Audit_Logo.png"></a>
 				            
+				            <div><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
+						 
+						 <div><?php get_search_form(); ?></div>
+				            
+				            
+				            
 				        </div>
 				        
 				       
@@ -124,9 +130,7 @@ input[type="searchdd"] {
 						wp_nav_menu($args);
 						?>
 						
-						<div><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
-						 
-						 <div><?php get_search_form(); ?></div>
+						
 						
 					
 		</div>	
