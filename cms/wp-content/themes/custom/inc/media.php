@@ -52,6 +52,7 @@ function custom_add_js() {
 	wp_enqueue_script( 'custom-js', CYBER_DC_custom_URL .'/js/custom.js', array( 'bootstrap' ), '', true );
 
 	wp_enqueue_style( 'theme_stylesheet', get_stylesheet_uri() );
+	wp_enqueue_style( 'font-awesome', CYBER_DC_custom_URL .'/css/audit-main.css', false, '3.1.0', 'all' );
 	wp_enqueue_style( 'font-awesome', CYBER_DC_custom_URL .'/css/main.css', false, '3.1.0', 'all' );
 	wp_enqueue_style( 'font-awesome', CYBER_DC_custom_URL .'/css/font-awesome.css', false, '3.1.0', 'all' );
 	wp_enqueue_style( 'google_fonts', 'http://fonts.googleapis.com/css?family=custom', false, null, 'all' );
