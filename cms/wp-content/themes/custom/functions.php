@@ -472,11 +472,24 @@ function wpgyan_widgets_init() {
 	register_sidebar( array(
 			'name' => 'Testimonials',
 			'id' => 'home_testimonials',
-			'before_widget' => '<div>',
+			'before_widget' => '<div class="home_text">',
 			'after_widget' => '</div>',
 			//'before_title' => '<h2 class="rounded">',
 			//'after_title' => '</h2>',
 	) );
+	
+	
+	register_sidebar( array(
+			'name' => 'Homepage offer information',
+			'id' => 'home_offer',
+			'before_widget' => '<div class="home_offer">',
+			'after_widget' => '</div>',
+			//'before_title' => '<h2 class="rounded">',
+			//'after_title' => '</h2>',
+	) );
+	
+	
+	
 
 	
 }

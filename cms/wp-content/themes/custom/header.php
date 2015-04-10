@@ -108,7 +108,7 @@ input[type="searchdd"] {
 					            <span class="icon-bar"></span>
 							</button>
 				            
-				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/Audit_Logo.png"></a>
+				            <a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/audit.png"></a>
 				            
 				          
 				            
@@ -141,6 +141,10 @@ input[type="searchdd"] {
 <?php
 			custom_jumbotron();
 			//custom_home_page_default_widgets(); ?>
+			
+			 <div class="container"><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('home_testimonials') ) : endif; ?></div>
+			 
+			  <div class="container"><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('home_offer') ) : endif; ?></div>
 
 		<div id="main">
 			<div class="row">
@@ -149,3 +153,6 @@ input[type="searchdd"] {
 			post/page templates */
 			if ( is_custom_full_width() && 5 == $custom_theme_options['layout'] )
 				get_sidebar(); ?>
+			
+			
+				
