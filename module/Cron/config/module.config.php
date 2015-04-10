@@ -50,7 +50,7 @@ return array(
             'delete_inactive_user_session' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/delete_inactive_user_session',
+                    'route' => 'delete_inactive_user_session',
                     'defaults' => array(
                         'controller' => 'Cron\Controller\Cron',
                         'action' => 'delete-inactive-user-session',
