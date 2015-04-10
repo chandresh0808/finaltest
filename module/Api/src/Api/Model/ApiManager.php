@@ -214,19 +214,12 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
      * @return string $responseArray
      */
     
-    public function generatePasswordForExtract ($sessionGuid) {
+    public function generatePasswordForExtract () {
         
         
         $apiService = $this->getApiService();
         $userManagerService = $this->getUserManagerService();
-
-
-        $userHasSession = $userManagerService->isUserHasSession($sessionGuid);
-
-        if (!is_object($userHasSession)) {
-            return $this->_getResponseArray(false, Constant::ERR_MSG_AUTH_TOKEN_EXPIRED);
-        }
-                
+   
         $salt = $apiService->generateSalt(Constant::SALT_CHAR_LENGTH);
         $inputArray['salt'] = $salt;
         $inputArray['type'] = Constant::SALT_AUDIT_REQUEST_TYPE;
@@ -243,6 +236,19 @@ class ApiManager extends \Application\Model\AbstractCommonServiceMutator
         return $responseArray;
         
     }
+    
+    
+    /*
+     * @TODO: Need to make common function for generating salt now it is repeating
+     * generate salt based on type
+     * 
+     */
+
+    public function generateSalt () {
+        
+    }
+    
+    
     /*
      * Get user credits
      * 

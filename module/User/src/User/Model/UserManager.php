@@ -76,6 +76,10 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
         $userSessionObject = $userSessionDaoService->getEntityByParameterList($queryParamArray, $entity);
         $result = false;
         if (is_object($userSessionObject)) {
+            /* update the user_session updatedDtTm Field */
+            $userSessionObject->setUpdatedDtTm(new \DateTime("now"));
+            $userSessionDaoService->update($userSessionObject);
+
             $result = $userSessionObject;
         }
         return $result;
@@ -106,10 +110,21 @@ class UserManager extends \Application\Model\AbstractCommonServiceMutator
 
     public function deleteUserSession($userSession)
     {
-        $systemSaltDaoService = $this->getSystemSaltDaoService();
+        $userSessionDaoService = $this->getUserSessionDaoService();
         $userSession->setDeleteFlag(Constant::SET_DELETE_FLAG);
-        $userSession = $systemSaltDaoService->update($userSession);
+        $userSession = $userSessionDaoService->update($userSession);
         return $userSession;
+    }
+
+    /*
+     * Delete all user session inactive for 1 hour
+     */
+
+    public function deleteInactiveUserSession()
+    {
+        $userSessionDaoService = $this->getUserSessionDaoService();
+        $result = $userSessionDaoService->deleteInactiveUserSession();
+        return $result;
     }
 
 }

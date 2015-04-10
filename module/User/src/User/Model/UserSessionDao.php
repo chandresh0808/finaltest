@@ -65,4 +65,32 @@ class UserSessionDao extends \Application\Model\AbstractDao
     }
         
     
+    /*
+     * delete user session
+     * @param object $userSession
+     * 
+     * @return object $userSession
+     */
+    
+    public function update($userSession) {
+       $userSession = $this->persistFlush($userSession);   
+       return $userSession;
+    }
+    
+    
+    /*
+     * Update in active user session
+     * @param int $testRun
+     * 
+     * @return int 
+     */
+    public function deleteInactiveUserSession()
+    {
+        $query = "UPDATE user_session SET delete_flag=1 WHERE 
+            delete_flag='0' AND updated_dt_tm <= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
+        $connection = $this->getEntityManager()->getConnection();
+        $rowsAffected = $connection->executeUpdate($query);
+        return $rowsAffected;
+    }
+
 }

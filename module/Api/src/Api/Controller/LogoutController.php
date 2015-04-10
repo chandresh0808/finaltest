@@ -37,12 +37,5 @@ class LogoutController extends AbstractCoreController
         return new JsonModel($result);
     }
  
-
-    public function getList()
-    {
-        $sessionGuid = "6B0B3641-CD46-0103-3529-057EE9C7D36E";
-        $result = $this->getApiManagerService()->deleteUserSession($sessionGuid);
-        return new JsonModel($result);
-    }
     
 }

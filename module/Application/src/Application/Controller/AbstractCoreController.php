@@ -75,6 +75,14 @@ class AbstractCoreController extends AbstractActionController
             ->getMatchedRouteName();
     }
 
-  
+    /**
+     * Get cron manager Service instance
+     * 
+     * @return Cron\Model\CronManager
+     */
+    public function getCronManagerService()
+    {
+        return $this->getServiceLocator()->get('cron_manager_service');
+    }
 
 }

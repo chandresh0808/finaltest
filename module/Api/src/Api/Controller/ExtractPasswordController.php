@@ -32,9 +32,8 @@ class ExtractPasswordController extends AbstractCoreController
      * @return json Description
      */
     public function create()
-    {        
-        $sessionGuid = $this->getValueFromHeader(Constant::USER_SESSION_GUID);
-        $result = $this->getApiManagerService()->generatePasswordForExtract($sessionGuid);       
+    {                
+        $result = $this->getApiManagerService()->generatePasswordForExtract();       
         return new JsonModel($result);
     }
  
