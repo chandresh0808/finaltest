@@ -30,8 +30,34 @@ $custom_theme_options = custom_theme_options();
 			<div class="col-lg-12">
 				<?php $class = ( is_active_sidebar( 'extended-footer' ) ) ? ' active' : ''; ?>
 				<span class="line<?php echo $class; ?>"></span>
-				<span class="pull-left">Copyright &copy; <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>. All Rights Reserved.</span>
-				<!--<span class="credit-link pull-right"><?php printf( __( '%s created by %s.', 'custom' ), CYBER_DC_custom, '<a href="http://cyberdesigncraft.com/custom/">Cyberdesign Craft</a>' ); ?></span>-->
+				<div><a id="site-title" class="navbar-brand" style="color:#<?php header_textcolor(); ?>;" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"  class="navbar-brand"><img src="<?php echo site_url();?>/wp-content/themes/custom/images/Audit_Logo.png"></a></div>
+			    <div>&copy; <?php echo date( 'Y' ); ?>,DataMatrixSystems. All rights reserved.</div>
+			    <div><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer_contact') ) : endif; ?></div>
+				<!-- display footer1 menu -->
+				<?php 
+				 $args = array('theme_location' => 'footer_left', 
+				 'container_class' => 'navbar-collapse collapse navbar-right', 
+				 'menu_class' => 'nav navbar-nav', 
+				 'fallback_cb' => '', 
+				  'menu_id' => 'footer-menu',
+				  'walker' => new Cyber_DC_Walker_Nav_Menu()); 
+				  wp_nav_menu($args);
+				  ?>
+				  
+			    <!-- display footer2 menu -->
+				<?php 
+				 $args = array('theme_location' => 'footer_right', 
+				 'container_class' => 'navbar-collapse collapse navbar-right', 
+				 'menu_class' => 'nav navbar-nav', 
+				 'fallback_cb' => '', 
+				  'menu_id' => 'footer-menu-right',
+				  'walker' => new Cyber_DC_Walker_Nav_Menu()); 
+				  wp_nav_menu($args);
+				  ?>
+				
+				
+				
+				
 			</div><!-- .col-lg-12 -->
 		</div><!-- .row -->
 	</div><!-- #footer-content.container -->

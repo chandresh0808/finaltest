@@ -114,8 +114,12 @@ function custom_setup() {
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
 
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_	() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'custom' ) );
+	
+	register_nav_menu( 'footer_left', __( 'Footer Left', 'custom' ) );
+	
+	register_nav_menu( 'footer_right', __( 'Footer Right', 'custom' ) );
 
 	// Add support for a variety of post formats
 	add_theme_support( 'post-formats', array( 'gallery', 'image', 'video', 'audio', 'quote', 'link', 'status', 'aside' ) );
@@ -447,9 +451,18 @@ function custom_add_class( $format ){
 
 function wpgyan_widgets_init() {
 
-	register_sidebar( array(
+	register_sidebar( array(	
 			'name' => 'header text',
 			'id' => 'header_sidebar',
+			'before_widget' => '<div>',
+			'after_widget' => '</div>',
+			//'before_title' => '<h2 class="rounded">',
+			//'after_title' => '</h2>',
+	) );
+	
+	register_sidebar( array(
+			'name' => 'Footer Contact',
+			'id' => 'footer_contact',
 			'before_widget' => '<div>',
 			'after_widget' => '</div>',
 			//'before_title' => '<h2 class="rounded">',

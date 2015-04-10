@@ -123,7 +123,8 @@ input[type="searchdd"] {
 							'walker' => new Cyber_DC_Walker_Nav_Menu()); 
 						wp_nav_menu($args);
 						?>
-						 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?>
+						
+						<div><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
 						 
 						 <div><?php get_search_form(); ?></div>
 						
