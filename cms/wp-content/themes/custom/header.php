@@ -100,6 +100,9 @@ input[type="searchdd"] {
 
     <header class="navbar-inverse navbar navbar" role="navigation">
     <div class="container">
+    
+    
+          
 		
 				        <div class="navbar-header">
 				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -116,6 +119,11 @@ input[type="searchdd"] {
 				            
 				        </div>
 				        
+				        
+				        <div class="header_right">
+						<div class="header_cart"><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
+					    <div class="header_search"><?php get_search_form(); ?></div>
+						</div>
 				       
 						
 						<?php 
@@ -128,9 +136,7 @@ input[type="searchdd"] {
 						wp_nav_menu($args);
 						?>
 						
-						  <div class="header_cart"><?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header_sidebar') ) : endif; ?></div>
-						 
-						 <div class="header_search"><?php get_search_form(); ?></div>
+				
 						
 						
 						
