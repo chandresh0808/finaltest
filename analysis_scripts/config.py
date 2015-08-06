@@ -2,10 +2,10 @@ __author__ = 'piyush'
 
 # Database configuration
 # db_host = "app.staging.auditcompanion.biz"
-db_host = "54.172.131.179"
+db_host = "auditcompanionprod.ch8u7og6vrzm.us-east-1.rds.amazonaws.com"
 #db_host = "54.144.146.130"
-db_user = "auditcompanion"
-db_password = "audit098$"
+db_user = "pr0droot"
+db_password = "aud1tc0mpan10n098"
 # db_password = "toor"
 db_database = "auditcompanion"
 
@@ -14,11 +14,10 @@ db_database = "auditcompanion"
 aws_region = "us-east-1"
 aws_access_key = "AKIAIYUMURKMYMJCV5FQ"
 aws_secret_access_key = "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"
-aws_bucket_name = "devel.wadyaknow"
+aws_bucket_name = "prd.wadyaknow"
 
 # Spot instance configuration
-#image_id = "ami-77de221c"
-image_id  = "ami-9fb710f4"
+image_id  = "ami-c3e545a8"
 spot_request_region = "us-east-1a"
 instance_type = "m3.medium"
 #instance_type = "t1.micro"
