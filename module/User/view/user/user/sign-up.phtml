@@ -1,0 +1,141 @@
+<?php
+$form = $this->signUpForm;
+$errorMessage = $this->errorMessage;
+$form->prepare();
+$form->setAttribute('name', 'sign-up');
+$form->setAttribute('id', 'sign-up');
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'row');
+?>
+<!-- Sign Up Block Start -->
+<div class="container m-h550">  
+       
+    <div class="row pad-b30">
+        <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+            <h2 class="font-size-xl txtc mar-t20">Create a New Audit Companion Account</h2>          
+             <?php echo $this->form()->openTag($form); ?>
+                <div class="col-sm-6">
+                    <div class="form-group" id="first_nameErrorClass" >
+                        <span class="form-control-anim <?php if ($errorMessage['first_name']) echo "error"; ?>">             
+                           <!-- <input class="form-control-field" type="text"> -->
+                             <?php echo $this->formRow($form->get('first_name')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span id="first_nameErrorMsg" class="form-control-label-content" data-text='First name'>
+                                    <?php echo ($errorMessage['first_name']) ? $errorMessage['first_name'] : "First name"; ?>
+                                </span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div> 
+
+                <div class="col-sm-6"> 
+                    <div class="form-group" id="last_nameErrorClass" >
+                        <span class="form-control-anim <?php if ($errorMessage['last_name']) echo "error"; ?>">                                       
+                            <?php echo $this->formRow($form->get('last_name')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span id="last_nameErrorMsg" class="form-control-label-content" data-text='Last name'>
+                                    <?php echo ($errorMessage['last_name']) ? $errorMessage['last_name'] : "Last name"; ?>
+                                </span>
+                            </label>
+                        </span>                   
+                    </div> 
+                </div>
+                <div class="clearfix">
+                <div class="col-sm-6">
+                    <div class="form-group" id="emailErrorClass" >
+                        <span class="form-control-anim <?php if ($errorMessage['email']) echo "error"; ?>   ">                                     
+                              <?php echo $this->formRow($form->get('email')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span id="emailErrorMsg" class="form-control-label-content" data-text='Email address'>
+                                    <?php echo ($errorMessage['email']) ? $errorMessage['email'] : "Email address"; ?></span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <span  class="form-control-anim">             
+                            <?php echo $this->formRow($form->get('phone_number')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span class="form-control-label-content">Phone number</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                </div> 
+
+                <div class="col-sm-6">
+                    <div class="form-group" id="passwordErrorClass">
+                        <span class="form-control-anim <?php if ($errorMessage['password']) echo "error"; ?> ">                                    
+                              <?php echo $this->formRow($form->get('password')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span id="passwordErrorMsg" class="form-control-label-content" data-text='Password'>
+                                    <?php echo ($errorMessage['password']) ? $errorMessage['password'] : "Password"; ?>
+                                </span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div> 
+
+                <div class="col-sm-6">
+                    <div class="form-group" id="confirm_passwordErrorClass">
+                        <span class="form-control-anim <?php if ($errorMessage['confirm_password']) echo "error"; ?> ">                                     
+                              <?php echo $this->formRow($form->get('confirm_password')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span id="confirm_passwordErrorMsg" class="form-control-label-content" data-text='Confirm password'>
+                                    <?php echo ($errorMessage['confirm_password']) ? $errorMessage['confirm_password'] : "Confirm password"; ?>
+                                </span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div> 
+                <div class="col-sm-12" id='passwordCriteria' style='display:none'>
+                    <p class="alert alert-warning font-size-small mar-t0">Password must be at least 8 characters and should contains at least 1 lower case letter, upper case letter, number and special character.</p>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group" id="captchErrorClass">
+                        <div class="clearfix row">
+                            <div class="col-sm-12">
+                               <!-- <img src="img/captcha.png" class="mar-t10" /> -->
+                                 <?php echo $this->captcha; ?>                                
+                                <div id="recaptcha_response_fieldErrorClass" >
+                                    <span id="recaptcha_response_fieldErrorMsg" data-text=''> 
+                                     <?php if($errorMessage['invalid_captcha']) echo $errorMessage['invalid_captcha']; ?>
+                                    </span>
+                                </div>
+                                
+                            </div>
+                        </div>                   
+                    </div>                           
+                </div> 
+                <div class="col-sm-12 mar-b20">
+                    
+                    <div  class="checkbox" >
+                        <label  >
+                              <?php echo $this->formRow($form->get('terms_condition')); ?>
+                            <!-- temp redirecting to cms site, need to build popup with in  app -->
+                            I agree to the Audit Companion <a target="_blank" href="<?php echo $cmsBaseLink; ?>/terms-of-service/"> Terms & Conditions</a>
+                        </label>
+                    </div>  
+                    
+                    <div id="terms_conditionErrorClass" >
+                        <span id="terms_conditionErrorMsg" class="text-error" data-text='Email Address'> 
+
+                        </span>
+                    </div>                                        
+                </div>                  
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                          <?php echo $this->formRow($form->get('submit_sign_up')) . "\n"; ?>                        
+                    </div>                                            
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group mar-t15">
+                        Returning Customer? <a href="<?php echo $this->url('sign-in') ?>">Sign In</a>
+                    </div>                      
+                </div>
+            </form>
+        </div>
+    </div>        
+</div>    

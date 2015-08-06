@@ -1,0 +1,74 @@
+<?php
+$cartObject = $this->cartObject;
+if (!is_object($cartObject)) {
+    echo $this->render('cart/cart/no-item-cart.phtml');
+} else {
+    $itemObject = $cartObject->getItemList();  
+    $packageDetails['packageName'] = $itemObject['0']->getPackage()->getName();
+    $packageDetails['credits'] = $itemObject['0']->getPackageHasCredits()->getTotalCredits();
+    $packageDetails['amount'] = $itemObject['0']->getPackageHasCredits()->getPackageAmount();
+    $packageDetails['cart_id'] = $cartObject->getId();
+    $packageDetails['item_id'] = $itemObject['0']->getId();
+    $packageDetails['package_duration'] = $itemObject['0']->getPackageHasCredits()->getPackageDuration();
+    
+    ?>    
+<input type="hidden" id="hidden_item_object" value="<?php echo json_encode($itemObject['0']) ?>" >
+    <div class="container m-h550 mar-b40">
+        <div class="clearfix">
+            <h1>Shopping Cart</h1>        
+        </div>
+        <div class="table-responsive">
+
+    <?php if ('added' == $this->flag) { ?>            
+                <script>
+                    setTimeout("$('.alert-success').fadeOut(2000);", 3000);
+                </script>
+                <div class="alert-success">Item is added successfully into cart</div>
+    <?php } ?>
+
+
+            <div class="alert-error" style="display:none"></div>
+
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th width="25%">Package Name</th>
+                        <th width="20%" class="txtr">Credits</th>
+                        <th width="20%" class="txtr">Price</th>
+                        <th width="10%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="cart-item-row">
+                        <td><?php echo $packageDetails['packageName'] ?></td>
+                        <td class="txtr"><?php echo $packageDetails['credits'] ?></td>
+                        <td class="txtr">$ <?php echo $packageDetails['amount'] ?></td>
+                        <td>
+                            <a style="cursor: pointer" id="delete-card-button" data-cart-id="<?php echo $packageDetails['cart_id'] ?>" data-item-id="<?php echo $packageDetails['item_id'] ?>" class="action-icon-sm text-replace sprite-remove mar-l20 mar-t5" data-toggle="tooltip" data-placement="top" title="Remove">Delete</a>
+                        </td>
+                    </tr>                                                                                                        
+                </tbody>
+
+                <tfoot class="txtr font-size-m font-family-bold cart-footer">
+                    <tr>
+                        <td colspan="4">
+                            <span class="mar-r40">TOTAL</span> <span>$<?php echo $packageDetails['amount'] ?></span>
+                        </td>
+                    </tr>
+                </tfoot>            
+            </table>   
+        </div>  
+        <div class="row mar-t40">                         
+            <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4">
+                <button type="button" id="button_proceed_to_checkout" class="btn btn-default btn-block">PROCEED TO CHECKOUT</button>  
+            </div>             
+        </div>               
+    </div>
+
+<?php }
+?>
+<script>
+    delete_cart_item_url = '<?php echo $this->url('delete-cart-item'); ?>'
+    display_cart_url = '<?php echo $this->url('display-cart', array('flag' => 'deleted')); ?>';
+    checkout_url = '<?php echo $this->url('checkout'); ?>';
+</script>  

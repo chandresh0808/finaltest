@@ -1,0 +1,26 @@
+<?php
+require_once __DIR__ . '/header-mail.phtml';
+$orderArray = $this->orderArray;
+?>
+<?php
+    $securityUrl = 'https://auditcompanion.biz/Security';
+    $supportUrl = 'support@auditcompanion.biz';
+    $howToUrl = 'https://auditcompanion.biz/HowTo';
+    $homeUrl = 'https://auditcompanion.biz/Home';
+?>
+<p><b>Thanks for subscribing with Audit companion. Below are your subscription details :</b> <p>
+
+<p><b>Package Name:</b> <?php echo $orderArray['package_name']; ?></p>
+<p><b>Package Durations:</b> <?php echo $orderArray['package_duration']; ?> Days</p>
+<p><b>Package Credits:</b> <?php echo $orderArray['package_credits']; ?></p>
+<p><b>Package Amount:</b> <?php echo $orderArray['package_amount']; ?></p>
+<p><b>Package Start date:</b> <?php echo $orderArray['package_start_date']; ?></p>
+<p><b>Package Expire date:</b> <?php echo $orderArray['package_start_end']; ?></p>
+<p>Please visit the How-to pages <a href="<?php echo $howToUrl; ?>"><?php echo $howToUrl; ?></a> for instructions on using the extraction/upload utility.</p>
+<p>Please visit the site for general introduction <a href="<?php echo $homeUrl; ?>"><?php echo $homeUrl; ?></a></p>
+<p>If you have questions regarding the safety of the data that you may be uploading do visit the <a href="<?php echo $securityUrl; ?>"><?php echo $securityUrl; ?></a></p>
+
+<?php
+    require_once __DIR__ . '/mail-footer.phtml';
+?>
+

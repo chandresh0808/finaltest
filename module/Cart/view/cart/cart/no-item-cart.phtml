@@ -1,0 +1,19 @@
+<div class = "container">
+    <div class = "row">
+        <?php if ('deleted' == $this->flag) { ?>            
+            <script>
+                setTimeout("$('.alert-success').fadeOut(2000);", 3000);
+            </script>
+            <div class="alert-success">Item from cart is deleted successfully</div>
+        <?php } ?>
+
+        <div class = "col-lg-12">
+            <img src = "/img/no-cart-item.png" class = "mar-t40 mar-b40 center-block" />
+            <p class = "font-size-m font-family-md text-center">There are no items in the cart. </p>
+            <h3 class = "font-size-l font-family-md mar-t0 mar-b10 text-center">Buy a subscription package to continue with cart</h3>
+            <p class="txtc pad-t30">
+            <a class = "btn btn-default mar-b40" href="<?php echo $this->cmsBaseUrl . '/pricing' ?>" >Continue</a>
+            </p>
+        </div>
+    </div>
+</div>

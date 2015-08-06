@@ -1,0 +1,18 @@
+<?php
+include('commonHeaderUtility.php');
+echo $this->partial('layout/header.phtml', array(
+    'cmsBaseLink' => $cmsBaseLink,
+    'dmsAboutUslink' => $DMSAboutUsLink,
+    'showNotLoggedInMenuOption' => $showNotLoggedInMenuOption,
+    'userName' => $userName
+));
+?>   
+<?php echo $this->content; ?>
+<?php
+
+echo $this->partial('layout/footer.phtml', array(
+    'cmsBaseLink' => $cmsBaseLink,
+    'dmsAboutUslink' => $DMSAboutUsLink,
+    'showNotLoggedInMenuOption' => $showNotLoggedInMenuOption
+))
+?>

@@ -1,0 +1,106 @@
+<?php
+$urlArray = array(
+    'data_url' => $this->url('rulebook-data'),
+);
+?>
+<input type="hidden" id="url-array" value='<?php echo json_encode($urlArray); ?>'> 
+<div class="container">
+    <div class="pad-sm-l15">
+        <ul class="steps mar-t30 mar-b30 font-size-m font-family-md font-caps-up txtc row">
+            <li class="col-sm-4 current"><a href="/rulebook-list">1. MODIFY A RULEBOOK</a></li>
+            <li class="col-sm-4" id="comfigure-rb"><a href="javascript:void(0)">2. configure Rulebook</a></li>
+            <li class="col-sm-4"><a href="/complete-rule-book">3. complete</a></li>
+        </ul>
+    </div>
+
+    <p class="font-family-bold">Working with Rulebooks</p>    
+    <p class="font-size-small">Rulebooks are the sets of risks, job functions, and transactions that are used to compare with an extract of SAP user and transaction configuration to determine if risks exist in the system. From this page you can access the default rulebook to run analysis or customize a rulebook to meet your needs. There are several options to create a custom Rulebook: create a rulebook from scratch, copy an existing rulebook, or download and upload a rulebook with a modified rulebook name.</p> 
+    <p class="font-size-small">A risk is defined as a set of job functions that may expose risk to the company. Job functions and transactions are SAP entities. The default set of job functions and transactions from SAP are provided to aid configuration. The job functions should be configured with mapped transactions to match the source SAP system. This allows the configured risks to properly identify which combination of job functions and transactions are at risk.</p>
+    <p class="font-size-small">Uploading a rulebook requires the provided rulebook name does not already exist in the system. The rulebook must match in the expected tabs and column headers to insure a proper upload. Validation messages will be displayed to let you know which validations fail. If you start from the default rulebook and modify the content, then the system should not have an issue. Expected format is either Microsoft Excel XLS or XLSX files.</p>
+      <div style="display:none;" class="acp-ajax-loader"><img alt='' src="/img/ajax-loader.gif" id='imgload'></div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs custom-tabs font-family-md font-caps-up" role="tablist">
+        <li role="presentation" class="active pad-r20"><a href="#create-rulebook" aria-controls="create-rulebook" role="tab" data-toggle="tab">Choose a Rulebook</a></li>
+        <li role="presentation" class="pad-l30"><a href="#upload-rulebook" aria-controls="upload-rulebook" role="tab" data-toggle="tab">Upload a Rulebook</a></li>
+    </ul>
+    <div class="alert-success"  style="display:none; margin-top:15px;" ></div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="create-rulebook">    
+            
+            <div class="row">
+                <div class="col-md-8 mar-b40">
+                    <div class="table-responsive s-block">
+                        <table class="table custom-table table-hover" id="rulebook-list">
+                            <thead>
+                                <tr>
+                                    <th width="30%">RULEBOOK NAME<a href="javascript:void"></a></th>
+                                    <th width="20%">LAST UPDATED<a href="javascript:void"></a></th>
+                                    <th width="20%">ACTIONS</th>                    
+                                </tr>
+                            </thead>            
+                        </table>   
+                    </div>
+                </div>
+                <div class="col-md-4 mar-b40">
+                    <div class="primary-box pad-b20">
+                        <div class="preview-header pad-l20 pad-r20 clearfix">
+                            <h3 class="font-size-m font-family-bold" id="rulebook_name"><?php echo $this->ruleBookName ?></h3>  
+                            <p>Last Updated - <span class="font-family-md" id="rulebook_last_updated"><?php echo $this->lastUpdatedRuleBook ?></span></p>
+                            <p>Last Report Analyzed - <span class="font-family-md" id="last_extracted"><?php echo $this->analysisRequestLastExtractedDate ?></span></p>
+                        </div>
+                        <div class="pad-l20 pad-r20 preview-text" id="rulebook_description">
+                            <p><?php echo $this->ruleBookDescription ?></p>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            
+            <div class="clearfix mar-b40">
+                <button type="button" class="btn btn-default pull-right" id="rulebook_next">NEXT &rsaquo;</button>                
+            </div>
+            
+        </div>        
+    
+        <div role="tabpanel" class="tab-pane mar-t15" id="upload-rulebook">
+            <div class="row">
+                <div class="col-md-12 mar-b40">
+                    <form id="id_upload_excel" action="<?php echo $this->url('upload-excel'); ?>" class="form-inline mar-b15" method="post" enctype="multipart/form-data" >
+                        <div class="form-group pull-left">                                
+                            <input type="file" onchange="valueCheck()" id="file_rule_book_excel" name="file_rule_book_excel" class="mar-t10">
+                            <p class="text-error mar-t0" style="display:none;" id="upload_error"></p>
+                            <p class="text-success mar-t0" style="display:none;" id="upload_success"></p>
+                        </div>               
+                        <input type="submit" id="save_upload_excel" value="UPLOAD" class="btn btn-default btn-small mar-l20 mar-t5">
+                        <button type="button" class="btn btn-link btn-small mar-t5" onclick="location.reload();">CANCEL</button>                                                         
+                    </form>                             
+                </div>
+                <div class="col-md-12 mar-b40 table-responsive" id="upload_excel_table_div" style="display:none;">
+                    <table id="upload_excel_table" class="table custom-table mar-b0" data-toggle="table">
+                        <thead>
+                            <tr>
+                                <th>Error Message</th>
+                            </tr>
+                        </thead>
+                        <tbody role="tablist" id="upload_excel_tbody">                           
+                        </tbody>
+                    </table>  
+                </div>    
+            </div>                     
+        </div>        
+        
+    </div>    
+</div>
+<script>
+function valueCheck()
+{
+    if ($('#file_rule_book_excel').val().length > 80) {
+        showAndHideDiv('.text-error', 'File name should be less than 80 characters');
+         $('#file_rule_book_excel').val('');
+    }
+
+}
+    var delete_request_url = '<?php echo $this->url('rulebook-delete'); ?>';
+    var copy_request_url = '<?php echo $this->url('rulebook-copy'); ?>';
+    var download_request_url = '<?php echo $this->url('download-excel'); ?>';
+    var modify_rulebook_url = '<?php echo $this->url('modify-rulebook'); ?>';
+</script>

@@ -1,0 +1,13 @@
+<?php
+include('commonHeaderUtility.php');
+echo $this->partial('layout/admin-user-account-header.phtml', array('userName' => $userName));
+?>   
+<?php echo $this->content; ?>
+<?php
+
+echo $this->partial('layout/admin-footer.phtml', array(
+    'cmsBaseLink' => $cmsBaseLink,
+    'dmsAboutUslink' => $DMSAboutUsLink,
+    'showNotLoggedInMenuOption' => $showNotLoggedInMenuOption
+))
+?> 

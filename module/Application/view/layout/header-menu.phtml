@@ -1,0 +1,41 @@
+<?php
+include('commonMenuUtility.php');
+
+/* Highlight active menu tab */
+$url = $_SERVER['REQUEST_URI'];
+$cssMenu = array('/sign-up');
+$cssMenu[$url] = 'active';
+
+?>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">                
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $logRef ?>"><img src="/img/logo_small.png" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right custom-nav">
+                <li><a href="<?php echo $cmsBaseLink ?>" >Home</a></li>            
+                <li><a href="<?php echo $cmsBaseLink . "/pricing" ?>" >Pricing</a></li>
+                <li><a target="_blank" href="<?php echo $DMSAboutUsLink?>">About</a></li>
+                <li><a href="<?php echo $cmsBaseLink . "/contact" ?>" >Contact</a></li>
+               
+                <?php 
+                 if($showNotLoggedInMenuOption) {
+                ?>
+                <li class="<?php echo $cssMenu['/sign-up'] ?>"><a href="<?php echo $this->url('sign-up') ?>" >Sign Up</a></li>
+                <li <?php echo $cssMenu['/sign-in'] ?> ><a href="<?php echo $this->url('sign-in') ?>" class="btn btn-small btn-pill mar-t10 btn-default" >Sign In</a></li>
+                <?php 
+                 }
+                ?>
+                
+                <li class="app-cart"><a href="<?php echo $this->url('display-cart') ?>"><span class="sprite-cart text-replace">Cart</span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>

@@ -1,0 +1,245 @@
+<!-- shopping checkout cart  -->
+<?php
+$form = $this->checkoutForm;
+$errorMessage = $this->errorMessage;
+
+$form->prepare();
+$form->setAttribute('name', 'checkout');
+$form->setAttribute('id', 'checkout');
+$form->setAttribute('method', 'post');
+//$form->setAttribute('action', '/checkout');
+
+$cartObject = $this->cartObject;
+
+if (is_object($cartObject)) {
+    $itemObject = $cartObject->getItemList();  
+    $packageDetails['package_name'] = $itemObject['0']->getPackage()->getName();
+    $packageDetails['package_credits'] = $itemObject['0']->getPackageHasCredits()->getTotalCredits();
+    $packageDetails['package_amount'] = $itemObject['0']->getPackageHasCredits()->getPackageAmount();
+    $packageDetails['cart_id'] = $cartObject->getId();
+    $packageDetails['item_id'] = $itemObject['0']->getId();
+    $packageDetails['package_duration'] = $itemObject['0']->getPackageHasCredits()->getPackageDuration();
+}
+
+?>
+
+
+<div class="container" id="content" >
+
+    <ol class="ac-breadcrumb">
+        <li><a href="<?php echo $this->url('display-cart'); ?>">Shopping Cart</a></li>
+        <li class="active">Checkout</li>
+    </ol>
+
+
+    <div class="row" >
+        <div class="col-md-8 pad-b30">
+            <div class="row">
+                
+                <?php if ($this->redirectErrorMessage) { ?>                    
+                    <script>                        
+                        setTimeout("$('.alert-error').fadeOut(2000);", 5000);                                               
+                        setTimeout(function() {   
+                           stickyPlaceholder();
+                        }, 7020);
+                    </script>                    
+                    <div class="alert-error"><?php echo $this->redirectErrorMessage; ?></div>
+                <?php } ?>
+                
+                <div class="col-lg-12">
+                    <h3 class="font-size-l font-family-md mar-t0 mar-b10 font-caps-up">Personal Information</h3>
+                </div>
+                <?php echo $this->form()->openTag($form); ?>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-6 mar-b10 <?php if ($errorMessage['full_name']) echo "error"; ?>" id="full_nameErrorClass">
+                            <span  class="form-control-anim">             
+                                <?php echo $this->formRow($form->get('full_name')) . "\n"; ?>
+                                <label class="form-control-label">                              
+                                    <span id="full_nameErrorMsg" class="form-control-label-content" data-text='Full name'>
+                                    <?php echo ($errorMessage['full_name']) ? $errorMessage['full_name'] : "Full Name"; ?>
+                                    </span>
+                                </label>
+                            </span>
+                        </div>  
+                    </div>
+                </div>  
+
+                <div class="col-sm-6 <?php if ($errorMessage['email']) echo "error"; ?>" id="emailErrorClass" >
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('email')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="emailErrorMsg" class="form-control-label-content" data-text='Email'>
+                              <?php echo ($errorMessage['email']) ? $errorMessage['email'] : "Email"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 <?php if ($errorMessage['phone_number']) echo "error"; ?>" id="phone_numberErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('phone_number')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="phone_numberErrorMsg" class="form-control-label-content" data-text='Phone number'>
+                              <?php echo ($errorMessage['phone_number']) ? $errorMessage['phone_number'] : "Phone number"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-12">
+                    <h3 class="font-size-l font-family-md mar-t30 mar-b10 font-caps-up">Billing Information</h3>
+                </div>
+
+                <div class="col-sm-6 mar-b10 <?php if ($errorMessage['address_1']) echo "error"; ?>" id="address_1ErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('address_1')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="address_1ErrorMsg" class="form-control-label-content" data-text='Address 1'>
+                              <?php echo ($errorMessage['address_1']) ? $errorMessage['address_1'] : "Address 1"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mar-b10">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('address_2')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">Address 2</span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mar-b10 <?php if ($errorMessage['city']) echo "error"; ?>" id="cityErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('city')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="cityErrorMsg" class="form-control-label-content" data-text='City'>
+                              <?php echo ($errorMessage['city']) ? $errorMessage['city'] : "City"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mar-b10">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('state')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">State</span>
+                        </label>
+                    </span>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <span class="form-control-anim">             
+                            <?php echo $this->formRow($form->get('country')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span class="form-control-label-content">Country</span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div>
+                <div class="col-sm-6 <?php if ($errorMessage['zip_code']) echo "error"; ?>" id="zip_codeErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('zip_code')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="zip_codeErrorMsg" class="form-control-label-content" data-text='Zip Code'>
+                              <?php echo ($errorMessage['zip_code']) ? $errorMessage['zip_code'] : "Zip Code"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-12">
+                    <h3 class="font-size-l font-family-md mar-t30 mar-b10 font-caps-up">Payment Information</h3>
+                </div>
+
+                <div class="col-sm-6 mar-b10 <?php if ($errorMessage['card_number']) echo "error"; ?>" id="card_numberErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('card_number')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="card_numberErrorMsg" class="form-control-label-content" data-text='Card Number'>
+                              <?php echo ($errorMessage['card_number']) ? $errorMessage['card_number'] : "Card Number"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mar-b10 <?php if ($errorMessage['card_holder_name']) echo "error"; ?>" id="card_holder_nameErrorClass">
+                    <span  class="form-control-anim ">             
+                        <?php echo $this->formRow($form->get('card_holder_name')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="card_holder_nameErrorMsg" class="form-control-label-content" data-text='Card Holder Name'>
+                              <?php echo ($errorMessage['card_holder_name']) ? $errorMessage['card_holder_name'] : "Card Holder Name"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mar-b10">
+                   <div class="row">
+                   <div class="col-xs-6">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('expire_month')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                              <span class="form-control-label-content">Expire Month</span>
+                        </label>
+                    </span>
+                    </div>
+                    <div class="col-xs-6">
+                    <span class="form-control-anim">                                    
+                        <?php echo $this->formRow($form->get('expire_year')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                              <span class="form-control-label-content">Expire Year</span>
+                        </label>                        
+                    </span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mar-b10 <?php if ($errorMessage['cvv_number']) echo "error"; ?>" id="cvv_numberErrorClass">
+                    <span  class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('cvv_number')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="cvv_numberErrorMsg" class="form-control-label-content" data-text='CVV Number'>
+                              <?php echo ($errorMessage['cvv_number']) ? $errorMessage['cvv_number'] : "CVV Number"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+
+               <!-- <div class="col-sm-12 mar-b20">
+                    <div  class="btn btn-default btn-small btn-pill cart-secure"><span class="sprite-secure-lock"></span> Secure</div>
+                    <span class="font-family-bold">128-BIT SSL, ENCRYPTED CONNECTION</span>
+                </div> --->
+
+
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-sm-offset-6 col-md-offset-0 pad-b30">
+            <input type="hidden" value="<?php echo $packageDetails['item_id'] ?>" name="hidden_item_id" id="hidden_item_id" >
+            <input type="hidden" value="<?php echo $packageDetails['cart_id'] ?>" name="hidden_cart_id" id="hidden_cart_id" >
+            <input type="hidden" value ="<?php echo $packageDetails['package_amount'] ?>" name="package_amount" >
+            <div id="sidebar" >
+                <div class="ac-place-order" >
+                    <div class="ac-order-title">
+                        Confirm Order
+                    </div>                    
+                      <?php echo $this->partial('payment/payment/order-info.phtml',
+                            array('packageDetails' => $packageDetails)); ?>
+                    
+                    <div class="ac-text-pnl">
+                        <span class="font-family-bold mar-t10">By placing an order I agree to the </span>
+                        <br/>
+                        <a target="_blank" href="<?php echo $this->baseCMSUrl . "/terms-of-service" ?>" class="font-family-bold" >Terms &amp; Conditions</a>             
+                        <?php echo $this->formRow($form->get('submit_confirm_order')) . "\n"; ?>
+                    </div>  
+                    <?php echo $this->form()->closeTag($form); ?>
+                </div>
+            </div>              
+        </div>              
+    </div>
+</div>    
+<!--/.shopping checkout cart End -->

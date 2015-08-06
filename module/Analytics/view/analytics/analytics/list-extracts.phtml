@@ -1,0 +1,31 @@
+<?php
+$urlArray = array(
+    'data_url' => $this->url('data-list-extracts'),
+);
+?>
+<input type="hidden" id="url-array" value='<?php echo json_encode($urlArray); ?>'> 
+<div class="container mar-b30">
+     <div class="alert-error" style="display:none"></div>
+    <div class="alert-success" style="display:none"></div>
+    <div class="clearfix">
+        <h1 class="pull-left">Extracts</h1>        
+    </div>
+     
+    <div class="table-responsive">
+        <div style="display:none;" class="acp-ajax-loader"><img alt='' src="/img/ajax-loader.gif" id='imgload'></div>
+        <table class="table custom-table" id="list-extracts">
+            <thead>
+                <tr>                   
+                    <th width="35%"><span> Extracts Name</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Uploaded By</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Uploaded date</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Actions</span></th>
+                </tr>
+            </thead>            
+        </table>   
+    </div>      
+             
+</div>
+<script>
+var delete_extract_url = '<?php echo $this->url('delete_extract_url'); ?>';
+</script>

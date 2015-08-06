@@ -1,0 +1,40 @@
+<?php
+$cmsBaseLink = $this->cmsBaseLink;
+$DMSAboutUsLink = $this->dmsAboutUslink;
+$showNotLoggedInMenuOption = $this->showNotLoggedInMenuOption;
+$roleSession = new Zend\Session\Container('role');
+if ($roleSession->roleName == 'associate' OR $roleSession->roleName == 'admin') {
+    $hideForRole = true;
+}
+?>
+<div class="col-lg-2 col-sm-4 col-lg-push-6 pad-b20 font-size-small">
+    <ul class="footer-nav">
+        <li><a href="<?php echo $cmsBaseLink ?>">Home</a></li>
+        <li><a target="_blank" href="<?php echo $DMSAboutUsLink ?>">About Us</a></li>
+        <li><a href="<?php echo $cmsBaseLink . "/contact" ?>">Contact</a></li>
+        <?php if (!$hideForRole):?>
+            <li><a href="<?php echo $cmsBaseLink . "/pricing" ?>">Pricing</a></li> 
+        <?php endif;?>
+
+    </ul>
+</div>  
+<div class="col-lg-2 col-sm-4 col-lg-push-6 pad-b20 font-size-small">
+    <ul class="footer-nav">        
+        <li><a href="<?php echo $cmsBaseLink . "/disclaimer" ?>">Disclaimer</a></li>
+        <li><a href="<?php echo $cmsBaseLink . "/terms-of-service" ?>">Terms of service</a></li>
+        <li><a href="<?php echo $cmsBaseLink . "/privacy-policy" ?>">Privacy Policy</a></li>
+        <li><a href="<?php echo $cmsBaseLink . "/security-overview" ?>">Security Overview</a></li>
+    </ul>
+</div>
+<div class="col-lg-2 col-sm-4 col-lg-push-6 pad-b20 font-size-small">
+    <ul class="footer-nav">        
+        <?php
+        if ($showNotLoggedInMenuOption) {
+        ?>
+            <li><a href="<?php echo $this->url('sign-in') ?>">Sign In</a> </li>
+            <li><a href="<?php echo $this->url('sign-up') ?>">Sign Up</a> </a></li>
+        <?php
+        }
+        ?> 
+    </ul>
+</div>

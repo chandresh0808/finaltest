@@ -1,0 +1,66 @@
+<?php
+$urlArray = array(
+    'data_url' => $this->url('data-analysis-in-queue'),
+);
+?>
+<input type="hidden" id="url-array" value='<?php echo json_encode($urlArray); ?>'> 
+<div class="container mar-b30">
+    <div class="alert-error" style="display:none"></div>
+    <div class="alert-success" style="display:none"></div>
+    <div class="clearfix">
+        <h1 class="pull-left">My Analysis</h1>
+        <h2 class="pull-right font-family-md pad-t5 txtr lh-20 xs-font-sm">
+        <span class="badge custom-badge mar-l10 font-size-l pull-right"><?php echo $this->availableCredits; ?></span>Available Analysis Credits<br/><span class="font-size-xsmall"> As of : <?php echo date("Y-m-d") ?> </span>
+        </h2>        
+    </div>     
+    
+    <div style="display:none;" class="acp-ajax-loader"><img alt='' src="/img/ajax-loader.gif" id='imgload'></div>
+    <ul class="nav nav-tabs custom-tabs font-family-md font-caps-up" role="tablist">
+        <li role="presentation" class="pad-r20"><a href="/analysis-reports" aria-controls="complete-analysis" role="tab" data-toggle="tab" id="complete-analysis-tab">Complete Analysis</a></li>
+        <li role="presentation" class="active pad-l30"><a href="/analysis-in-queue-reports" aria-controls="analysis-in-queue" role="tab" data-toggle="tab" id="analysis-in-queue-tab">Analysis In Queue</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="analysis-in-queue">
+            <div class="row">
+                <div class="col-md-12 mar-b40">
+                    <div class="table-responsive">
+                        <table class="table custom-table" id="list-analysis-in-queue">
+                            <thead>
+                                <tr>                   
+                                    <th><span> Analysis Name</span><a href="javascript:void"></a></th>
+                                    <th><span>Created Date</span><a href="javascript:void"></a></th>                                    
+                                </tr>
+                            </thead>            
+                        </table>   
+                    </div>
+                </div>                
+            </div>
+        </div>           
+
+<!--        <div role="tabpanel" class="tab-pane active" id="complete-analysis">
+            <div class="row">
+                <div class="col-md-12 mar-b40">
+                    <div class="table-responsive">
+                        <table class="table custom-table" id="list-analysis-report">
+                            <thead>
+                                <tr>                   
+                                    <th width="35%"><span> Analysis Name</span><a href="javascript:void"></a></th>
+                                    <th width="15%"><span>Created Date</span><a href="javascript:void"></a></th>
+                                    <th width="15%"><span>Expire Date</span><a href="javascript:void"></a></th>
+                                    <th width="15%"><span>Actions</span></th>
+                                </tr>
+                            </thead>            
+                        </table>   
+                    </div>
+                </div>
+            </div>-->
+        </div>            
+    </div>   
+</div>
+<script type="text/javascript">
+var expireDateValue = '<?php echo $this->expireDateValue; ?>';
+var enhanceExpireDateValue = '<?php echo $this->enhanceExpireDateValue; ?>';
+var extend_analysis_request_url = '<?php echo $this->url('extend-analysis-reports'); ?>';
+var download_analysis_request_url = '<?php echo $this->url('download-analysis-reports'); ?>';
+var delete_analysis_request_url = '<?php echo $this->url('delete-analysis-reports'); ?>';
+</script>

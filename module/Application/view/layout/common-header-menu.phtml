@@ -1,0 +1,19 @@
+<?php
+/* Value from partial view */
+$cmsBaseLink = $this->cmsBaseLink;
+$DMSAboutUsLink = $this->dmsAboutUslink;
+$showNotLoggedInMenuOption = $this->showNotLoggedInMenuOption;
+
+/* Logged in */
+$logRef = $this->url('user-account');
+if ($showNotLoggedInMenuOption) {
+    /* Not logged in */
+    $logRef = $this->url('sign-in');
+}
+
+/* Highlight active menu tab */
+$url = $_SERVER['REQUEST_URI'];
+$cssMenu = array('/sign-up');
+$cssMenu[$url] = 'active';
+
+?>

@@ -1,0 +1,62 @@
+#recaptcha_table {
+  width: 100%;  
+}
+
+#recaptcha_privacy,
+#recaptcha_logo {
+  display: none;
+}
+.recaptchatable.recaptchatable #recaptcha_image {
+  border: 0px none !important;
+}
+.recaptchatable.recaptchatable #recaptcha_response_field {
+  border-radius: 5px;
+  border: 1px solid #d9d9d9 !important;     
+  @include pad(13px 15px 13px 15px, 'all');
+  outline: none;
+  
+  &.error{
+    border-color: $error-color !important;
+      color: $error-color;
+  }
+}
+
+#recaptcha_response_fieldErrorMsg {
+  color: $error-color;
+}
+
+
+@media (min-width: 768px) { 
+    #recaptcha_area {
+      position: relative;
+      .recaptcha_input_area {
+         right: 10px;
+         top: 12px;
+         position: absolute !important;
+      }
+    }        
+}
+
+.alert-success,
+.alert-error{
+   max-width: 400px;   
+   background-color: rgba($light-color, 0.98);     
+   background-repeat: no-repeat;
+   background-position: 10px 10px;
+   box-shadow: 0 0 10px rgba($dark-color, 0.2);       
+   @include pad(10px 10px 10px 45px, 'all');
+   @include mar(0px auto 30px auto, 'all');       
+   @include add-border(1px, lighten($dark-color, 51), 'all') ;
+}
+
+.alert-success {
+    background-image: url(../img/success_msg.png);
+}
+
+.alert-error {
+    background-image: url(../img/error_msg.png);
+}
+
+body.pricing-page {
+  @include pad(0px, 'top');
+}

@@ -1,0 +1,17 @@
+<?php
+$packageDetails = $this->packageDetails;
+?>
+<div class="ac-basic">
+    <span class="pull-left font-size-m font-family-bold"><?php echo $packageDetails['package_name'] ?> - <?php echo $packageDetails['package_duration'] ?> Days</span>
+    <span class="pull-right font-size-m font-family-bold"><?php echo $packageDetails['package_credits'] ?> for $ <?php echo $packageDetails['package_amount'] ?></span>
+</div>
+
+<div class="ac-text-pnl">
+    <span class="pull-left font-size-m ">Sub Total</span>
+    <span class="pull-right font-size-m font-family-bold">$ <?php echo $packageDetails['package_amount'] ?></span>
+</div>
+
+<div class="ac-basic">
+    <span class="pull-left font-size-m font-family-bold">GRAND TOTAL</span>
+    <span class="pull-right font-size-m font-family-bold">$ <?php echo $packageDetails['package_amount'] ?></span>
+</div>

@@ -1,0 +1,19 @@
+<div class = "container m-h550 mar-t40">
+    <div class = "row">
+        <?php if ('deleted' == $this->flag) { ?>            
+            <script>
+                setTimeout("$('.alert-success').fadeOut(2000);", 3000);
+            </script>
+            <div class="alert-success">Item from cart is deleted successfully</div>
+        <?php } ?>
+
+        <div class = "col-lg-6 col-lg-offset-3 txtc">
+            <img src="/img/thank_img.png" class="aligncenter" alt="" />           
+            <h1 class="font-size-xl font-family-bold txt-brand">Thanks for your order.</h1>
+            <p>A confirmation email is sent to your email account. This is your confirmation number: <span class="txt-brand font-family-bold"><a href="javascript:;" style="cursor: default;">AC-<?php echo $this->orderId ?></a></span> to track your order status.</p>
+            <div class="txtc">
+            <a class = "btn btn-default btn-small mar-b40 mar-t30" href="/analysis-request" >Continue</a>
+            </div>
+        </div>
+    </div>
+</div>

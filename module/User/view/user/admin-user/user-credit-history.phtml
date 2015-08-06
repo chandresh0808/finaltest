@@ -1,0 +1,15 @@
+<div class="row mar-t30">
+    <input type="hidden" id="hidden-user-id" value="<?php echo $this->userId; ?>" >
+    <div class="col-sm-4 txtc">
+        <p class="font-size-xl font-family-bold stats pad-t20" id="p-remaining-points"><?php echo $this->userCreditHistory['remainingPoints'] ?></p>
+        <h3 class="font-size-m font-family-md">Analysis Credit Remaining on <?php echo date('m/d/Y'); ?></h3>
+    </div>
+    <div class="col-sm-4 txtc">
+        <p class="font-size-xl font-family-bold stats pad-t20"><?php echo $this->userCreditHistory['usedCreditPoints'] ?></p>
+        <h3 class="font-size-m font-family-md">Analysis Credit Used</h3>
+    </div>
+    <div class="col-sm-4 txtc">
+        <p class="font-size-xl font-family-bold stats pad-t20" id="p-expired-points"><?php echo $this->userCreditHistory['expiredCredits'] ?></p>
+        <h3 class="font-size-m font-family-md">Analysis Credit Expired</h3>
+    </div>                                    
+</div>

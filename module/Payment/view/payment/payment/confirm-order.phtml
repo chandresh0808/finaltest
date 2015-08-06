@@ -1,0 +1,73 @@
+<?php 
+$orderAndPaymentDetails = $this->orderAndPaymentDetails;
+?>
+<div class="container" id="content" >
+
+    <ol class="ac-breadcrumb">
+        <li><a href="<?php echo $this->url('display-cart'); ?>">Shopping Cart</a></li>
+        <li><a href="<?php echo $this->url('checkout'); ?>">Checkout</a></li>
+        <li class="active">Confirm Order</li>
+    </ol>
+
+
+    <div class="row" >
+        <div class="col-sm-6 col-md-7 col-lg-8 pad-b30">
+            <div class="row">
+                <div class="col-lg-12 mar-b10"><a href="<?php echo $this->url('checkout'); ?>">Edit</a></div>
+                <div class="col-lg-12">
+                    <h3 class="font-size-m font-family-md mar-t0 mar-b10 font-caps-up">Personal Information</h3>
+                </div>
+                <div class="col-lg-12">
+                    <p class="mar-t0"><?php echo $orderAndPaymentDetails['full_name'] ?> <br/>
+                        <?php echo $orderAndPaymentDetails['email'] ?><br/>
+                        <?php echo $orderAndPaymentDetails['phone_number'] ?></p>
+                </div>   
+
+                <div class="col-lg-12">
+                    <h3 class="font-size-m font-family-md mar-t20 mar-b10 font-caps-up">Billing Information</h3>
+                </div>
+                <div class="col-lg-12">
+                    <p class="mar-t0"><?php echo $orderAndPaymentDetails['address_1'] ?> <?php echo $orderAndPaymentDetails['address_2'] ?>,<br/>
+                        <?php echo $orderAndPaymentDetails['city'] ?> <?php echo $orderAndPaymentDetails['state'] ?> <?php echo $orderAndPaymentDetails['zip_code'] ?></p>
+                </div>
+
+                <div class="col-lg-12">
+                    <h3 class="font-size-m font-family-md mar-t20 mar-b10 font-caps-up">payment Information</h3>
+                </div>
+                <div class="col-lg-12">
+                    <p class="mar-t0">XXXXXXXXXXXX<?php echo $orderAndPaymentDetails['last_four_digits'] ?><br/>
+                        <?php echo $orderAndPaymentDetails['card_holder_name'] ?><br/>
+                        <?php echo substr($orderAndPaymentDetails['expiry_year_month'],0,2) ?>/<?php echo substr($orderAndPaymentDetails['expiry_year_month'], -4) ?></p>
+                </div>                             
+            </div>
+        </div>
+
+
+
+
+        <div class="col-sm-6 col-md-5 col-lg-4 pad-b30">
+
+            <div id="sidebar" >
+                <div class="ac-place-order" >
+                    <div class="ac-order-title">
+                        Place Order
+                    </div>
+                    
+                    
+                    <?php echo $this->partial('payment/payment/order-info.phtml',
+                            array('packageDetails' => $orderAndPaymentDetails)); ?>
+
+                    <div class="ac-text-pnl">
+                        <span class="font-family-bold mar-t10">By placing an order I agree to the </span>
+                        <br/>
+                        <a target="_blank" href="<?php echo $this->baseCMSUrl . "/terms-of-service" ?>" class="font-family-bold" >Terms &amp; Conditions</a>
+                        <form method="post" >
+                        <button type="submit" class="btn btn-default btn-block mar-t20">Place order</button>
+                        </form>
+                    </div>  
+                </div>
+            </div>              
+        </div>
+    </div>
+</div>    
+<!--/.shopping checkout cart End -->

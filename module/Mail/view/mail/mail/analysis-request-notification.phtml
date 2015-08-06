@@ -1,0 +1,23 @@
+<?php
+require_once __DIR__ . '/header-mail.phtml';
+?>
+<?php
+    $days = $this->expiredDay;
+    $analysisReqeustName = $this->analysisRequest->getAnalysisRequestName();
+    $analysisReportUrl = $this->appBaseLink . '/analysis-reports';
+    $securityUrl = 'https://auditcompanion.biz/Security';
+    $supportUrl = 'support@auditcompanion.biz';
+    $howToUrl = 'https://auditcompanion.biz/HowTo';
+    $homeUrl = 'https://auditcompanion.biz/Home';
+?>
+<p>Your analysis request <b><?php echo $analysisReqeustName ?> </b> will expire within <b> <?php echo $days; ?></b><p>
+<p>If you want to extend expire date, Please click <a class="" href="<?= $analysisReportUrl; ?>">Here</a> <br/>
+   </p>
+
+<p>Please visit the How-to pages <a href="<?php echo $howToUrl; ?>"><?php echo $howToUrl; ?></a> for instructions on using the extraction/upload utility.</p>
+<p>Please visit the site for general introduction <a href="<?php echo $homeUrl; ?>"><?php echo $homeUrl; ?></a></p>
+<p>If you have questions regarding the safety of the data that you may be uploading do visit the <a href="<?php echo $securityUrl; ?>"><?php echo $securityUrl; ?></a></p>
+<?php
+    require_once __DIR__ . '/mail-footer.phtml';
+?>
+

@@ -1,0 +1,70 @@
+<?php    
+    $form = $this->adminSignInForm;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('admin-login'));
+    $form->setAttribute('name', 'sign_in');
+    $form->setAttribute('id', 'sign_in');
+    $form->setAttribute('method', 'post');   
+    $form->setAttribute('class', 'row');   
+?>
+
+<!-- Sign In Block Start -->
+<div class="container">        
+<div class="row">
+ <div class="col-md-4 col-sm-10 col-md-offset-4 col-sm-offset-2">
+    <div class="brd-btm pad-b40 txtc">
+     <a href="/" class="clearfix"><img src="img/admin_logo.png" /></a>
+     </div>
+      <h2 class="font-size-xl txtc mar-t30">Sign In to Admin</h2>
+<!--        <form class="row col-md-offset-1">-->
+     <?php if ($this->successMessage) { ?>            
+             <script>
+                setTimeout("$('.alert-success').fadeOut(2000);", 5000);                       
+            </script>
+            <div class="alert-success"><?php echo $this->successMessage; ?></div>
+        <?php } ?>
+
+     <?php if ($this->errorMessage) { ?>                    
+        <script>
+            setTimeout("$('.alert-error').fadeOut(2000);", 5000);                       
+        </script>                    
+        <div class="alert-error"><?php echo $this->errorMessage; ?></div>
+    <?php } ?>
+
+          
+      <?php echo $this->form()->openTag($form); ?>                
+          <div class="col-sm-12">
+            <div class="form-group" id="emailErrorClass">
+                <span class="form-control-anim">             
+<!--                    <input class="form-control-field" type="email">-->
+                    <?php echo $this->formRow($form->get('email')); ?>
+                    <label class="form-control-label">                              
+                      <span id="emailErrorMsg" class="form-control-label-content" data-text='Email address'>Email Address</span>
+                    </label>
+                </span>                   
+            </div>                           
+          </div> 
+
+          <div class="col-sm-12"> 
+            <div class="form-group" id="passwordErrorClass">
+                <span class="form-control-anim">             
+<!--                    <input class="form-control-field" type="password">-->
+                    <?php echo $this->formRow($form->get('password')); ?>
+                    <label class="form-control-label">                              
+                      <span id="passwordErrorMsg" class="form-control-label-content" data-text='Password'>Password</span>
+                    </label>
+                </span>                   
+            </div> 
+          </div>
+
+          <div class="col-sm-12">
+                <div class="form-group">
+<!--                  <button type="submit" class="btn btn-default btn-block">SIGN IN</button>-->
+                    <?php echo $this->formRow($form->get('submit_login')); ?>
+                </div>                                            
+          </div>
+    </form>
+    </div>
+</div>        
+</div>    
+<!--/.Sign In Block Start -->

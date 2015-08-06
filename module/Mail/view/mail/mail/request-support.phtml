@@ -1,0 +1,27 @@
+<?php
+require_once __DIR__ . '/header-mail.phtml';
+$requestSupportArray = $this->requestSupportArray;
+$userObject = $this->user;
+?>
+<?php
+    $securityUrl = 'https://auditcompanion.biz/Security';
+    $supportUrl = 'support@auditcompanion.biz';
+    $howToUrl = 'https://auditcompanion.biz/HowTo';
+    $homeUrl = 'https://auditcompanion.biz/Home';
+?>
+<p><b>Thanks for contacting us. This is to acknowledge that we have received your contact request. We will look at it and revert back as soon as possible.</b> <p>
+
+<p><b>First Name:</b> <?php echo $userObject->getFirstName(); ?></p>
+<p><b>Last Name:</b> <?php echo $userObject->getLastName(); ?></p>
+<p><b>Email Address:</b> <?php echo $requestSupportArray['email']; ?></p>
+<p><b>Request Date:</b> <?php echo date('Y-m-d H:i:s'); ?></p>
+<p><b>Category:</b> <?php echo $requestSupportArray['category']; ?></p>
+<?php if ($requestSupportArray['analysis_name'] != "0"):?>
+    <p><b>Audit Analysis Name:</b> <?php echo $requestSupportArray['analysis_name']; ?></p>
+<?php endif;?>
+<p><b>Description:</b> <?php echo htmlspecialchars($requestSupportArray['analysis_request_details']); ?></p>
+
+<?php
+    require_once __DIR__ . '/mail-footer.phtml';
+?>
+

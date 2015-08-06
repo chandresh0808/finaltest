@@ -1,0 +1,67 @@
+<?php
+$defaultPackagePriceArray = $this->defaultPackagePriceArray;
+//echo "<pre>";print_r($defaultPackagePriceArray);exit;
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 mar-b40 clearfix">
+            <h2 class="font-size-xl text-center mar-b0">Select An Analysis Package</h2> 
+            <h4 class="font-size-m text-center mar-b20 mar-t0">Pick between the options below based on your specific needs &amp; budget </h4>
+            <div class="alert-error" style="display:none"></div>
+            <?php
+             foreach ($defaultPackagePriceArray as $key => $defaultPackagePriceSubArray) {                 
+             ?>
+            <p class="font-size-m font-family-bold text-center mar-b20">All plans are for <?php echo $key ?> days</p>
+            <div class="row">
+            <div class="col-sm-6 pad-b20">
+            <?php
+            foreach ($defaultPackagePriceSubArray as $defaultPackagePrice) {
+                ?>            
+                <div class="col-sm-12 mar-b20 acp_selected_package" id="phc_id_<?php echo $defaultPackagePrice['id'] ?>"                     
+                    data-phc-id='<?php echo $defaultPackagePrice['id'] ?>' 
+                    data-credits='<?php echo $defaultPackagePrice['total_credits'] ?>'
+                    data-amount='<?php echo $defaultPackagePrice['package_amount'] ?>'
+                    data-pck-id='<?php echo $defaultPackagePrice['package_id'] ?>'                     
+                     >
+                    <div  class="pricing-panel">
+<!--                        <span class="sprite-circle-check"></span>                      -->
+                        <?php echo $defaultPackagePrice['total_credits'] ?> Credits for <strong>$<?php echo $defaultPackagePrice['package_amount'] ?></strong> 
+                        <div class="add-cart">
+                            <span class="c-icon mar-r20"></span>
+                            <span class="c-text">ADD TO CART</span>
+                        </div>   
+                    </div>
+                </div>
+
+            <?php }
+             }
+            ?>              
+            
+<!--
+            <div class="col-sm-12 mar-t20 txtc">
+                <button type="button" id='button_package_add_to_cart' class="btn btn-default btn-pill mar-t10">Add to cart</button>
+            </div>  
+-->
+        </div>        
+
+        <div class="col-sm-6 mar-t10">
+            <div class="primary-box c-package pad-t20 pad-b20 txtc">
+            <div class="center pad-l20 pad-r20 ">
+           <div class="pad-sm-l15">
+            <h2 class="font-size-xl text-center mar-b10">Custom Packages</h2> 
+            <h4 class="font-size-m text-center mar-b20 mar-t10">If the credit packages don't fit your specific needs or you are intersted in discussing a larger package that could involve volume discouting, then please email.</h4>
+            <p class="txtc"><a href="mailto:support@auditcompanion.biz" class="btn btn-default btn-pill mar-t20">Contact Us</a></p>
+            </div>
+            </div>
+            </div>
+        </div> 
+        </div> 
+    </div>
+</div>   
+</div> 
+<script>
+    add_package_url = '<?php echo $this->url('add-package'); ?>';
+    display_cart_url = '<?php echo $this->url('display-cart', array('flag'=>'added')); ?>';
+</script>
+<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script> 

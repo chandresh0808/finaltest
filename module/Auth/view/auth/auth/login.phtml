@@ -1,0 +1,77 @@
+<?php
+    $cmsBaseUrl = $this->cmsBaseUrl;
+    $form = $this->signInForm;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('sign-in'));
+    $form->setAttribute('name', 'sign_in');
+    $form->setAttribute('id', 'sign_in');
+    $form->setAttribute('method', 'post');   
+    $form->setAttribute('class', 'row');   
+?>
+<!-- Sign In Block Start -->
+<div class="container m-h550">        
+    <div class="row pad-b40">
+        <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+            <h2 class="font-size-xl txtc mar-t20">Sign In to your Audit Companion account</h2>
+            
+            <?php if ($this->successMessage) { ?>            
+                     <script>
+                        setTimeout("$('.alert-success').fadeOut(2000);", 5000);                       
+                    </script>
+                    <div class="alert-success"><?php echo $this->successMessage; ?></div>
+                <?php } ?>
+            
+             <?php if ($this->errorMessage) { ?>                    
+                    <script>
+                        setTimeout("$('.alert-error').fadeOut(2000);", 5000);                       
+                    </script>                    
+                    <div class="alert-error"><?php echo $this->errorMessage; ?></div>
+                <?php } ?>
+            
+             <?php echo $this->form()->openTag($form); ?>                
+                <div class="col-sm-6">
+                    <div class="form-group" id="emailErrorClass" >
+                        <span class="form-control-anim">             
+                          <!--  <input class="form-control-field" type="email"> -->
+                              <?php echo $this->formRow($form->get('email')); ?>
+                            <label class="form-control-label">                              
+                                <span id="emailErrorMsg" class="form-control-label-content" data-text='Email address'>Email address</span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div> 
+
+                <div class="col-sm-6"> 
+                    <div class="form-group" id="passwordErrorClass" >
+                        <span class="form-control-anim">            
+                              <?php echo $this->formRow($form->get('password')); ?>
+                          <!--  <input class="form-control-field" type="password"> -->
+                            <label class="form-control-label">                              
+                                <span id="passwordErrorMsg" class="form-control-label-content" data-text='Password'>Password</span>
+                            </label>
+                        </span>                   
+                    </div> 
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                       <!-- <button type="submit" class="btn btn-default btn-block">SIGN IN</button> -->
+                          <?php echo $this->formRow($form->get('submit_login')); ?>
+                    </div>                                            
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group mar-t15">
+                        <a href="<?php echo $this->url('forgot-password') ?>">Forgot Password?</a>
+                    </div>                      
+                </div>
+
+                <div class="col-sm-12">
+                    <span>Don't have an account? <a href="<?php echo $this->url('sign-up') ?>">Sign up</a> to start using Audit Companion.</span>
+                    <br/>
+                    <span class="font-size-small">See our <a target="_blank" href="<?php echo $cmsBaseUrl . "/privacy-policy"  ?>">Privacy Policy</a></span>
+                </div> 
+            </form>
+        </div>
+    </div>        
+</div>    
+<!--/.Sign In Block Start -->

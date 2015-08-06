@@ -1,0 +1,34 @@
+  <footer class="pad-t10 pad-b10">
+       <div class="container pad-t0 pad-b0 font-small">
+       <div class="row">
+
+           <div class="col-md-7 col-sm-6 pad-b10 col-md-pull-0">
+<!--             <img src="img/logo_footer.png" />-->
+             <p class="pad-t20">© 2015, Audit Companion. All rights reserved.</p>
+           </div>                         
+           <div class="col-md-5 col-sm-6 col-md-pull-0 pad-t20" >             
+ <ul class="footer-social pad-t10 clearfix" style="float: right;">
+                 <li><a href="#" class="sprite-facebook text-replace">facebook</a></li>
+                 <li><a href="#" class="sprite-twitter text-replace">twitter</a></li>
+                 <li><a href="#" class="sprite-gplus text-replace">gplus</a></li>
+             </ul>
+           </div>                             
+       </div>        
+       </div>
+    </footer><!--/.Footer -->
+    <?php
+    echo $this->headScript()
+    //->prependFile($this->basePath('js/app/data-table.js'))
+    ->prependFile($this->basePath('js/jquery.dataTables.min.js'))
+    ->prependFile($this->basePath('js/bootstrap.min.js'))
+    ->prependFile($this->basePath('js/anim-form.js'))
+    ->prependFile($this->basePath('js/app/package.js'))
+    ->prependFile($this->basePath('js/app/user.js'))
+    ->prependFile($this->basePath('js/app/validate.js'))
+    ->prependFile($this->basePath('js/app/common.js'))
+    ->prependFile($this->basePath('js/jquery-ui-min.js'))
+    ->prependFile($this->basePath('js/livequery.js'))
+    ->prependFile($this->basePath('/js/jquery-1.11.1.min.js'));
+    ?>
+</body>
+</html>

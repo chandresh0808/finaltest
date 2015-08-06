@@ -1,0 +1,144 @@
+.custom-table.custom-table.custom-table.custom-table.custom-table {
+    th {
+      text-transform: uppercase;
+      background-color:lighten($dark-color, 57);
+      @include add-border(3px, lighten(#545454, 52), 'top');        
+      @include add-border(0px, lighten(#545454, 52), 'bottom');        
+    }
+    
+    th, td {
+      @include pad(10px 15px, 'all');
+      word-wrap: break-word;
+    }    
+}
+
+.arrow {
+  width: 30px;
+  height: 10px;
+  display: inline-block;
+  font-size: 0px;
+  @include transform(translateY(-4px));
+  
+  .icon-bar {
+      display: inline-block;
+      width: 10px;
+      height: 2px;
+      background-color: $dark-color;
+      @include transform(rotate(-45deg)); 
+      @include transition(all, 0.1s, ease-in);
+  }
+  .icon-bar:nth-child(2){      
+      @include transform(rotate(45deg) translateX(-3px) translatey(3px));
+  }
+}
+.arrow.collapsed {
+  .icon-bar {
+    @include transform(rotate(45deg));
+  }
+  .icon-bar:nth-child(2){      
+      @include transform(rotate(-45deg) translateX(-3px) translatey(-3px)); 
+  }    
+}
+
+.custom-panel.custom-panel.custom-panel.custom-panel {
+    background-color: lighten(#1e96d9, 47);
+    ul {      
+      li + li {
+        @include pad(10px, 'top'); 
+      }
+    }
+}
+
+.action-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  cursor: pointer;
+    
+  &:focus {
+      outline: none;
+  }
+}
+
+.captcha-box {
+   border-radius: 5px;
+    min-height: 62px;
+   @include add-border(1px, lighten($dark-color, 52), 'all');   
+}
+
+.stats {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  color: $secondary-color;
+  @include add-border(2px, $secondary-color, 'all');
+  border-radius: 50px;
+}
+
+.custom-badge {
+  min-width: 60px;
+  border-radius: 20px;
+  font-weight: $font-weight-default;
+  background-color: $secondary-color;
+  box-shadow: 0px 0px 10px rgba($dark-color,0.5);
+  @include add-border(3px, $light-color, 'all');
+  @include pad(5px 10px 5px 10px, 'all');
+}
+
+.search-btn {
+  top: 8px;
+  right: 15px;       
+  position: absolute; 
+  background-color: $transparent-color;
+  @include add-border(0px, $transparent-color, 'all');
+}
+
+.table-responsive {
+  position: relative
+}
+
+.acp-ajax-loader {
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($light-color,0.9);
+    margin: 0 auto;
+    text-align: center;
+    z-index: 9999;
+    
+    img {
+        position: absolute;
+        right: 0;
+        left: 0;  
+        top: 50%;  
+        margin: 0 auto;
+    }
+}
+
+.table.dataTable{ 
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    thead th span {
+        display: inline-block;
+    }
+
+    .table.dataTable tbody td {
+        white-space: normal;
+    }
+}
+
+.brd-btm{
+    @include add-border(1px, lighten($dark-color, 58), 'bottom');    
+}
+.pos-r { 
+    position: relative;
+}
+img.ui-datepicker-trigger {
+    top: 32px;
+    right: 5px;
+    cursor: pointer;
+    position: absolute;    
+}

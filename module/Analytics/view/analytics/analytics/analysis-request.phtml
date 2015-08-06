@@ -1,0 +1,97 @@
+<?php
+$errorMessage = $this->errorMessage;
+$userCreditHistory = $this->userCreditHistory;
+$form = $this->analysisRequestForm;
+$form->prepare();
+$form->setAttribute('name', 'analysis-request');
+$form->setAttribute('id', 'analysis-request');
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'row');
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 mar-b40">
+            <h1 class="font-size-xl text-center">Request Analysis</h1> 
+            <h3 class="font-size-m mar-t0 mar-b30">Are you ready to request an audit analysis? To complete an audit analysis request you must have a rulebook and an SAP extract. The rulebook is used to look for risks from a SAP system extracted information. You may not need to configure a new rulebook as Audit Companion provides a default rulebook that you may use. </h3>
+            <h3 class="font-size-m mar-t0 mar-b30">Complete analysis reports will be produced when you have available audit analysis credits. If you don't have analysis credits, don't worry, you can still request analysis. Analysis requests without an available credit will produce only the summary audit analysis report. If you like the report, then you can obtain additional analysis credits and request the analysis again using the same rulebook and SAP extract. </h3>
+            <h3 class="font-size-m mar-t0 mar-b30">All fields except the analysis request description are required. Provide a unique name for your analysis request, select a rulebook, and select a SAP extract. Then you are all set to complete the request.  </h3>
+            <h3 class="font-size-m mar-t0 mar-b30">Accepted requests will be processed in the background. You will receive an email when the analysis is complete and ready for you to download the completed reports.  </h3>
+            <h4 class="font-family-sm font-size-m pad-t5 xs-font-sm">Number of Analysis Credits Remaining: <span class="badge custom-badge mar-l10 font-size-l" id="credit_points"><?php echo $userCreditHistory['remainingPoints']; ?></span></h4>            
+            <?php if ($this->successMessage) { ?>            
+            <script>
+               setTimeout("successAlert();", 2000);                       
+           </script>
+           <!--<div class="alert-success"><?php //echo $this->successMessage; ?></div>-->
+            <?php } ?>
+            
+            <div class="row  mar-t20">
+                <div class="col-sm-12">
+                    <?php echo $this->form()->openTag($form); ?>
+                    <div class="col-sm-12">
+                        <div class="<?php if ($errorMessage['analysis_name']) echo "error"; ?>" id="analysis_nameErrorClass">
+                            <span class="form-control-anim">             
+                                <?php echo $this->formRow($form->get('analysis_name')) . "\n"; ?>
+                                <label class="form-control-label">                              
+                                    <span id="analysis_nameErrorMsg" class="form-control-label-content" data-text='Analysis name'>
+                                        <?php echo ($errorMessage['analysis_name']) ? $errorMessage['analysis_name'] : "Analysis name"; ?>
+                                    </span>
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                </div>  
+            </div>  
+
+            <div class="clearfix mar-t15">
+                <div class="<?php if ($errorMessage['analysis_details']) echo "error"; ?>" id="analysis_detailsErrorClass">
+                    <span class="form-control-anim ta-height">
+                        <?php echo $this->formRow($form->get('analysis_details')) . "\n"; ?>                
+                        <label class="form-control-label">                              
+                            <span id="analysis_detailsErrorMsg" class="form-control-label-content" data-text='Analysis request Details'>
+                                <?php echo ($errorMessage['analysis_details']) ? $errorMessage['analysis_request_details'] : "Analysis request details"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="row">
+            <div class="col-sm-6 mar-t15">
+                <div class="form-group <?php if ($errorMessage['extracts']) echo "error"; ?>" id="extractsErrorClass">
+                    <span class="form-control-anim">    
+                        <?php echo $this->formRow($form->get('extracts')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="extractsErrorMsg" class="form-control-label-content" data-text='Select extract'>
+                                <?php echo ($errorMessage['extracts']) ? $errorMessage['extracts'] : "Select extract"; ?>
+                            </span>
+                        </label>
+                    </span>
+                </div>
+            <div class="form-group <?php if ($errorMessage['rule_book']) echo "error"; ?>" id="rule_bookErrorClass">
+                <span class="form-control-anim" >
+                    <?php echo $this->formRow($form->get('rule_book')) . "\n"; ?>
+                    <label class="form-control-label">                              
+                        <span id="rule_bookErrorMsg" data-text='Select rulebook' class="form-control-label-content">
+                            <?php echo ($errorMessage['rule_book']) ? $errorMessage['rule_book'] : "Select rulebook"; ?>
+                        </span>
+                    </label>
+                </span>
+            </div>
+            <div class="clearfix">
+                <?php echo $this->formRow($form->get('submit_analysis_request')) . "\n"; ?>
+            </div>                
+            </div>
+            <div class="col-sm-6 mar-t15">
+                <div class="primary-box pad-t20 pad-b20 r-analysis">
+                    <div class="center pad-l20 pad-r20 ">
+                    <h3 class="font-size-m">Please view the<br/><a href="/analysis-reports" class="font-size-l">Analysis Complete Page</a><br/>to download the
+analysis when it is
+available.</h3>
+                    </div>
+                </div>                
+            </div>
+            </div>
+        </div>
+    </div>      
+</div>
+</div> 

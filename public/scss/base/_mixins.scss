@@ -1,0 +1,95 @@
+//Font Face Location
+@mixin font-face($style-name, $file,  $category:"") {
+    $filepath: $font-path + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        }
+    }
+}
+
+//Border Mixin
+@mixin add-border($size, $color, $position) {
+    @if $position == 'all'{
+        border: $size solid $color;    
+    } @else if $position == 'top'{
+        border-top: $size solid $color;
+    } @else if $position == 'bottom'{
+        border-bottom: $size solid $color;
+    } @else if $position == 'left'{
+        border-left: $size solid $color;
+    } @else if $position == 'right'{
+        border-right: $size solid $color;
+    }
+}
+
+//Padding Mixin
+@mixin pad($size, $position) {
+    @if $position == 'all'{
+        padding: $size;    
+    } @else if $position == 'top' {
+        padding-top: $size; 
+    } @else if $position == 'bottom' {
+        padding-bottom: $size; 
+    } @else if $position == 'left' {
+        padding-left: $size; 
+    } @else if $position == 'right' {
+        padding-right: $size; 
+    }
+}
+
+@mixin pad-horizontal($value1, $value2) {
+        padding-top: $value1;    
+        padding-bottom: $value2;  
+    } 
+@mixin pad-vertical($value1, $value2) {
+        padding-left: $value1;    
+        padding-right: $value2;
+    }
+
+
+//Margin Mixin
+@mixin mar($size, $position) {
+    @if $position == 'all'{
+        margin: $size;    
+    } @else if $position == 'top' {
+        margin-top: $size; 
+    } @else if $position == 'bottom' {
+        margin-bottom: $size; 
+    } @else if $position == 'left' {
+        margin-left: $size; 
+    } @else if $position == 'right' {
+        margin-right: $size; 
+    }
+}
+
+@mixin mar-horizontal($value1, $value2) {
+        margin-top: $value1;    
+        margin-bottom: $value2;  
+    } 
+@mixin mar-vertical($value1, $value2) {
+        margin-left: $value1;    
+        margin-right: $value2;
+    }
+
+
+//Transition Mixin
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+

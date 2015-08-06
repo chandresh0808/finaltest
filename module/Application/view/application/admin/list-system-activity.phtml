@@ -1,0 +1,27 @@
+<?php
+$urlArray = array(
+    'data_url' => $this->url('data-system-activity'),
+);
+?>
+<input type="hidden" id="url-array" value='<?php echo json_encode($urlArray); ?>'> 
+<div class="container mar-b30 m-h550">
+     <div class="alert-error" style="display:none"></div>
+    <div class="clearfix">
+        <h1 class="pull-left">System Activity</h1>        
+    </div>
+     
+    <div class="table-responsive s-block">
+        <div style="display:none;" class="acp-ajax-loader"><img alt='' src="/img/ajax-loader.gif" id='imgload'></div>
+        <table class="table custom-table" id="list-system-activity">
+            <thead>
+                <tr>                   
+                    <th width="35%"><span>Activity type</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Name</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Activity Date time</span><a href="javascript:void"></a></th>
+                    <th width="15%"><span>Detail</span></th>
+                </tr>
+            </thead>            
+        </table>   
+    </div>      
+             
+</div>

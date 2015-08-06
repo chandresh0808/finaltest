@@ -1,0 +1,366 @@
+<div class="container">
+<input type="hidden" id="previousSelectedId" value="<?php echo $this->selectedRulebookId;?>">
+<?php
+    $previousId = $this->selectedRulebookId;
+    $redirect = '';
+    if ($previousId == "" || $previousId == "1") {
+        $redirect = '/complete-rule-book';
+    } else {
+        $redirect = '/complete-rule-book/'.$previousId;
+    }
+?>
+
+    <div class="pad-sm-l15">
+        <ul class="steps mar-t30 mar-b30 font-size-m font-family-md font-caps-up txtc row">
+            <li class="col-sm-4"><a href="/rulebook-list">1. MODIFY A RULEBOOK</a></li>
+            <li class="col-sm-4 current"><a href="javascript:void(0)">2. configure Rulebook</a></li>
+            <li class="col-sm-4"><a href="<?php echo $redirect;?>">3. complete</a></li>
+        </ul>
+    </div>
+    <input type="hidden" id="rule_book_id_hidden" value="<?php echo $this->ruleBookId ?>" >
+    <p class="font-family-bold mar-b0">    
+        <span data-toggle="modal" data-acp-type="Rulebook" data-target="#edit-acp-data" class="pull-left acp-risk-edit mar-t5">  
+            <a href="javascript:void(0)" class="text-replace sprite-edit action-icon-sm mar-r10" data-toggle="tooltip" data-placement="top" title="Edit">Edit</a>
+        </span> 
+        <span id="rulebook_name"><?php echo $this->ruleBookName ?></span>
+    </p>  
+    <div class="row">
+        <div class="col-sm-8">
+          <p class="font-size-small" id="rulebook_description"><?php echo $this->ruleBookDescription ?></p>
+        </div>
+        <div class="col-sm-4 txtr">
+            <p class="font-size-small">Last Updated - <span class="font-family-md"><?php echo $this->lastUpdatedRuleBook ?></span></p>
+            <p class="font-size-small">Last Report Analyzed - <span class="font-family-md"><?php echo $this->analysisRequestLastExtractedDate ?></span></p>
+        </div>
+    </div>
+    <div class="alert-error" style="display:none;"></div>
+    <div class="alert-success" style="display:none;"></div>
+    <div>
+        <input id="default_rulebook_has_risk_id" type="hidden" value="<?php echo $this->defaultRulebookHasRiskId ?>"/>            
+    </div>
+    <div class="row h-mar-15 mar-t30">
+        <div class="col-sm-4 h-psd-15 mar-b30">
+            <div class="cr-head clearfix">
+                <h3 class="pull-left txt-light font-family-md font-caps-up mar-b0 mar-t0">risks</h3>
+                <p class="pull-right mar-b0 mar-t0">
+                    <span data-toggle="modal" data-target="#help" class="pull-left"><a href="javascript:void(0)" class="text-replace sprite-help action-icon mar-r20" data-toggle="tooltip" data-placement="left" title="Help">Help</a>
+                    </span>
+                    <span data-toggle="modal" data-target="#add-risk" class="pull-left">
+                        <a href="javascript:void(0)" class="text-replace sprite-add action-icon" data-toggle="tooltip" data-placement="left" title="Add Risk" id="add_risk_icon">Add</a></span>
+                </p>
+            </div>
+            <div class="cr-content">
+                <ul class="cr-list risk-list clearfix">
+                    <?php foreach($this->riskList as $risk):?>                        
+                        <li id="<?php echo $risk['id'] ?>">    
+                            <div class="pull-right">
+                                <span data-toggle="modal" data-acp-type="Risk" data-target="#edit-acp-data" class="pull-left acp-risk-edit">   
+                                   <a href="javascript:void(0)" class="text-replace sprite-edit action-icon-sm mar-r10" data-toggle="tooltip" data-placement="top" title="Edit">Edit</a>
+                                </span>    
+                                <a href="javascript:void(0)" rulebookHasRisk_id="<?php echo $risk['id'] ?>" class="text-replace sprite-delete-sm action-icon-sm un-assign" data-toggle="tooltip" data-placement="top" title="Delete">Delete</a>                                                               
+                            </div>                                                   
+                            <a href="javascript:void(0)" class="cr-title"><?php echo $risk['sap_risk_id'] ?></a>
+                            <p class="child-content font-size-small mar-b0 mar-t0 clearfix"><?php echo $risk['description']?></p>
+                        </li> 
+                    <?php endforeach;?>                                                                                                                                                                                                                                                                                         
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-sm-4 h-psd-15 mar-b30">
+            <div class="cr-head clearfix">
+                <h3 class="pull-left txt-light font-family-md font-caps-up mar-b0 mar-t0">Job functions</h3>
+                <p class="pull-right mar-b0 mar-t0">
+                   <span data-toggle="modal" data-target="#add-job-function" class="pull-left">
+                       <a href="javascript:void(0)" class="text-replace sprite-add action-icon" data-toggle="tooltip" data-placement="left" title="Add Job Functions" id="add_job_function_icon">Add</a></span>
+                </p>
+            </div>
+            <div class="cr-content">
+                   <div class="row">
+                    <div class="form-group col-sm-12">
+                        <input type="text" class="form-control" id="search-job-function" placeholder="Search job functions">
+                        <input type="submit" value="search" class="sprite-search text-replace search-btn">                           
+                    </div> 
+                   </div>
+                   <div class="nofile pad-t20 pad-b20 txtc no_job_functions" style="display:none">
+                        <div class="center">
+                            <img src="../img/no_job_function.png">
+                            <p class="font-size-m font-family-md txt-light-gray">No Job Functions Available</p>      
+                            <p class="txt-light-gray">Add custom job functions or use search bar
+    to select from available job functions</p>
+                        </div>                        
+                </div>
+                <ul class="cr-list job-func-list move clearfix">
+                    <?php //foreach($this->jobFunctionList as $jobFunction):?>                        
+                        <!-- <li id="job_function_id_<?php echo $jobFunction['id'] ?>" style="display:none">
+                            <div class="pull-right">
+                                <span data-toggle="modal" data-acp-type="Job function" data-target="#edit-acp-data" class="pull-left acp-risk-edit">   
+                                    <a href="javascript:void(0)" class="text-replace sprite-edit action-icon-sm mar-r10" data-toggle="tooltip" data-placement="top" title="Edit">Edit</a>
+                                </span>
+                                <a href="javascript:void(0)" riskHasJobFunction_id="<?php echo $jobFunction['id'] ?>" class="text-replace sprite-delete-sm action-icon-sm" data-toggle="tooltip" data-placement="top" title="Delete">Delete</a>                                                               
+                            </div>                            
+                            <a href="javascript:void(0)" class="cr-title"><?php echo $jobFunction['sap_job_function_id'] ?></a>
+                            <p class="child-content font-size-small mar-b0 mar-t0"><?php echo $jobFunction['description'] ?></p>
+                        </li> --> 
+                    <?php //endforeach;?>                                                                                                                                                    
+                </ul>
+            </div>            
+        </div>
+        
+        <div class="col-sm-4 h-psd-15 mar-b30">
+            <div class="cr-head clearfix">
+                <h3 class="pull-left txt-light font-family-md font-caps-up mar-b0 mar-t0">transactions</h3>
+                <p class="pull-right mar-b0 mar-t0">
+                   <span data-toggle="modal" data-target="#add-transaction" class="pull-left addTransaction">
+<!--                       <a href="javascript:void(0)" class="text-replace sprite-add action-icon" data-toggle="tooltip" data-placement="left" title="Add Transactions" id="add_transaction_icon">Add</a>-->
+                   </span>
+                </p>
+            </div>
+            <div class="cr-content">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <input type="text" class="form-control" id="search-transaction" placeholder="Search transactions">
+                        <input type="submit" value="search" class="sprite-search text-replace search-btn">                           
+                    </div> 
+               </div>
+                <div class="nofile pad-t20 pad-b20 txtc no_transactions" style="display:none">
+                    <div class="center">
+                        <img src="../img/no_transactions.png">
+                        <p class="font-size-m font-family-md txt-light-gray">No Transactions Available</p>      
+                        <p class="txt-light-gray">Add custom transactions or use search bar
+to select from available transactions</p>
+                    </div>                        
+                </div>
+                <ul class="cr-list trans-list move clearfix">
+                    <?php //foreach($this->transactionList as $transaction):?>
+                        <!-- <li id="transaction_id_<?php echo $transaction['id'] ?>" style="display:none">
+                            <div class="pull-right">
+                                <span data-toggle="modal" data-acp-type="Transaction" data-target="#edit-acp-data" class="pull-left acp-risk-edit">  
+                                    <a href="javascript:void(0)" class="text-replace sprite-edit action-icon-sm mar-r10" data-toggle="tooltip" data-placement="top" title="Edit">Edit</a>
+                                </span>
+                                <a href="javascript:void(0)" jobFunctionHasTransaction_id="<?php echo $transaction['id'] ?>" class="text-replace sprite-delete-sm action-icon-sm" data-toggle="tooltip" data-placement="top" title="Delete">Delete</a>                                                               
+
+                            </div>                            
+                            <a href="javascript:void(0)" class="cr-title"><?php echo $transaction['sap_transaction_id'] ?></a>
+                            <p class="child-content font-size-small mar-b0 mar-t0"><?php echo $transaction['description'] ?></p>
+                        </li>-->
+                    <?php // endforeach;?> 
+                </ul>
+            </div>
+        </div>
+    </div>  
+<div class="clearfix mar-b40">
+    <a href="javascript:void(0)"  class="btn btn-default pull-right" id="go_next">NEXT ›</a>
+</div>
+</div>
+<!-- Help Modal -->
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Help</h4>
+          </div>
+          <div class="modal-body font-size-small">
+                <p>In general, for Risks, Job Functions, and Transactions, the ID is unique within the rulebook.The length of the ID should be meaningful and less than 45 characters. The IDs may be longer but longer ID values will be truncated for display purposes. When adding custom risks, job functions, and transactions the ID and description are required.</p>  
+                
+                <p><strong>Risks</strong><br/>There is no default set of risks to chose from when creating a rulebook. The default rulebook provides some risks but each rulebook is defined by business rules that state what is a risk for the system.</p> 
+                <p><strong>Job Functions</strong><br/>As a user, you may add SAP defined job functions or add custom job functions as they exist in the source SAP application. There is no limit to the number of job functions that may exist within a risk. A job function may be associated to many risks.</p>
+                <p><strong>Transactions</strong><br/>As a user, you may add SAP defined transaction or add custom transactions as they exist in the source SAP application. There is no limit to the number of transactions that may exist within a job function. A transaction may be associated to many job functions.</p>                         
+          </div>
+        </div>
+      </div>
+    </div>  
+<!-- Add Risk Modal -->
+<div class="modal fade" id="add-risk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ADD RISK</h4>
+      </div>
+      <div class="modal-body">
+        <form action="">
+            <div class="form-group" id="risk_idErrorClass">
+                <span class="form-control-anim">             
+                    <input class="form-control-field" type="text" id="risk_id">
+                    <label class="form-control-label">                              
+                      <span id="risk_idErrorMsg" class="form-control-label-content">Risk ID</span>
+                    </label>
+                </span>                    
+            </div>
+            <div class="form-group" id="risk_descriptionErrorClass">
+                <span class="form-control-anim ta-height">             
+                    <textarea name="" rows="5" class="form-control-field" id="risk_description"></textarea>
+                    <label class="form-control-label">                              
+                      <span id="risk_descriptionErrorMsg" class="form-control-label-content">Description</span>
+                    </label>
+                </span>                    
+            </div>
+<!--            <div id='risk_error_msg' style='display:none;color:red;'></div>-->
+            <div class="clearfix">
+                  <button type="button" class="btn btn-default" id="risk_submit">Save</button>
+                  <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+            </div>
+        </form>                      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- Add Job Function Modal -->
+<div class="modal fade" id="add-job-function" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="jobFunctionModalLabel">ADD JOB FUNCTION</h4>
+      </div>
+      <div class="modal-body">
+        <form action="">
+            <div class="form-group" id="job_function_idErrorClass">
+                <span class="form-control-anim">             
+                    <input class="form-control-field" type="text" id="job_function_id">
+                    <label class="form-control-label">                              
+                      <span id="job_function_idErrorMsg" class="form-control-label-content">Custom Function ID</span>
+                    </label>
+                </span>                    
+            </div>
+            <div class="form-group" id="job_function_descriptionErrorClass">
+                <span class="form-control-anim ta-height">             
+                    <textarea name="" id="job_function_description" rows="5" class="form-control-field"></textarea>
+                    <label class="form-control-label">                              
+                      <span id="job_function_descriptionErrorMsg" class="form-control-label-content">Description</span>
+                    </label>
+                </span>                    
+            </div>
+            <p class="mar-t0 mar-b0 txtc">OR</p>
+            <p>Select a Pre-Defined Job Function</p>
+            <div class="form-group" id="default_job_function_listErrorClass">
+                <span class="form-control-anim">             
+                    <select class="form-control-field" id="default_job_function_list" multiple="multiple">                        
+                        <?php //foreach($this->defaultJobFunction as $jobFunction): ?>
+<!--                            <option value="<?php echo $jobFunction['description'] ?>"><?php echo $jobFunction['sap_job_function_id'] ?></option>-->
+                        <?php //endforeach;?>
+                    </select>
+<!--                    <label class="form-control-label">                              
+                      <span id="default_job_function_listErrorMsg" class="form-control-label-content">Select Job Functions</span>
+                    </label>-->
+                </span>                    
+                <div id='job_function_error_msg' style='display:none;color:red;'></div>
+            </div>            
+            <div class="clearfix">
+                  <button type="button" class="btn btn-default" id="job_function_submit">Save</button>
+                  <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+            </div>
+        </form>                      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Transaction Modal -->
+<div class="modal fade" id="add-transaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="transactionModalLabel">ADD TRANSACTION</h4>
+      </div>
+      <div class="modal-body">
+        <form action="">
+            <div class="form-group" id="transaction_idErrorClass">
+                <span class="form-control-anim">             
+                    <input class="form-control-field" type="text" id="transaction_id">
+                    <label class="form-control-label">                              
+                      <span id="transaction_idErrorMsg" class="form-control-label-content">Custom Transaction ID</span>
+                    </label>
+                </span>                    
+            </div>
+            <div class="form-group" id="transaction_descriptionErrorClass">
+                <span class="form-control-anim ta-height">             
+                    <textarea name="" id="transaction_description" rows="5" class="form-control-field"></textarea>
+                    <label class="form-control-label">                              
+                      <span id="transaction_descriptionErrorMsg" class="form-control-label-content">Description</span>
+                    </label>
+                </span>                    
+            </div>
+            <p class="mar-t0 mar-b0 txtc">OR</p>
+            <p class="font-family-md">Select a Pre-Defined Transactions</p>
+            <div class="form-group" id="default_transaction_listErrorClass">
+                <span class="form-control-anim">             
+                    <select class="form-control-field" id="default_transaction_list" multiple="multiple">
+                        <?php //foreach($this->defaultTransaction as $transaction): ?>
+                            <!--<option value="<?php //echo $transaction['description'] ?>"><?php //echo $transaction['sap_transaction_id'] ?></option>-->
+                        <?php //endforeach;?>
+                    </select>
+<!--                    <label class="form-control-label">                              
+                      <span id="default_transaction_listErrorMsg" class="form-control-label-content">Select Transactions</span>
+                    </label>-->
+                </span>                    
+                <div id='transaction_error_msg' style='display:none;color:red;'></div>
+            </div>            
+            <div class="clearfix">
+                  <button type="button" class="btn btn-default" id="transaction_submit">Save</button>
+                  <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+            </div>
+        </form>                      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Model box -->
+<div class="modal fade" id="edit-acp-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit RISK</h4>
+      </div>
+      <div class="modal-body">
+        <form action="">
+            <input type="hidden" id="edit_acp_id_hidden" >
+            <input type="hidden" id="edit_acp_type_hidden" >
+            <div class="form-group" id="edit_sap_idErrorClass">
+                <span class="form-control-anim form-control-selected">             
+                    <input class="form-control-field" type="text" id="edit_sap_id">
+                    <label class="form-control-label">                              
+                      <span id="edit_sap_idErrorMsg" class="form-control-label-content acp-label-id">Risk ID</span>
+                    </label>
+                </span>                    
+            </div>
+            <div class="form-group" id="edit_sap_descriptionErrorClass">
+                <span class="form-control-anim ta-height form-control-selected">             
+                    <textarea name="" rows="5" class="form-control-field" id="edit_sap_description"></textarea>
+                    <label class="form-control-label">                              
+                      <span id="edit_sap_descriptionErrorMsg" class="form-control-label-content acp-label-desc">Description</span>
+                    </label>
+                </span>                    
+            </div>
+            <div class="clearfix">
+                  <button type="button" class="btn btn-default" id="edit_acp_data_save">Update</button>
+                  <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+            </div>
+        </form>                      
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script>
+    var on_select_job_function_url = '<?php echo $this->url('on-select-job-function-list'); ?>';
+    var on_select_transaction_url = '<?php echo $this->url('on-select-transaction-list'); ?>';
+    var add_risk_url = '<?php echo $this->url('add-risk'); ?>';
+    var add_job_function_url = '<?php echo $this->url('add-job-function'); ?>';
+    var add_transaction_url = '<?php echo $this->url('add-transaction'); ?>';
+    var delete_risk_url = '<?php echo $this->url('delete-risk'); ?>';
+    var delete_job_function_url = '<?php echo $this->url('delete-job-function'); ?>';
+    var delete_transaction_url = '<?php echo $this->url('delete-transaction'); ?>';
+    var edit_risk_url = '<?php echo $this->url('edit-risk'); ?>';
+    var edit_job_function_url = '<?php echo $this->url('edit-job-function'); ?>';
+    var edit_transaction_url = '<?php echo $this->url('edit-transaction'); ?>';
+    var edit_rulebook_url = '<?php echo $this->url('edit-rulebook'); ?>';
+    var default_job_function_list_url = '<?php echo $this->url('default-job-function-list'); ?>';
+    var default_transaction_list_url = '<?php echo $this->url('default-transaction-list'); ?>';
+</script>

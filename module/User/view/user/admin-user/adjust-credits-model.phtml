@@ -1,0 +1,76 @@
+<?php
+
+?>
+<div class="modal fade" id="detailsmodal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="details">Adjust Analysis Credits</h4>
+            </div>
+            <div class="modal-body" id="detailsmodalBody">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs custom-tabs font-family-md font-caps-up" role="tablist">
+                    <li role="presentation" class="active pad-r20"><a href="#add-credit-points" aria-controls="create-rulebook" role="tab" data-toggle="tab">Add credit points</a></li>
+                    <li role="presentation" class="pad-l30"><a href="#expire-credit-points" aria-controls="upload-rulebook" role="tab" data-toggle="tab">Remove credit points</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="add-credit-points">            
+                        <div class="row">
+                            <div class="col-md-8 mar-b20">
+                                <h2 class="font-family-sm font-size-m pad-t5 xs-font-sm">
+                                    Available credits:
+                                    <span class="badge custom-badge mar-l10 font-size-l" id="span-add-remain-points"><?php echo $this->remainingPoints; ?> </span>
+                                </h2>              
+                                <div class="form-group">
+                                    <label>Add credits</label>
+                                    <input type="text" id="text-add-custom-credits" class="form-control" maxlength="3">
+                                   
+                                </div>  
+                                <div class="form-group pos-r">
+                                    <label>New credits expiry date</label>
+                                 <input id="cal_credits_expire_date" name="cal_credits_expire_date" type="text" placeholder="mm/dd/yyyy" class="form-control" />                                   
+                                   <br />
+                                 <div class="alert-error" id="div_add_credit_error" style="display:none"></div>
+                                </div>  
+                                <div class="clearfix">
+                                    <button type="button" class="btn btn-default btn-small" id="button-add-custom-credits">Add credits</button>
+                                    <button type="button" class="btn btn-link btn-small" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+                                </div>                                                                      
+                            </div>                            
+                        </div>                      
+                    </div>        
+
+                    <div role="tabpanel" class="tab-pane" id="expire-credit-points">
+                        <div class="row">
+                            <div class="col-md-8 mar-b20">
+                                <h2 class="font-family-sm font-size-m pad-t5 xs-font-sm">
+                                    Available credits:
+                                    <span class="badge custom-badge mar-l10 font-size-l" id="span-edit-remain-points"><?php echo $this->remainingPoints; ?> </span>
+                                </h2>     
+                                <div class="form-group">
+                                    <label>Enter credits to remove</label>
+                                    <input type="text" id="text-expire-custom-credits" class="form-control" maxlength="3">
+                                    <br />
+                                    <div class="alert-error" id="div_ajust_credit_error" style="display:none"></div>
+                                </div> 
+                                <div class="clearfix">
+                                    <button type="button" class="btn btn-default btn-small" id="button-expire-custom-credits">Remove credits</button>
+                                    <button type="button" class="btn btn-link btn-small" data-dismiss="modal" aria-label="Close">Cancel</button>                    
+                                </div>                                                                                
+                            </div>   
+
+                        </div>                     
+                    </div>        
+
+                </div>    
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var admin_reset_password = '<?php echo $this->url('admin-reset-password') ?>';
+    var admin_add_custom_package = '<?php echo $this->url('admin-add-custom-package') ?>';
+    var admin_expire_custom_package = '<?php echo $this->url('admin-expire-custom-package') ?>';
+</script>

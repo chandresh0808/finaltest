@@ -1,0 +1,43 @@
+<?php 
+$parsedJson = $this->downloadUtilityParsedJsonData;
+
+if ($this->errorFlag) { ?>                    
+    <script>
+        setTimeout("$('.alert-error').fadeOut(2000);", 5000);
+    </script>                    
+    <div class="alert-error">Whoops, Not able to download utility</div>
+<?php } ?>
+<div class="container mar-b40">
+    <div class="row mar-t20">
+        <div class="col-sm-6 col-md-5">
+            <p class="font-size-small mar-b5">Install Executable - <span class="font-family-bold"><?php echo $parsedJson['fileName']; ?></span></p>
+            <p class="font-size-small mar-t5 mar-b5">Version - <span class="font-family-bold"><?php echo $parsedJson['version']; ?></span></p>               
+            <p class="font-size-small mar-t5">Date - <span class="font-family-bold"><?php echo $parsedJson['date']; ?></span></p> 
+            <a type="button" href = "<?php echo $this->url('download-utility', array('downloadparameter' => 'download')); ?>" class="btn btn-default mar-t30 mar-b10">Download Utility</a> 
+        </div>
+        <div class="col-sm-6 col-md-7"><img src="/img/utility_screen.PNG" class="img-responsive" /></div>
+    </div>     
+    <hr/>   
+    <p class="font-family-bold mar-b0">System Requirements</p>  
+    <p class="font-size-small">
+    <ul>
+        <li>It works with 32/64 bit Windows system(Windows 7 and above).</li>
+        <li>The system needs at least 200MB of free space to install utility.</li>
+        <li>Internet connection is required to extract data from SAP and to upload it to the server.</li>
+    </ul>
+    </p>  
+    <hr/> 
+    <p class="font-family-bold">AuditCompanion Utility Release History</p>  
+    <div class="clearfix">
+        <p class="font-size-small font-family-md mar-b5">Release 2.2.4 - June 16, 2015</p>          
+        <p class="font-size-small mar-t5">Fixed duplicate extract upload while double click on sign in button. </p>    
+    </div>
+    <div class="clearfix">
+        <p class="font-size-small font-family-md mar-b5">Release 2.2.3 - June 15, 2015</p>          
+        <p class="font-size-small mar-t5">Added new feature to obfuscate usernames. </p>    
+    </div>  
+    <div class="clearfix">
+        <p class="font-size-small font-family-md mar-b5">Release 2.2.2 - June 11, 2015</p>          
+        <p class="font-size-small mar-t5">Design improvements. </p>    
+    </div>                                                                                                                            
+</div>

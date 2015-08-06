@@ -1,0 +1,575 @@
+// Steps CSS
+.steps {
+  li {
+    background-color: lighten($dark-color, 57);
+    @include transition(all, 0.1s, eas-in);
+      
+    a {
+        display: block;
+        position: relative;        
+        font-weight: $font-weight-default;
+        color: lighten($dark-color, 30);
+        @include pad-horizontal(15px, 10px);        
+        
+        &:hover {
+          text-decoration: none;  
+            &:after, 
+            &:before {
+                @include add-border(10px, lighten($dark-color, 52) , 'left');       
+            }                        
+        }
+        &:after, 
+        &:before {
+          top: 0px;              
+          content: '';                        
+          display: block;      
+          position: absolute;        
+        }
+        &:before {              
+          right: -23px;            
+          z-index: 2;            
+          @include add-border(25px, $transparent-color , 'top');
+          @include add-border(25px, $transparent-color , 'bottom');            
+          @include add-border(9px, lighten($dark-color, 57) , 'left');  
+        }        
+        &:after {                       
+          right: -25px;            
+          z-index: 1;            
+          @include add-border(25px, $transparent-color , 'top');
+          @include add-border(25px, $transparent-color , 'bottom');            
+          @include add-border(10px, lighten($dark-color, 52) , 'left');                      
+        }
+    }
+    
+    &:hover {
+      background-color: lighten($dark-color, 52);        
+    }
+  }
+    
+  .current {
+    background-color: $brand-color;    
+    
+    a {
+      color: $light-color;
+        
+        &:after, 
+        &:before {
+            @include add-border(10px, $brand-color , 'left');       
+        }
+        &:hover:after, 
+         &:hover:before {
+            @include add-border(10px, $brand-color , 'left');       
+        }        
+    }
+      
+    &:hover {
+      background-color: $brand-color; 
+    }    
+  }
+ li:nth-child(3) a:after,
+ li:nth-child(3) a:before {
+   display: none;
+ }
+}
+
+
+
+// Tabs CSS
+
+.custom-tabs {
+  li {
+   > a{
+      color: $dark-color;
+      @include add-border(0px, $transparent-color, 'all'); 
+      @inlcude transition(all, 0.2s, eas-in);
+       
+      &:hover {
+        color: $secondary-color;  
+        background-color: $transparent-color;        
+      }   
+   }
+   &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $secondary-color;          
+        @include add-border(0px, $transparent-color, 'all');
+        @include add-border(3px, $secondary-color, 'bottom');          
+          
+      }  
+  }
+}    
+}
+
+//Pricing Page CSS
+
+.pricing-panel{  
+//  height:80px;
+  width:100%;
+  border-radius:6px;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 0 10px darken($light-color,20);
+  @include pad(20px, 'all');
+  @include mar(10px, 'top');
+  position: relative;
+  overflow: hidden;    
+//  @include pad(23px, top);
+//  @include mar(10px, top);
+//  @include add-border(2px,$light-color,'all');  
+    
+//  .sprite-circle-check{
+//    width:30px;
+//    height:30px;
+//    display:block;
+//    float:left;
+//    @include mar(-1px 10px 0 15px, 'all'); 
+//    position: relative;
+//   &:after {
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//       content: '';
+//       display: block;
+//       opacity: 0;
+//       width:30px;
+//       height:30px;       
+//       background:url('../img/circle-check_hover.png');
+//       @include transform(scale(0)); 
+//       @include transition(all, 0.1s, ease-in);       
+//   }      
+//  }    
+//       
+//  &:hover,&.active{
+//    @include add-border(2px,$secondary-color,'all');
+//    .sprite-circle-check{
+//      &:after{   
+//      opacity: 1;
+//      @include transform(scale(1));
+//     } 
+//    }
+//  }    
+    
+    
+
+    
+  &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 68px;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+      border-radius: 6px;                
+      background-color: rgba($brand-color, 0.95);
+      opacity: 0;
+      @include transition(all, 0.3s, ease-out); 
+
+  }
+    
+ & .add-cart {
+     z-index: 3;
+     position: absolute;
+     text-align: center;
+     margin: 0px 15px;
+     left: 0;
+     right: 0;
+     top: 20px; 
+     font-size: 20px;
+     color: $light-color;
+     font-family: $base-font-family-bold;  
+     
+     & .c-icon {
+         background: url(../img/cart_md.png) no-repeat center center;
+         width: 42px;
+         height: 32px;
+         display: inline-block;       
+         @include transform(translateY(50px));
+         @include transition(all, 0.1s, ease-out); 
+         @include transition-delay(0.1s);   
+     }
+     
+     & .c-text {
+         display: inline-block;
+         vertical-align: middle;
+         margin-top: -20px;
+         @include transform(translateY(50px));
+         @include transition(all, 0.1s, ease-out); 
+         @include transition-delay(0.2s);                   
+     }
+ } 
+    &:hover {
+        &:after {
+           opacity: 1;        
+        }
+        
+      & .c-icon,
+      & .c-text {
+        @include transform(translateY(0px));
+      }      
+    }
+}
+
+.c-package.c-package {
+    @include add-border(0px,darken($light-color,10),'top');
+}
+
+.border-top{
+  @include mar(10px,top);
+  @include pad(40px,top);
+  @include add-border(1px,darken($light-color,10),'top');
+}
+
+.common-question-panel{
+  width:100%;
+  background:darken($light-color,5);
+  p{   
+    @include mar(0 0 10px 0, 'all');
+  }
+}
+
+
+// UI Elements CSSS
+
+.primary-box {
+  background-color: lighten($secondary-color, 46);
+  @include add-border(3px, lighten($secondary-color, 41), 'top');
+}
+
+.preview-header {
+  background-color: lighten($secondary-color, 41);
+}
+.cart-footer {
+  background-color: lighten($secondary-color, 46);
+}
+.secondary-box {
+background-color: lighten($dark-color, 62);
+}
+
+.custom-table.table-hover {
+  > tbody > tr:hover, tr.current {
+    > td,
+    > th {
+      background-color: lighten($secondary-color, 46);
+    }
+  }
+}
+
+.h-mar-15 {
+  @include mar-vertical(-7px, -8px);
+}
+
+.h-psd-15 {
+  @include pad-vertical(7px, 8px);
+}
+
+.mar-t0 {
+ @include mar(0px, 'top');
+}
+
+//Configure Rulebook
+
+.cr-head {
+  background-color: $secondary-color;
+  @include pad(13px 15px 7px 15px, 'all');    
+}
+
+.cr-content {
+  background-color: lighten($dark-color, 62);
+  @include pad(15px 15px 0px 15px, 'all');     
+}
+
+.cr-list {
+   max-height: 420px;
+   overflow-y: auto;
+   li {    
+      background-color: $light-color;
+      @include add-border(1px, lighten(#545454, 54), 'all');
+      @include pad(15px, 'all');
+      @include mar(15px, 'bottom');
+      @include transition(all, 0.1s, ease-in);       
+    
+      & .child-content,
+      & .action-icon-sm {    
+        opacity: 0;        
+        height: 0;
+        visibility: hidden;
+      }
+       
+        &.open {
+           background-color: lighten($secondary-color, 46);       
+
+          & .child-content, 
+          & .action-icon-sm {        
+            opacity: 1;              
+            visibility: visible;
+          }  
+            
+          & .child-content {
+            height: auto;
+          }
+          & .action-icon-sm {
+            height: 15px;
+          }            
+        }      
+   }
+   &.move {
+       height: 360px;
+       
+//       li {
+//            background-image: url(../img/move.png);
+//            background-repeat: no-repeat;
+//            background-position: 15px 19px;
+//            @include pad(45px, 'left');
+//            cursor: move;
+//       }      
+   }     
+}
+
+
+.action-icon-sm {
+    width: 15px;
+    height: 15px;
+    float: left;
+}
+
+
+// Modal Popup CSS
+
+.modal-content {
+  @include add-border(0px, $transparent-color, 'all');
+}
+.modal-header {
+   background-color: $secondary-color;
+   border-radius: 4px 4px 0px 0px;
+   @include add-border(0px, $transparent-color, 'bottom');
+  
+   .modal-title {
+     color: $light-color;
+     font-size: $font-size-m;
+     font-family: $base-font-family-md;
+     text-transform: uppercase;
+   }
+  
+   .close {
+     color: $light-color;
+     font-weight: normal;
+     opacity: 1;
+     
+     &:hover {
+       color: darken($light-color, 6);
+       opacity: 0.5;
+     }
+   }
+}
+
+.modal-backdrop {
+   background-color: $light-color;   
+}
+
+.modal-backdrop.in {
+  opacity: 0.85;
+}
+
+// Alert CSSS
+.alert-success,
+.alert-error{
+   max-width: 400px;   
+   background-color: rgba($light-color, 0.98);     
+   background-repeat: no-repeat;
+   background-position: 10px 10px;
+   box-shadow: 0 0 10px rgba($dark-color, 0.2);       
+   @include pad(10px 10px 10px 45px, 'all');
+   @include mar(0px auto 30px auto, 'all');       
+   @include add-border(1px, lighten($dark-color, 51), 'all') ;
+}
+
+.alert-success {
+    background-image: url(../img/success_msg.png);
+}
+
+.alert-error {
+    background-image: url(../img/error_msg.png);
+}
+
+// Captcha CSSS
+
+#recaptcha_table {
+  width: 100%;  
+}
+
+#recaptcha_privacy,
+#recaptcha_logo {
+  display: none;
+}
+.recaptchatable.recaptchatable #recaptcha_image {
+  border: 0px none !important;
+}
+.recaptchatable.recaptchatable #recaptcha_response_field {
+  border-radius: 5px;
+  border: 1px solid #d9d9d9 !important;     
+  @include pad(13px 15px 13px 15px, 'all');
+  outline: none;
+  
+  &.error{
+    border-color: $error-color !important;
+      color: $error-color;
+  }
+}
+
+#recaptcha_response_fieldErrorMsg {
+  color: $error-color;
+}
+
+
+body.pricing-page {
+  @include pad(0px, 'top');
+  
+  .container {
+     width: 100%;
+  }
+}
+
+
+// UI Dialog Popup
+
+.ui-dialog.ui-widget {
+ background-color: $light-color;
+ box-shadow: 0 5px 30px rgba($dark-color, 0.2); 
+ border-radius: 6px; 
+ width: 400px !important;
+ z-index: 1041;
+ font-family: $base-font-family;
+ font-size: $font-size-base;
+ @include pad(0px, 'all');
+ @include add-border(0px, $transparent-color, 'all');
+
+  & .ui-widget-header {     
+     background-color: $secondary-color;
+     border-radius: 6px 6px 0px 0px;
+     cursor: default;
+     color: $light-color;     
+     font-weight: $font-weight-default;
+     @include add-border(0px, $transparent-color, 'all');
+      
+    & .ui-dialog-title {
+      text-transform: uppercase;
+      font-size: $font-size-m;
+      font-family: $base-font-family-md;
+    }
+    
+    & .ui-dialog-titlebar-close {
+      position: relative;
+      border: 0px none;
+      background: none;        
+      float: right;
+    }
+  }
+    
+    & .ui-dialog-buttonpane {
+        @include pad(0px, 'all');
+        @include mar(0px, 'top');
+        @include add-border(0px, $transparent-color, 'all');
+        
+        & .ui-dialog-buttonset {
+            float:inherit;
+            
+            & button {
+             @include mar(0px, 'top');
+             font-family: $base-font-family;
+            }
+        }
+    }    
+    
+  & .ui-dialog-content,
+  & .ui-dialog-buttonset,
+  & .ui-widget-header {
+      @include pad(15px, 'all');
+  }
+
+  & .ui-dialog-buttonset {
+    & button {
+      background-color: $brand-color;
+      color: $light-color;
+      font-size: $font-size-base;
+      text-transform: uppercase;
+      border: 0px none;
+      border-radius: 3px;        
+      @include pad(4px 15px 4px 15px, 'all');
+    
+      &:nth-child(2) {
+          background-color: $light-color;
+          color: $dark-color;      
+      }
+    }
+  } 
+}
+
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: $light-color;
+  opacity:0.85;
+}
+
+// Data Table CSS
+
+.table.dataTable.no-footer {
+    border-color: lighten($dark-color, 54);    
+}
+
+.dataTables_length {
+    @include mar-horizontal(15px, 15px);
+    
+    select {
+      @include pad-vertical(10px, 10px);
+      @include add-border(1px, lighten($dark-color, 52), 'all');
+    }
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    @include mar-horizontal(15px, 15px);
+    
+    .paginate_button.paginate_button {
+        border-radius: 3px;        
+        @include pad(3px 10px, 'all');
+        @include mar(0px,'left');
+        
+        &:hover,
+        &:focus {
+            background: $transparent-color;
+            color: $secondary-color !important;
+            border-color: $transparent-color;
+            box-shadow: none;
+        }
+        
+        &.current,
+        &.current:hover {
+            background: $secondary-color;
+            color: $light-color !important;
+            border-color: $transparent-color;
+        }
+    }
+}
+
+.s-block {
+    
+    .dataTables_wrapper {
+        @include pad(55px, 'top');
+        
+        .dataTables_filter {
+            position: absolute;
+            top: 15px;
+            
+            input {
+                width: 310px;
+                @include add-border(1px, lighten($dark-color, 52), 'all');
+            }
+        }
+    }
+}

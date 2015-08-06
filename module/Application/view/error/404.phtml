@@ -1,0 +1,38 @@
+<?php
+include('module/Application/view/layout/commonHeaderUtility.php');
+$headerFile = 'header.phtml';
+
+if (!$showNotLoggedInMenuOption) {
+   $headerFile = 'user-account-header.phtml';
+} 
+echo $this->partial('layout/'.$headerFile, array(
+    'cmsBaseLink' => $cmsBaseLink,
+    'dmsAboutUslink' => $DMSAboutUsLink,
+    'showNotLoggedInMenuOption' => $showNotLoggedInMenuOption,
+    'userName' => $userName
+));
+?>   
+
+<?php //include(__DIR__.'/../layout/header-menu.phtml');?>
+
+    <!-- Sign In Block Start -->
+      <div class="container m-h550">        
+        <div class="row pad-b30">
+         <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 txtc mar-t40">              
+               <div><img src="img/404_image.png" /></div>
+               <h1 class="font-size-xl font-caps-up font-family-bold txt-brand">404 Error</h1>
+               <p>Sorry. We can't seem to find the page you're looking for.<br/>
+            </div>
+        </div>        
+      </div>    
+    <!--/.Sign In Block Start -->
+  <?php
+
+echo $this->partial('layout/footer.phtml', array(
+    'cmsBaseLink' => $cmsBaseLink,
+    'dmsAboutUslink' => $DMSAboutUsLink,
+    'showNotLoggedInMenuOption' => $showNotLoggedInMenuOption
+));
+
+
+   

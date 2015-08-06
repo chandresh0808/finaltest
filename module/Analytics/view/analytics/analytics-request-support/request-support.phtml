@@ -1,0 +1,82 @@
+<?php
+$errorMessage = $this->errorMessage;
+$form = $this->requestSupportForm;
+$form->prepare();
+$form->setAttribute('name', 'request-support');
+$form->setAttribute('id', 'request-support');
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'row');
+?>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 mar-b40">
+        <h1 class="font-size-xl text-center">Request Support</h1> 
+        <h3 class="col-sm-12 font-size-s mar-t0 mar-b15">Thank you for using Audit Companion. Audit Analysis is a complex process between the configuration, generation, analysis, and reporting. In the unlikely event that you find errors, we want to hear from you! We will promptly work with you to resolve the errors or explain how the system works.</h3>
+        <h3 class="col-sm-12 font-size-s mar-t0 mar-b15">If you have other questions, comments, and suggestions about the analysis, the Audit Companion team would like to hear from you.</h3>
+        <h3 class="col-sm-12 font-size-s mar-t0 mar-b30">Please make your request before the analysis is deleted to allow us to research what deviations may have occurred. A reminder that the associated analysis files and SAP extracts are physically deleted from the system after a period of time.</h3>
+
+        <div class="clearfix mar-t20">
+          <div class="col-sm-12">
+            <?php echo $this->form()->openTag($form); ?>
+              <div class="col-sm-6">
+                <div class="form-group <?php if ($errorMessage['email']) echo "error"; ?>" id="emailErrorClass">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('email')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                          <span id="emailErrorMsg" class="form-control-label-content" data-text='Email Address'>
+                              <?php echo ($errorMessage['email']) ? $errorMessage['email'] : "Email Address"; ?>
+                          </span>
+                        </label>
+                    </span>
+                </div>
+              </div>
+            </div>  
+          </div>  
+
+          <div class="col-sm-6 mar-t15">
+            <div class="form-group <?php if ($errorMessage['category']) echo "error"; ?>" id="categoryErrorClass">
+                <span class="form-control-anim">    
+                    <?php echo $this->formRow($form->get('category')) . "\n"; ?>
+                    <label class="form-control-label">                              
+                      <span id="categoryErrorMsg" class="form-control-label-content" data-text='Category'>
+                          <?php echo ($errorMessage['category']) ? $errorMessage['category'] : "Category"; ?>
+                      </span>
+                    </label>
+                </span>
+            </div>
+          </div>
+
+           <div class="col-sm-6 mar-t15">
+                 <div class="form-group <?php if ($errorMessage['analysis_name']) echo "error"; ?>" id="analysis_nameErrorClass">
+                    <span class="form-control-anim" >
+                        <?php echo $this->formRow($form->get('analysis_name')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                          <span id="analysis_nameErrorMsg" data-text='Audit Analysis Report' class="form-control-label-content">
+                              <?php echo ($errorMessage['analysis_name']) ? $errorMessage['analysis_name'] : "Audit Analysis Report"; ?>
+                          </span>
+                        </label>
+                    </span>
+                 </div>
+          </div>
+
+          <div class="col-sm-12 mar-t15">
+            <div class="form-group <?php if ($errorMessage['analysis_request_details']) echo "error"; ?>" id="analysis_request_detailsErrorClass">
+                <span class="form-control-anim ta-height">
+                    <?php echo $this->formRow($form->get('analysis_request_details')) . "\n"; ?>                
+                    <label class="form-control-label">                              
+                      <span id="analysis_request_detailsErrorMsg" class="form-control-label-content" data-text='Support Request Details'>
+                          <?php echo ($errorMessage['analysis_request_details']) ? $errorMessage['analysis_request_details'] : "Support Request Details"; ?>
+                      </span>
+                    </label>
+                </span>
+            </div>
+          </div>
+
+          <div class="col-sm-12 mar-t35 mar-b10">
+            <?php echo $this->formRow($form->get('submit_request_support')) . "\n"; ?>
+            <?php echo $this->formRow($form->get('cancel_request_support')) . "\n"; ?>
+          </div>
+        </div>
+      </div>      
+    </div>
+</div> 

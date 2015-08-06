@@ -1,0 +1,26 @@
+<?php
+require_once __DIR__ . '/header-mail.phtml';
+?>
+<?php
+    $activationCode = $this->activationCode;
+    $urlMessage = "http://" . $_SERVER['HTTP_HOST'] . "/activate/" . $activationCode;
+
+    $userName = $this->user->getUsername(); 
+    $securityUrl = 'https://auditcompanion.biz/Security';
+    $supportUrl = 'support@auditcompanion.biz';
+    $howToUrl = 'https://auditcompanion.biz/HowTo';
+    $homeUrl = 'https://auditcompanion.biz/Home';
+?>
+<p>Thanks for joining Audit Companion. Your account has been successfully created with the username:  <?=$userName; ?> <p>
+<p>Please visit the link below to activate your account.<br/>
+    <a class="" href="<?= $urlMessage; ?>"><?= $urlMessage; ?></a><br/>
+    Link not working? Copy and paste the above link into your browser.</p>
+
+<p>Please visit the How-to pages <a href="<?php echo $howToUrl; ?>"><?php echo $howToUrl; ?></a> for instructions on using the extraction/upload utility.</p>
+<p>Please visit the site for general introduction <a href="<?php echo $homeUrl; ?>"><?php echo $homeUrl; ?></a></p>
+<p>If you have questions regarding the safety of the data that you may be uploading do visit the <a href="<?php echo $securityUrl; ?>"><?php echo $securityUrl; ?></a></p>
+<!-- <p>If you have any other questions, suggestions, business proposal or would like to get in touch with us for any reason whatsoever send us mail to <a href="<?php //echo $supportUrl; ?>"><?php //echo $supportUrl; ?></a></p> -->
+<?php
+    require_once __DIR__ . '/mail-footer.phtml';
+?>
+

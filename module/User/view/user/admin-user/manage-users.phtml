@@ -1,0 +1,32 @@
+<?php
+$urlArray = array(
+    'data_url' => $this->url('list-all-users'),
+);
+?>
+<input type="hidden" id="url-array" value='<?php echo json_encode($urlArray); ?>'> 
+<div class="container">
+   <div class="clearfix">
+        <h1 class="pull-left">User Management</h1>        
+   </div>
+        <div class="alert-success" style="display:none"></div>
+        <div class="table-responsive s-block">
+            <table class="table custom-table" id="manage-user">
+                <thead>
+                    <tr>
+                        <th>NAME<a href="javascript:void"></a></th>
+                        <th>EMAIL<a href="javascript:void"></a></th>
+                        <th class="txtr">AVAILABLE CREDITS<a href="javascript:void"></a></th>
+                        <th>LAST LOGIN DATE & TIME<a href="javascript:void"></a></th>                    
+                        <th>STATUS</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>            
+            </table>   
+        </div>
+    </div>                    
+
+<script>    
+    var admin_user_delete_url = '<?php echo $this->url('admin-delete-user'); ?>';
+    var admin_user_block_url = '<?php echo $this->url('admin-block-user'); ?>';
+    var admin_user_unblock_url = '<?php echo $this->url('admin-unblock-user'); ?>';
+</script>

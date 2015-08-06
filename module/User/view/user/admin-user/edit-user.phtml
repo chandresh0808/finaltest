@@ -1,0 +1,181 @@
+<?php
+$form = $this->userAccountForm;
+$errorMessage = $this->errorMessage;
+$userCreditHistory = $this->userCreditHistory;
+
+$form->prepare();
+$form->setAttribute('name', 'user_account');
+$form->setAttribute('id', 'user_account');
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'row');
+$userObject = $this->userObject;
+$userId = $userObject->getId();
+/* Hide adjust credtis model for inactive and blocked user */
+$detailModalId = "#detailsmodal";
+$idForDetailsModal = "";
+if($userObject->getIsBlocked() == 1 || $userObject->getActiveFlag() == 0) {
+    $detailModalId = "";
+    $idForDetailsModal = "detailsModalHided";
+} else {
+    $idForDetailsModal = "detailsModalPopup";
+}
+?>
+<div class="container">
+  <div class="row">
+   <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 mar-b40">   
+    <div class="clearfix">
+        <h1 class="txtc">User Edit</h1>        
+    </div>
+        <?php
+            echo $this->partial('user-credit-history.phtml', array(
+                'userCreditHistory' => $userCreditHistory,
+                'userId' => $userId
+            ));
+        ?>
+        <hr class="clearfix">
+        <div class="clearfix pad-t10 pad-b10"> 
+            <a href="#" id="<?php echo $idForDetailsModal; ?>" data-target="<?php echo $detailModalId; ?>" data-toggle="modal" class='btn btn-default btn-small mar-l20'>Adjust Analysis Credits</a>
+            <a attr-user-id="<?php echo $userId; ?>" class='btn btn-default btn-small mar-l20 admin-reset-password'>Reset Password</a>
+           </div>
+           <hr class="clearfix">
+        <?php if ($this->successMessage) { ?>            
+                <script>
+                    setTimeout("$('.alert-success').fadeOut(2000);", 5000);
+                </script>
+                <div class="alert-success"><?php echo $this->successMessage; ?></div>
+            <?php } ?>
+                
+        <div class="alert-success" id="span_alert_success" style="display:none"></div>
+        <div class="alert-error" id="span_alert_error" style="display:none"></div>        
+                
+        <!--<div class="alert-success" style="display:none"></div>
+        <div class="alert-error" style="display:none"></div> -->
+        <div class="table-responsive s-block">
+            <div class="clearfix">
+                <h2 class="font-size-l font-caps-up">Personal Information</h2>
+                <?php echo $this->form()->openTag($form); ?>
+                <div class="col-sm-6">
+                    <div class="form-group <?php if ($errorMessage['first_name']) echo "error"; ?>" id="first_nameErrorClass">
+                        <span class="form-control-anim ">             
+                          <!--  <input class="form-control-field" type="text" value="<?php echo $userObject->getFirstName() ?>" > -->
+                            <?php echo $this->formRow($form->get('first_name')) . "\n"; ?>
+                            <label class="form-control-label">                                                                      
+                                <span id="first_nameErrorMsg" class="form-control-label-content" data-text='First name'>
+                                    <?php echo ($errorMessage['first_name']) ? $errorMessage['first_name'] : "First name"; ?>
+                                </span>                                                                
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group <?php if ($errorMessage['last_name']) echo "error"; ?>" id="last_nameErrorClass">
+                        <span class="form-control-anim ">             
+                            <?php echo $this->formRow($form->get('last_name')) . "\n"; ?>
+                            <label class="form-control-label">                                                              
+                                <span id="last_nameErrorMsg" class="form-control-label-content" data-text='Last name'>
+                                    <?php echo ($errorMessage['last_name']) ? $errorMessage['last_name'] : "Last name"; ?>
+                                </span>                                
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div> 
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <span class="form-control-anim">             
+                            <?php echo $this->formRow($form->get('email')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span class="form-control-label-content">Email Address</span>
+                            </label>
+                        </span>                   
+                    </div>                           
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <span  class="form-control-anim">             
+                            <?php echo $this->formRow($form->get('phone_number')) . "\n"; ?>
+                            <label class="form-control-label">                              
+                                <span class="form-control-label-content">Phone number</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="font-size-l font-caps-up">Address</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('address_1')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">Address1</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('address_2')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">Address2</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('city')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">City</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>   
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('state')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">State</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('country')); ?>
+                        <label class="form-control-label">                              
+                            <span class="form-control-label-content">Country</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" id="zip_codeErrorClass">
+                    <span class="form-control-anim">             
+                        <?php echo $this->formRow($form->get('zip_code')) . "\n"; ?>
+                        <label class="form-control-label">                              
+                            <span id="zip_codeErrorMsg" class="form-control-label-content">Zip Code</span>
+                        </label>
+                    </span>                   
+                </div>                           
+            </div>  
+            <div class="col-sm-12">
+                <?php echo $this->formRow($form->get('submit_user_account')); ?>             
+                <a class="btn btn-link" href="<?php echo $this->url('admin-view-user', array('userId'=>$userId)) ?>">Cancel</a>
+            </div>   
+            
+            
+            <?php
+            echo $this->partial('adjust-credits-model.phtml', array(
+                'remainingPoints' => $userCreditHistory['remainingPoints'],               
+            ))
+            ?>
+            
+        </div>
+    </div>                    
+ </div>                   
+</div>
