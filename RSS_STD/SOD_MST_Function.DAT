@@ -1,0 +1,72 @@
+AP01	AP Payments
+AP02	Process Vendor Invoices
+AP04	Manual Check Processing
+AR01	AR Payments
+AR02	Cash Application
+AR03	Clear Customer Balance
+AR04	Credit Management
+AR05	Maintain Billing Documents
+AR06	Process Credit Memo
+AR07	Process Customer Invoices
+CC01	Maintain Cost Center Distributions
+CC02	Maintain CC or CE Groups
+CC03	Maintain Cost Center
+CC04	Execute Cost Center Distribution Posting
+CC05	Maintain Internal CO Order
+CC06	Cost Transfer Processing
+CC07	Internal Order Settlement
+Customfunction1	testing new
+Customizedfunction	Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+DeepaFunctionnew Testing legthy text	testnew
+DeepaFunctionnew1	test dfdg
+Deepafunctionnew2	custom2
+FA01	Maintain Asset Document
+FA02	Maintain Asset Master
+FI01	Revenue Reposting
+FI02	Activity Allocation
+FI03	Bank Reconciliation
+FI04	Maintain Bank Master Data
+FI05	Product Costing
+FI06	Maintain Posting Period
+FI07	Maintain Activity Types
+Function1c2	Deepa custom function under risk1 rulebook1
+GL01	Post Journal Entry
+GL02	Maintain GL Master Records
+GL03	Post Tax / Currency related Journal Entry
+HR01	HR Benefits
+HR02	Vendor Master Maintenance
+HR03	Maintain Employee (PA) Master Data
+HR04	Maintain Time Data
+HR05	PD Structure Maintenance
+MM01	Clear Differences - IM
+MM02	Enter Counts - IM
+MM03	Enter Counts & Clear Diff - IM
+MM04	Goods Movements
+MM05	Goods Receipt on PO
+MM06	Material Master Maintenance
+MM07	Enter Counts - WM
+MM08	Clear Differences - WM
+PP01	Confirm Production Order
+PP02	Production Order Processing
+PR01	Vendor Master Maintenance
+PR02	Maintain Purchase Order
+PR03	Service Master Maintenance
+PR04	PO Approval
+PR05	Purchasing Agreements
+PR06	Release Requisitions
+PR07	Requisitioning
+PR08	Service Acceptance
+PY01	Approve Time
+PY02	Change Payroll Configuration
+PY03	Payroll Maintenance
+PY04	Process Payroll
+PY05	Time Evaluation
+PY06	Payroll Schemas
+PY07	3rd Party Remittance
+QM01	Quality Results Reporting
+SD01	Customer Master Maintenance
+SD02	Delivery Processing
+SD03	Sales Rebates
+SD04	Sales Invoice Release
+SD05	Sales Orders, Agreements or Contracts
+SD06	Sales Pricing Maintenance

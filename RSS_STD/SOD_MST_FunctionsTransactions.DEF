@@ -1,0 +1,6 @@
+/****************Start Definition of SOD_MST_FunctionsTransactions ***************/
+/******Generated as on Mar 4, 2015 9:53:54 PM by Audit Companion***************/
+CREATE TABLE [dbo].[SOD_MST_FunctionsTransactions] ( 
+[FunctionID]  	[char](10) NULL ,
+[TCode]  	[char](48) NULL ,
+) ON [PRIMARY] 

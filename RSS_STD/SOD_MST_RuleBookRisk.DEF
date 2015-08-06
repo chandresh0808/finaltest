@@ -1,0 +1,6 @@
+/****************Start Definition of SOD_MST_RuleBookRisk ***************/
+/******Generated as on Mar 4, 2015 9:53:44 PM by Audit Companion***************/
+CREATE TABLE [dbo].[SOD_MST_RuleBookRisk] ( 
+[RuleBookID]  	[char](10) NULL ,
+[RiskID]  	[char](10) NULL ,
+) ON [PRIMARY] 

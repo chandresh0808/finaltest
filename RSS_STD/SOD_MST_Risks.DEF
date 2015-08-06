@@ -1,0 +1,9 @@
+/****************Start Definition of SOD_MST_Risks ***************/
+/******Generated as on Mar 4, 2015 9:53:46 PM by Audit Companion***************/
+CREATE TABLE [dbo].[SOD_MST_Risks] ( 
+[RiskID]  	[char](10) NULL ,
+[SingleFunctionRisk]  	[char](1) NULL ,
+[RiskCategory]  	[char](10) NULL ,
+[RiskLevel]  	[char](10) NULL ,
+[RiskDescription]  	[nvarchar](300) NULL ,
+) ON [PRIMARY] 

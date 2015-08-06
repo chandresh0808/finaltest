@@ -1,0 +1,543 @@
+AB01	Create asset transactions
+AB02	Change asset document
+AB08	Reverse Line Items
+ABZE	Acquisition from in-house production
+ABZO	Asset acquis. autom. offset. posting
+ABZON	Acquis. w/Autom. Offsetting Entry
+ABZP	Acquistion from affiliated company
+AC01	Service Master
+AC02	Service Master
+AC03	Service Master
+AC04	Service Master
+AFAB	Post depreciation
+AS01	Create Asset Master Record
+AS02	Change Asset Master Record
+AS05	Block Asset Master Record
+AS06	Delete Asset Record/Mark for Delet.
+AS21	Create Group Asset
+AS22	Change Group Asset
+AS24	Create Group Asset Subnumber
+AS25	Block group asset
+AS26	Mark group asset for deletion
+AT01	Create Asset Master Record (old)
+AT02	Change Asset Master Record (old)
+CAPP	CATS: Object-Related Approval
+CAPS	Approve Times: Master Data
+CAT2	Time Sheet: Maintain Times
+CAT2_ISCR	CATS: Maintain Times (Init. Screen)
+CAT4	CATS: Approve Data
+CK68	Release Costing Run
+CO01	Create production order
+CO02	Change Production Order
+CO05	Collective Release of Prod. Orders
+CO05N	Release Production Orders
+CO11	Enter Time Ticket
+CO11N	Single Screen Entry of Confirmations
+CO12	Collective Entry of Confirmations
+CO13	Cancel confirmation of prod. order
+CO15	Enter Production order Confirmation
+F-02	Enter G/L Account Posting
+F-04	Post with Clearing
+F-05	Post Foreign Currency Valuation
+F-06	Post Incoming Payments
+F-07	Post Outgoing Payments
+F-18	Payment with Printout
+F-20	Reverse Bill Liability
+F-21	Enter Transfer Posting
+F-22	Enter Customer Invoice
+F-23	Return Bill of Exchange Pmt Request
+F-26	Incoming Payments Fast Entry
+F-27	Enter Customer Credit Memo
+F-28	Post Incoming Payments
+F-29	Post Customer Down Payment
+F-30	Post with Clearing
+F-31	Post Outgoing Payments
+F-32	Clear Customer
+F-36	Bill of Exchange Payment
+F-39	Clear Customer Down Payment
+F-40	Bill of Exchange Payment
+F-41	Enter Vendor Credit Memo
+F-42	Enter Transfer Posting
+F-43	Enter Vendor Invoice
+F-44	Clear Vendor
+F-47	Down Payment Request
+F-48	Post Vendor Down Payment
+F-51	Post with Clearing
+F-52	Post Incoming Payments
+F-53	Post Outgoing Payments
+F-54	Clear Vendor Down Payment
+F-58	Payment with Printout
+F-63	Park Vendor Invoice
+F-64	Park Customer Invoice
+F-66	Park Vendor Credit Memo
+F-67	Park Customer Credit Memo
+F-90	Acquisition from purchase w. vendor
+F.05	Foreign Currency Valuation
+F.13	ABAP/4 Report: Automatic Clearing
+F.14	ABAP/4 Report: Recurring Entries
+F.19	G/L: Goods/Invoice Received Clearing
+F.26	A/R: Balance Interest Calculation
+F.28	Customers: Reset Credit Limit
+F.2A	Calc.cust.int.on arr.: Post (w/o OI)
+F.2B	Calc.cust.int.on arr.: Post(with OI)
+F.34	Credit Management - Mass Change
+F.38	Transfer Posting of Deferred Tax
+F.56	Delete Recurring Document
+F.57	G/L: Delete Sample Documents
+F.5E	G/L: Post Balance Sheet Adjustment
+F.80	Mass Reversal of Documents
+F.81	Reverse Posting for Accr./Defer.Docs
+F101	ABAP/4 Reporting: Balance Sheet Adj.
+F110	Parameters for Automatic Payment
+F13E	ABAP/4 Report: Automatic Clearing
+FB01	Post Document
+FB05	Post with Clearing
+FB08	Reverse Document
+FB09	Change Line Items
+FB10	Invoice/Credit Fast Entry
+FB11	Post Held Document
+FB1D	Clear Customer
+FB1K	Clear Vendor
+FB1S	Clear G/L Account
+FB41	Post Tax Payable
+FB50	G/L Acct Pstg: Single Screen Trans.
+FB60	Enter Incoming Invoices
+FB65	Enter Incoming Credit Memos
+FB70	Enter Outgoing Invoices
+FB75	Enter Outgoing Credit Memos
+FBA2	Post Customer Down Payment
+FBA7	Post Vendor Down Payment
+FBA8	Clear Vendor Down Payment
+FBB1	Post Foreign Currency Valn
+FBCJ	Cash Journal
+FBD1	Enter Recurring Entry
+FBD2	Change Recurring Entry
+FBD5	Realize Recurring Entry
+FBL6	Change Customer Line Items
+FBR1	Post with Reference Document
+FBR2	Post Document
+FBS1	Enter Accrual/Deferral Doc.
+FBU2	Change Intercompany Document
+FBU8	Reverse Cross-Company Code Document
+FBV0	Post Parked Document
+FBV2	Change Parked Document
+FBVB	Post Parked Document
+FBW1	Enter Bill of Exchange Pmnt Request
+FBW2	Post Bill of Exch.acc.to Pmt Request
+FBW4	Reverse Bill Liability
+FBWE	Bill/Exch.Presentatn - International
+FBZ0	Display/Edit Payment Proposal
+FBZ1	Post Incoming Payments
+FBZ2	Post Outgoing Payments
+FBZ3	Incoming Payments Fast Entry
+FBZ4	Payment with Printout
+FBZ5	Print Check for Payment Document
+FCH3	Void Checks
+FCH4	Renumber Checks
+FCH5	Create Check Information
+FCH6	Change Check Information/Cash Check
+FCH7	Reprint Check
+FCH8	Reverse Check Payment
+FCH9	Void Issued Check
+FCHD	Delete Payment Run Check Information
+FCHG	Delete cashing/extract data
+FCHR	Online Cashed Checks
+FCHT	Change Check/Payment Assignment
+FCHX	Check Extract - Creation
+FCKR	International cashed checks
+FD01	Create Customer (Accounting)
+FD02	Change Customer (Accounting)
+FD05	Block Customer (Accounting)
+FD06	Mark Customer for Deletion (Acctng)
+FD32	Change Customer Credit Management
+FD37	Credit Management Mass Change
+FEBA	Postprocess Electronic Bank Statmt
+FEBC	Generate Multicash format
+FEBP	Post Electronic Bank Statement
+FF.5	Import Electronic Bank Statement
+FF/4	Import Electronic Check Deposit List
+FF/5	Post electronic check deposit list
+FF67	Manual Bank Statement
+FF68	Manual Check Deposit Transaction
+FI01	Create Bank
+FI02	Change Bank
+FI06	Set Flag to Delete Bank
+FK01	Create Vendor (Accounting)
+FK02	Change Vendor (Accounting)
+FK05	Block Vendor (Accounting)
+FK06	Mark Vendor for Deletion (Acctng)
+FNVM	Change Contract
+FS00	G/L acct master record maintenance
+FS01	Create Master Record
+FS02	Change Master Record
+FSP0	G/L acct master record in chrt/accts
+FSP1	Create Master Record in Chart/Accts
+FSP2	Change Master Record in Chart/Accts
+FSS0	G/L account master record in co code
+FSS1	Create Master Record in Company Code
+FSS2	Change Master Record in Company Code
+FV60	Park Incoming Invoices
+FV65	Park Incoming Invoices
+FV70	Enter Outgoing Invoices
+FV75	Park Outgoing Credit Notes
+HRBEN0001	Enrollment
+HRBEN0003	Participation Monitor
+HRBEN0006	Benefits Participation Overview
+HRBEN0009	Benefits - Plan Overview
+HRBEN0012	Automatic Plan Enrollment
+HRBEN0013	Default Plan Enrollment
+HRBEN0014	Termination of Participation
+HRBEN0015	Confirmation Form
+HRBEN0041	Jump from IMG into Maintenance Views
+HRBEN0046	Cost summary
+HRBEN0072	Participation
+HRBEN0076	Vesting Percentage
+HRBEN0077	Changes in Benefits Elections
+HRBEN0078	FSA Contributions
+HRBEN0079	Change of Elibility Status
+HRBEN0081	Employee Demographics
+HRBEN0083	Change in general benefits
+HRBEN0085	Costs/Contributions for Misc. Plans
+HRBEN0086	Stock Purchase Plan Contributions
+KAH1	Create Cost Element Group
+KAH2	Change cost element group
+KB11	Enter Reposting of Primary Costs
+KB14	Reverse Reposting of Primary Costs
+KB21	Enter Activity Allocation
+KB24	Reverse Activity Allocation
+KB41	Enter Reposting of Revenues
+KB44	Reverse Reposting of Revenues
+KB61	Enter Reposting of CO Line Items
+KB64	Reverse Reposting of CO Line Items
+KB65	Enter Indirect Acty Alloc.Reposting:
+KB67	Reverse IAA Reposting
+KL01	Create activity type
+KL02	Change activity type
+KO01	Create Internal Order
+KO02	Change Order
+KO88	Actual Settlement: Order
+KO8G	Act. Settlment: Int.-/Maint. Orders
+KS01	Create cost center
+KS02	Change cost center
+KS12	Change Cost Centers
+KSH1	Create Cost Center Group
+KSH2	Change Cost Center Group
+KSV1	Create Actual Distribution
+KSV2	Change Actual Distribution
+KSV5	Execute Actual Distribution
+LI11	Enter Inventory Count
+LI11N	Enter Inventory Count
+LI12	Change inventory count
+LI12N	Change inventory count
+LI14	Start Inventory Recount
+LI20	Clear Inventory Differences WM
+LI21	Clear Inventory Differences in MM-IM
+M-01	Create vendor
+M-02	Create goods vendor
+M-03	Create payment recipient
+M-04	Create invoicing party
+M-05	Create carrier
+M-06	Create ordering address
+M-07	Create one-time vendor
+M-51	Create vendor
+M-52	Create goods vendor
+M-53	Create payment recipient
+M-54	Create invoicing party
+M-55	Create carrier
+M-56	Create ordering address
+M-57	Create one-time vendor
+matttran	demo test
+MB01	Post Goods Receipt for PO
+MB04	Subsequ.Adj.of "Mat.Provided"Consmp.
+MB0A	Post Goods Receipt for PO
+MB11	Goods Movement
+MB1A	Goods Withdrawal
+MB1B	Transfer Posting
+MB1C	Other Goods Receipts
+MB31	Goods Receipt for Production Order
+ME21	Create Purchase Order
+ME21N	Create Purchase Order
+ME22	Change Purchase Order
+ME22N	Change Purchase Order
+ME25	Create PO with Source Determination
+ME28	Release Purchase Order
+ME31	Create Outline Agreement
+ME31K	Create Contract
+ME31L	Create Scheduling Agreement
+ME32	Change Outline Agreement
+ME32K	Change Contract
+ME32L	Change Scheduling Agreement
+ME34	Maintain Outl. Agreement Supplement
+ME34K	Maintain Contract Supplement
+ME34L	Maintain Sched. Agreement Supplement
+ME35	Release Outline Agreement
+ME35K	Release Contract
+ME35L	Release Scheduling Agreement
+ME51	Create Purchase Requisition
+ME51N	Create Purchase Requisition
+ME52	Change Purchase Requisition
+ME52N	Change Purchase Requisition
+ME54	Release Purchase Requisition
+ME54N	Release Purchase Requisition
+ME55	Collective Release of Purchase Reqs.
+ME59	Automatic Generation of POs
+ME59N	Automatic generation of POs
+MEMASSPO	Mass Change of Purchase Orders
+MEMASSRQ	Mass-Changing of Purch. Requisitions
+MEW10	Service Entry in Web
+MI04	Enter Inventory Count with Document
+MI05	Change Inventory Count
+MI07	Process List of Differences
+MI08	Create List of Differences with Doc.
+MI09	Enter Inventory Count w/o Document
+MI10	Create List of Differences w/o Doc.
+MI11	Recount Physical Inventory Document
+MI34	Batch Input: Enter Count
+MI35	Batch Input: Post Zero Stock Balance
+MI37	Batch Input: Post Differences
+MI38	Batch Input: Count and Differences
+MI40	Batch Input: Doc., Count and Diff.
+MIGO	Goods movement
+MIGO_GI	Goods Movement
+MIGO_GO	Goods Movement
+MIGO_GR	Goods Movement
+MIR7	Park Invoice
+MIRA	Fast Invoice Entry
+MIRO	Enter Invoice
+MK01	Create vendor (Purchasing)
+MK02	Change vendor (Purchasing)
+MK05	Block vendor (Purchasing)
+MK06	Mark vendor for deletion (purch.)
+MK12	Change vendor (Purchasing), planned
+ML81	Maintain Service Entry Sheet
+ML81N	Service Entry Sheet
+ML85	Collective Release of Entry Sheets
+MM01	Create Material &
+MM02	Change Material &
+MM06	Flag Material for Deletion
+MM11	Schedule Creation of Material &
+MM12	Schedule Changing of Material &
+MM13	Activate Planned Changes
+MM16	Schedule Material for Deletion
+MM17	Mass Maintenance: Indus. Matl Master
+MM41	Create Material &
+MM42	Change Material &
+MM46	Mass Maintenance: Retail Matl Master
+MM50	List Extendable Materials
+MM71	Reorganize Materials
+MMAM	Change Material Type
+MMDE	Delete All Materials
+MMNR	Define Material Master Number Ranges
+MMPV	Close Periods
+MMRV	Allow Posting to Previous Period
+MR01	Process Incoming Invoice
+MR08	Cancel Invoice Document
+MR21	Price Change
+MR22	Material Debit/Credit
+MR41	Park Invoice
+MR42	Change Parked Invoice
+MR44	Post Parked Document
+MR8M	Cancel Invoice Document
+MRHG	Enter Credit Memo
+MRHR	Enter Invoice
+MRRL	Evaluated Receipt Settlement
+MRRS	Evaluated Receipt Settlement
+MSC1N	Create Batch
+MSC2N	Change Batch
+OB52	C FI Maintain Table T001B
+OBY2	C FI Copy company code (G/L account)
+OBY7	C FI Copy Chart of Accounts
+OT40	C FI Change Customer
+PA03	Maintain Personnel Control Record
+PA04	Maintain PA Number Ranges
+PA30	Maintain HR Master Data
+PA40	Personnel Actions
+PA41	Change Entry/Leaving Date
+PA42	Fast Entry for Actions
+PA61	Maintain Time Data
+PA62	List Entry of Additional Data
+PA63	Maintain Time Data
+PA64	Calendar Entry
+PA70	Fast Entry
+PA71	Fast Entry of Time Data
+PAUX	Adjustment Workbench
+PC00_M10_CDTB	Per Payroll Period - Advance 10
+PC00_M10_CDTC	Payroll Transfer Prelim. Prog DTA-10
+PC00_M10_FFOC	Payroll Transfer - Check Printing 10
+PC00_M10_FFOT	Create Payroll Transfer DTA 10
+PC00_M99_CIPE	Create Posting Run
+PC00_M99_CURSET	Current settings
+PC00_M99_PA03_CORR	Corrections
+PC00_M99_PA03_RELEA	Release payroll
+PC00_M99_URMA	3PR Acknowledgement run
+PC00_M99_URMD	3PR Undo remittance runs
+PC00_M99_URMP	3PR Create posting run (US)
+PCP0	Edit posting runs
+PE01	HR: Maintain Payroll Schemas
+PE01N	Editor for Payroll Schemas
+PE02	HR: Maintain Calculation Rules
+PE02N	Editor for PC rules
+PE03	HR: Features
+PE04	Creates Functions and Operations
+PE51	HR form editor
+PEST	Maintenance of process model
+PFTC	General Task Maintenance
+PFTC_CHG	Change Tasks
+PFTC_COP	Copy Tasks
+PFTC_DEL	Delete Tasks
+PFTC_INS	Create Tasks
+PFTC_STR	Task Maintenance -> Dummy Screen
+PO01	Maintain Work Center
+PO03	Maintain Job
+PO10	Maintain Organizational Unit
+PO11	Maintain Qualification
+PO13	Maintain Position
+PO14	Maintain Task
+PPO1	Change Cost Center Assignment
+PPO5	Change attributes
+PPOC	Create Organizational Plan
+PPOM	Maintain Organizational Plan
+PPOME	Change Organization and Staffing
+PRMD	Maintain HR Master Data
+PRMM	Personnel Actions
+PT01	Create Work Schedule
+PT02	Change Work Schedule
+PT40	PDC Error Transaction
+PT60	Time Evaluation
+PU00	Delete Personnel Data
+PU01	Delete current payroll result
+PU03	Change Payroll Status
+PU12	Connection to Third-Party Payroll
+PU30	Wage Type Maintenance
+PU95	HR: Maintain Log. Views & WT Groups
+PU96	HR: Maintain Wage Type Groups
+PU97	HR: Logical View Maintenance
+PU98	Assign Wage Types to Groups
+PUOCBA	Off-Cycle-Batch: Subsequent Activity
+PUST	HR Process Workbench
+QE51	Results recording worklist
+QE51N	Results Recording Worklist
+S_ALR_87003642	Period Maintenance via IMG
+TI71	Create OTC Option
+V+23	Create Business Partner
+V-01	Create Sales Order
+V-03	Create ordering party (Sales)
+V-04	Create invoice recipient (Sales)
+V-05	Create payer (Sales)
+V-06	Create consignee (Sales)
+V-07	Create one-time customer (Sales)
+V-08	Create payer (Centrally)
+V-09	Create ordering party (Centrally)
+V-12	Create Customer Hierarchy Nodes
+V-41	Create Material Price
+V-42	Create Material Price w/ref.
+V-43	Change Material Price
+V-45	Create Price List
+V-46	Create Price List w/ref.
+V-47	Change Price List
+V-49	Create Customer-Specific Price
+V-50	Create Customer-spec. Price w/ref.
+V-51	Change Cust.price
+V-61	Create Cust.disc./surcharge
+V-62	Create Customer Disc/Surch. w/ref
+V-63	Change Cust.Disc/Surcharge
+V-65	Create Mat.Disc/Surcharge
+V-66	Create w/ref.Material Disc/Surcharge
+V-67	Change Mat.Disc/Surcharge
+V-69	Create Price grp Disc/Surch.
+V-70	Create w/ref.Price Group Disc/Surch.
+V-71	Change Price grp Disc/Surch.
+V-73	Create Mat.pr.grp Disc/Surch
+V-74	Create w/ref.Mat.pr.grp Disc/Surch
+V-75	Change Mat.pr.grp Disc/Surch
+V-77	Create Cust/MatPrGrp Disc/Su
+V-78	Create w/ref.Cust/MatPrGrp Disc/Surc
+V-79	Change Cust/MatPrGrp Disc/Su
+V-81	Create Cust/mat.Disc/Surch.
+V-82	Create w/ref.Cust/Mat.Disc/Surcharge
+V-83	Change Cust/mat.Disc/Surch.
+V-85	Create PGrp/MPrGrp Disc/Surc
+V-86	Create w/ref.PrGrp/MatPrGrp Disc/Sur
+V-87	Change PGrp/MPrGrp Disc/Surc
+V-89	Create PGrp/MPrGrp Disc/Surc
+V-90	Create w/ref.PrGrp/Mat Disc/Surch.
+V-91	Change PGrp/mat Disc/Surch.
+V.07	Periodic billing
+V.23	Release Orders for Billing
+VA01	Create Sales Order
+VA02	Change Sales Order
+VA31	Create Scheduling Agreement
+VA32	Change Scheduling Agreement
+VA41	Create Contract
+VA42	Change Contract
+VB(7	Rebate Agreement Settlement
+VB(D	Rebate Agreement Settlement
+VBO1	Create Rebate Agreement
+VBO2	Change Rebate Agreement
+VD01	Create Customer (Sales)
+VD02	Change Customer (Sales)
+VD05	Block customer (sales)
+VD06	Mark customer for deletion (sales)
+VF01	Create Billing Document
+VF02	Change Billing Document
+VF04	Maintain Billing Due List
+VF06	Batch billing
+VF11	Cancel Billing Document
+VFRB	Retro-billing
+VFX3	List Blocked Billing Documents
+VK11	Create Condition
+VK12	Change Condition
+VK14	Create Condition with Reference
+VK15	Create Condition
+VK30	Maintain Variant Conditions
+VK31	Condition Maintenance: Create
+VK32	Condition Maintenance: Change
+VK34	Condition Maint.: Create with Refer.
+VKM1	Blocked SD Documents
+VKM2	Released SD Documents
+VL01	Create Delivery
+VL01N	Create Outbound Dlv. with Order Ref.
+VL02	Change Outbound Delivery
+VL02N	Change Outbound Delivery
+VL04	Process Delivery Due List
+VL06	Delivery Monitor
+VL06F	General delivery list - Outb.deliv.
+VL06G	List of Oubound Dlvs for Goods Issue
+VL06L	Outbound Deliveries to be Loaded
+VL06O	Outbound Delivery Monitor
+VL06P	List of Outbound Dlvs for Picking
+VL06T	List Outbound Dlvs (Trans. Planning)
+VL08	Confirmation of Picking Request
+VL09	Cancel Goods Issue for Delivery Note
+VL10	Edit User-specific Delivery List
+VL10A	Sales Orders Due for Delivery
+VL10B	Purchase Orders Due for Delivery
+VL10C	Order Items Due for Delivery
+VL10D	Purch. Order Items due for Delivery
+VL10E	Order Schedule Lines due for Deliv.
+VL10F	PurchOrd Schedule Lines due for Dlv.
+VL10G	Documents due for Delivery
+VL10H	Items Due for Delivery
+VL10I	Schedule Lines due for Delivery
+VL11	Create Outbound Delivery
+VL21	Post goods issue in background
+VL31	Create Inbound Delivery
+VL31N	Create Inbound Delivery
+VL32	Change Inbound Delivery
+VL32N	Change Inbound Delivery
+VT01	Old: Create Shipment
+VT01N	Create Shipment
+VT02	Old: Change Shipment
+VT02N	Change Shipment
+WCU1	Maintain customer
+WCUM	Maintain customer
+XD01	Create Customer (Centrally)
+XD02	Change Customer (Centrally)
+XD05	Block customer (centrally)
+XD06	Mark customer for deletion (centr.)
+XD07	Change Customer Account Group
+XD99	Customer master mass maintenance
+XK01	Create vendor (centrally)
+XK02	Change vendor (centrally)
+XK05	Block Vendor (Centrally)
+XK06	Mark vendor for deletion (centrally)

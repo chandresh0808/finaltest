@@ -1,0 +1,6 @@
+/****************Start Definition of SOD_MST_RiskFunction ***************/
+/******Generated as on Mar 4, 2015 9:53:49 PM by Audit Companion***************/
+CREATE TABLE [dbo].[SOD_MST_RiskFunction] ( 
+[RiskID]  	[char](10) NULL ,
+[FunctionID]  	[char](10) NULL ,
+) ON [PRIMARY] 

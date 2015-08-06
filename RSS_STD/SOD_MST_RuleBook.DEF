@@ -1,0 +1,6 @@
+/****************Start Definition of SOD_MST_RuleBook ***************/
+/******Generated as on Mar 4, 2015 9:53:42 PM by Audit Companion***************/
+CREATE TABLE [dbo].[SOD_MST_RuleBook] ( 
+[RuleBookID]  	[char](10) NULL ,
+[RuleBookDescription]  	[nvarchar](300) NULL ,
+) ON [PRIMARY] 

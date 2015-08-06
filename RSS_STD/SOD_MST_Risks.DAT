@@ -1,0 +1,148 @@
+F001	N	NULL	NULL	Create a fictitious GL account and generate journal activity or hide activity via posting entries.
+F002	N	NULL	NULL	Alter a cost center without authorization and process unauthorized cost transfers to this center, possibly distorting CO reporting.
+F003	N	NULL	NULL	Alter a cost center without authorization and process unauthorized revenue entries to this center, possibly distorting CO reporting.
+F004	N	NULL	NULL	Manipulate cost center reports to hide inappropriate journal entry posting.
+F005	N	NULL	NULL	Create a non bona-fide bank account and create a check from it.
+F006	N	NULL	NULL	Pay an invoice and hide it in an asset that would be depreciated over time.
+F007	N	NULL	NULL	Create an invoice through ERS goods receipt and hide it in an asset that would be depreciated over time.
+F008	N	NULL	NULL	Allows differences between cash deposited and cash collections posted to be covered up.
+F009	N	NULL	NULL	Allocate costs to unauthorized cost centers thereby distorting financial reporting.
+F010	N	NULL	NULL	Settle expenses from an unauthorized order and distort CO reporting.
+F011	N	NULL	NULL	Alter an activity type used for cost allocation purposes with fictitious data, thereby distorting the cost allocation process.
+F012	N	NULL	NULL	User responsible for asset masters records could process transactions that would allow the asset to be depreciated over time.
+F013	N	NULL	NULL	Create the asset and manipulate the receipt of the associated asset.
+F017	N	NULL	NULL	Maintain a non bona-fide bank account and divert incoming payments to it.
+F018	N	NULL	NULL	Open previously closed accounting periods and inappropriatlely post entries after month end.
+F019	N	NULL	NULL	Open previously closed accounting periods and inappropriatlely post payments after month end.
+F020	N	NULL	NULL	User able to open accounting periods previously closed and enter incoming payments after month end reporting.
+F021	N	NULL	NULL	Open previously closed accounting periods and inappropriatlely receive or issue goods after month end.
+F022	N	NULL	NULL	Create a fictitious GL account and generate miscellaneous general ledger activity or hide fraudulent activity via posting entries.
+F023	N	NULL	NULL	Manipulate cost center reports to hide inappropriate miscellaneous journal entry postings.
+F024	N	NULL	NULL	Open previously closed accounting periods and inappropriatlely post tax and currency journal entries after month end.
+F025	N	NULL	NULL	Create a non bona-fide bank account and create a check from it.
+F026	N	NULL	NULL	Open previously closed accounting periods and inappropriatlely post payments after month end.
+H001	N	NULL	NULL	Modify payroll master data and then process payroll.  Potential for fraudulent activity.
+H002	N	NULL	NULL	Change employee HR Benefits then process payroll without authorization. Potential for fraudulent activity.
+H003	N	NULL	NULL	Change to master data and creating the remittance could result in fraudulent payments.
+H004	N	NULL	NULL	Change payroll master data and enter time data applied to incorrect settings.
+H005	N	NULL	NULL	Modify time data and process payroll resulting in fraudulent payments
+H006	N	NULL	NULL	Change configuration of payroll then process payroll resulting in fraudulent payments
+H007	N	NULL	NULL	Change configuration of payroll then modify payroll master data resulting in fraudulent payments
+H008	N	NULL	NULL	Change payroll master data and modify PD Structure.
+H009	N	NULL	NULL	Enter false time data and perform payroll maintenance.
+H010	N	NULL	NULL	Change payroll and process payroll without proper authorization.
+H011	N	NULL	NULL	Change payroll configuration and perform maintenance on payroll settings.
+H012	N	NULL	NULL	Modify payroll configuration and enter false time data.
+H013	N	NULL	NULL	Enter false time data and maintain PD structure.
+H014	N	NULL	NULL	Users may enter false time data and process payroll resulting in fraudulent payments.
+H015	N	NULL	NULL	Users may maintain employee master data including pay rates and delete the payroll result
+H016	N	NULL	NULL	Users may enter false time data and perform work schedule evaluations.
+H017	N	NULL	NULL	Users may enter false time data and perform time evaluations.
+H018	N	NULL	NULL	Perform time evaluations and change the PD structure to mis route the data for approvals.
+H019	N	NULL	NULL	Perform time evaluations and delete payroll results which could disrupt the payroll process.
+H020	N	NULL	NULL	Users who perform both the time evaluation and process payroll could hide fraudulent actions.
+H021	N	NULL	NULL	Users who can perform both the time evaluations and maintain payroll schemas to hide fraudulent actions.
+M001	N	NULL	NULL	Increase Production to reduce cost variances.
+M002	N	NULL	NULL	Production order processing and confirming production orders.
+M003	N	NULL	NULL	Increase Production to reduce cost variances due to productivity.
+M004	N	NULL	NULL	Transfer stock to general release to meet delivery schedules.
+M005	N	NULL	NULL	Remove inferior materials by adjusting out via WM inventory.
+M006	N	NULL	NULL	Accept goods via goods receipts and perform a WM physical inventory adjustment afterwards.
+M007	N	NULL	NULL	Release produced materials to GR stock to maintain production quotas.
+M008	N	NULL	NULL	Hide WM inventory adjustments via ledger entries.
+M009	N	NULL	NULL	Remove inferior materials by adjusting out via IM inventories.
+M010	N	NULL	NULL	Remove inferior materials by adjusting out via IM inventories.
+M011	N	NULL	NULL	Accept goods via goods receipts and perform an IM physical inventory adjustment afterwards.
+M012	N	NULL	NULL	Accept goods via goods receipts and perform an IM physical inventory adjustment afterwards.
+M013	N	NULL	NULL	Hide IM inventory adjustments via ledger entries.
+M014	N	NULL	NULL	Hide IM inventory adjustments via ledger entries.
+P001	N	NULL	NULL	Maintain a fictitious vendor and enter a Vendor invoice for automatic payment.
+P002	N	NULL	NULL	Maintain a fictitious vendor and create a payment to that vendor.
+P003	N	NULL	NULL	Enter fictitious vendor invoices and then render payment to the vendor.
+P004	N	NULL	NULL	Purchase unauthorized items and initiate payment by invoicing.
+P005	N	NULL	NULL	Enter fictitious purchase orders for personal use and accept the goods through goods receipt.
+P006	N	NULL	NULL	Enter fictitious vendor invoices and accept the goods via goods receipt.
+P007	N	NULL	NULL	Enter a fictitious purchase order and enter the covering payment.
+P008	N	NULL	NULL	Create a fictitious vendor and initiate purchases to that vendor.
+P009	N	NULL	NULL	Receive or accept services and release a previously blocked Invoice to offset the receipt.
+P010	N	NULL	NULL	Enter unauthorized purchase order and release a previously blocked Invoice to offset the purchase order.
+P011	N	NULL	NULL	Inappropriately procure an item and manipulating the IM physical inventory counts to hide.
+P012	N	NULL	NULL	Risk of modifying or adding to service master data (to add item that normally is not ordered by the company) and then create / change a requisition.
+P013	N	NULL	NULL	Add items to the material master or service master file and create fraudulent purchase orders for those items.
+P014	N	NULL	NULL	Can hide differences between bank payments & posted AP records.
+P015	N	NULL	NULL	Receive goods against a purchase order and release a previously blocked Invoice to offset the receipt.
+P016	N	NULL	NULL	Receive or accept services and enter the covering payments.
+P017	N	NULL	NULL	Enter fictitious purchase orders for personal use and accept the services through service acceptance.
+P018	N	NULL	NULL	Add an item to the material master or service master file and then fraudulently adding those items to purchasing agreements.
+P019	N	NULL	NULL	Initiate the purchase of unauthorized goods and hide the misuse of inventory by not fully receiving the order.
+P020	N	NULL	NULL	Commit the company to fraudulent purchase contracts and initiate payment for unauthorized goods and services.
+P021	N	NULL	NULL	Release a non bona-fide purchase order and initiate payment for the order by entering invoices.
+P022	N	NULL	NULL	Release a non bona-fide purchase order and the action remain undetected by manipulating the IM physical inventory counts.
+P023	N	NULL	NULL	Create a fictitious vendor or change existing vendor master data and initiate purchases to this vendor.
+P024	N	NULL	NULL	Add or modify material master data and release a requisition for personal use.
+P025	N	NULL	NULL	Modify a purchasing agreement and release a previously blocked invoice to offset the vendor account.
+P026	N	NULL	NULL	Enter fictitious purchasing agreements and then render payment.
+P027	N	NULL	NULL	Risk of entry of fictitious Purchasing Agreements and the entry of fictitious Vendor or modification of existing Vendor especially account data.
+P028	N	NULL	NULL	Modify purchasing agreements and then receive goods for fraudulent purposes.
+P029	N	NULL	NULL	Enter unauthorized items to a purchasing agreement and create an invoice to obtain those items for personal use.
+P030	N	NULL	NULL	Risk of modifying service master data (to add a service that is normally not ordered by the company) and the entry of covering payments.
+P031	N	NULL	NULL	Risk of addition of services to the Service Master File (services not related to business purpose) and the ability to create a Requisition for those services.
+P032	N	NULL	NULL	Risk of entering or maintaining a purchasing agreement and authorizing the related requisition through its release.
+P033	N	NULL	NULL	Risk of the same person requisitioning an item and creating a purchase order from that requisition.
+P034	N	NULL	NULL	Add items to the  service master file and create fraudulent purchase orders for those items.
+P035	N	NULL	NULL	Risk of the same person entering a Purchasing Agreement for materials and then adjusting the IM inventory for those materials.
+P036	N	NULL	NULL	Risk of modifying or adding to material master data (to add material that normally is not ordered by the company) and then the release of a material requisition.
+P037	N	NULL	NULL	Risk of the same person requisitioning an item and then releasing a requisition for purchase, bypassing the authorisation process.
+P038	N	NULL	NULL	Risk of entering unauthorised payments and reconcile with the bank through the same person.
+P039	N	NULL	NULL	Risk of entering Vendor invoices and the ability to accept those services in the Service Receipts Entry.
+P040	N	NULL	NULL	Risk of the same person releasing a requisitioning and generating the accompanying purchase order.
+P041	N	NULL	NULL	Add an item to the material master or service master file and then fraudulently adding those items to purchasing agreements.
+P042	N	NULL	NULL	Add or modify service master data and release a requisition for personal use.
+P043	N	NULL	NULL	Release a purchase order and release a previously blocked invoice to offset the vendor account.
+P044	N	NULL	NULL	Release a fictitious purchase order for personal use and accept the services through service acceptance.
+P045	N	NULL	NULL	Inappropriately procure an item and manipulating the IM physical inventory counts to hide.
+P046	N	NULL	NULL	Inappropriately procure an item and manipulating the WM physical inventory counts to hide.
+P047	N	NULL	NULL	Release a non bona-fide purchase order and the action remain undetected by manipulating the IM physical inventory counts.
+P048	N	NULL	NULL	Release a non bona-fide purchase order and the action remain undetected by manipulating the WM physical inventory counts.
+P049	N	NULL	NULL	Risk of the same person entering a Purchasing Agreement for materials and then adjusting the IM inventory for those materials.
+P050	N	NULL	NULL	Risk of the same person entering a Purchasing Agreement for materials and then adjusting the WM inventory for those materials.
+P051	N	NULL	NULL	Maintain a fictitious vendor and create a payment to that vendor.
+P052	N	NULL	NULL	Enter fictitious vendor invoices and then render payment to the vendor.
+P053	N	NULL	NULL	Enter a fictitious purchase order and enter the covering payment.
+P054	N	NULL	NULL	Receive or accept services and enter the covering payments.
+P055	N	NULL	NULL	Commit the company to fraudulent purchase contracts and initiate payment for unauthorized goods and services.
+P056	N	NULL	NULL	Enter fictitious purchasing agreements and then render payment.
+P057	N	NULL	NULL	Risk of modifying service master data (to add a service that is normally not ordered by the company) and the entry of covering payments.
+P058	N	NULL	NULL	Risk of entering unauthorised payments and reconcile with the bank through the same person.
+RISK1	N	NULL	NULL	RISK1
+Risk1 new	N	NULL	NULL	test
+RISK2	N	NULL	NULL	RISK2
+S001	N	NULL	NULL	Enter or modify sales documents and approve customer credit limits.
+S002	N	NULL	NULL	Create sales documents and immediately clear customers obligation.
+S003	N	NULL	NULL	Create a fictitious customer and initiate fraudulent sales document.
+S004	N	NULL	NULL	Make an unauthorized change to the master record (payment terms, tolerance level) in favor of the customer and enter an inappropriate invoice.
+S005	N	NULL	NULL	Inappropriately create or change rebate agreements and manage a customers master record in the favor of the customer.  Could also change a customers master record to direct payment to an inappropriate location.
+S006	N	NULL	NULL	Potentially clear a customers balance before and create or make the same change to the billing document for the same customer, clearing them of their obligation.
+S007	N	NULL	NULL	Inappropriately create or change a sales documents and generate a corresponding billing document for it.
+S008	N	NULL	NULL	Manipulate the users credit limit and assign generous rebates to execute a marginal customers order.
+S009	N	NULL	NULL	Enter a fictitious sales document and then render fictitious payments.
+S010	N	NULL	NULL	Create a billing document for a customer and inappropriately post a payment from the same customer to conceal non-payment.
+S011	N	NULL	NULL	Create a fictitious customer and initiate payment to the unauthorized customer.
+S012	N	NULL	NULL	Initiate an unauthorized payment to the customer by entering fictitious credit memos.
+S013	N	NULL	NULL	Change the accounts receivable records to cover differences with customer statements.
+S014	N	NULL	NULL	Cover up unauthorized shipment by creating a fictitious sales documents.
+S015	N	NULL	NULL	Sales price modifications for sales invoicing.
+S016	N	NULL	NULL	Enter sales documents and lower prices for fraudulent gain.
+S017	N	NULL	NULL	Perform credit approval function and modify cash received for fraudulent purposes.
+S018	N	NULL	NULL	Enter a fictitious sales rebates and then render fictitious payments.
+S019	N	NULL	NULL	Risk of the same person entering changes to the Customer Master file and modifying the Cash Received for the customer.
+S020	N	NULL	NULL	Risk of entering and releasing sales documents by the same person.
+S021	N	NULL	NULL	Risk of entering sales documents and giving sales rebates by the same person, effectively granting an indirect price discount.
+S022	N	NULL	NULL	Risk of modifying and entering Sales Invoices and approving Credit Limits by the same person.
+S023	N	NULL	NULL	Risk of Sales Price modifications for Sales invoicing.
+S024	N	NULL	NULL	Maintain a customer master record and post a fraudulent payment against it.
+S025	N	NULL	NULL	User can create a fictitious customer and then issue invoices to the customer.
+S026	N	NULL	NULL	User can create/change an invoice and enter/change payments against the invoice.
+S027	N	NULL	NULL	User can create fictitious/incorrect delivery and enter payments against these, potentially misappropriating goods.
+S028	N	NULL	NULL	User able to create a fraudulent sales contract to include additional goods and enter an incorrect customer invoice to hide the deception.
+S029	N	NULL	NULL	Create a credit memo for a customer then clear the same customer, prompting a payment to the customer.
