@@ -22,7 +22,7 @@ define('DB_NAME', 'auditcompanion');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'cosDBX098');
+define('DB_PASSWORD', 'audit098$');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

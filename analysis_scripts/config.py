@@ -14,11 +14,11 @@ db_database = "auditcompanion"
 aws_region = "us-east-1"
 aws_access_key = "AKIAIYUMURKMYMJCV5FQ"
 aws_secret_access_key = "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"
-aws_bucket_name = "devel.wadyaknow"
+aws_bucket_name = "stg.wadyaknow"
 
 # Spot instance configuration
 #image_id = "ami-77de221c"
-image_id  = "ami-9fb710f4"
+image_id  = "ami-c3e545a8"
 spot_request_region = "us-east-1a"
 instance_type = "m3.medium"
 #instance_type = "t1.micro"
