@@ -492,7 +492,7 @@ echo
 	if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing
 	for /f "skip=1 tokens=* delims=" %%x in (%mainpath%mysql.txt)  do (set "rulebook_name=%%x" ) 
 	echo
-    sqlcmd %auth% -Q "EXEC SOD2BAnalysis_Raju '%rulebook_name%'";	    
+    sqlcmd %auth% -Q "EXEC SOD2BAnalysis_Raju '%rulebook_name%'"	    
     echo
     echo SELECT is_free_trial_request FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%mysql.sql
 	CALL mysql %mysqlpath% < %mainpath%mysql.sql > %mainpath%mysql.txt
