@@ -230,8 +230,8 @@ return array(
             'privateKey' => "6LfF1wUTAAAAABJ5KeNsdiS7Sbxv2_ZpOQLH2A5F"
         ),
         'production'  => array(
-            'pubicKey'   => "",
-            'privateKey' => ""
+            'pubicKey'   => "6LeppgUTAAAAAJkm44iTWqVg0B6uzDwciN6P74eI",
+            'privateKey' => "6LeppgUTAAAAACLcFlQDA534HhJnxYlOS2jrmP9T"
         ),
 //        'development' => array(
 //            'pubicKey'   => "6LfKPwUTAAAAAMvBFGt0o2ez6TwYrbwa6k23qnip",

@@ -117,5 +117,5 @@ return array(
         'staging' => "https://app.staging.auditcompanion.biz" ,   
         'production' => "https://app.auditcompanion.biz" 
     ),
-    'DMS_url' => array('about_us' => "https://staging.auditcompanion.biz/about/"),
+    'DMS_url' => array('about_us' => "https://auditcompanion.biz/about/"),
 );
