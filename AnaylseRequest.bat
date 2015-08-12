@@ -69,7 +69,7 @@ echo
 :: Setting Status for Analysis Request Table Starts here
 echo ========== Setting Status for Analysis Request Table ==========
 echo
-echo UPDATE auditcompanion.analysis_request set status='Processed',source_spot_status='active' where id =%req_id%; > %mainpath%mysql.sql
+echo UPDATE auditcompanion.analysis_request set status='Processed' where id =%req_id%; > %mainpath%mysql.sql
 CALL mysql %mysqlpath% < %mainpath%mysql.sql
 if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing	
 echo
