@@ -65,6 +65,28 @@ if %status%==%reportstatus2% goto:ErrorQuit
 echo
 :: Checking the Status for Analysis Request Table Ends here
 
+
+echo
+:VerifyAnalysisRequest
+:: Verify the Status for Analysis Request Table Starts here
+echo ========== Verify the Status for Analysis Request Table ==========
+echo
+echo SELECT case source_spot_status when 'active' then 'active' else 'notactive' end as verify_spot_status FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%myverifysql.sql
+CALL mysql %mysqlpath% < %mainpath%myverifysql.sql > %mainpath%myverifysql.txt
+if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing    
+for /f "skip=1 tokens=* delims=" %%x in (%mainpath%myverifysql.txt)  do (set "status=%%x" )
+set reportstatusActive=active
+set reportstatusNotActive=notactive
+echo status = %status%
+if %status%==%reportstatusActive% goto:ContinueAnalysis
+echo
+if %status%==%reportstatusNotActive% goto:VerifyAnalysisRequest
+echo 
+goto:ErrorQuit
+:: Checking the Status for Analysis Request Table Ends here
+
+
+:ContinueAnalysis
 echo
 :: Setting Status for Analysis Request Table Starts here
 echo ========== Setting Status for Analysis Request Table ==========
