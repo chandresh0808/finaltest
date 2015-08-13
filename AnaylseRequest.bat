@@ -82,7 +82,7 @@ if %status%==%reportstatusActive% goto:ContinueAnalysis
 echo
 if %status%==%reportstatusNotActive% goto:VerifyAnalysisRequest
 echo 
-goto:ErrorQuit
+goto:ErrorInProcessing
 :: Checking the Status for Analysis Request Table Ends here
 
 
