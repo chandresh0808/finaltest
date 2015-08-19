@@ -49,13 +49,15 @@ set mysqlpath=--host=%DB_HOST% --port=%DB_PORT% --user=%DB_USER% --password=%DB_
 		
 if %req_id%=="" goto:ErrorQuit
 
+:CheckMySQLAgain
+
 echo
 :: Checking the Status for Analysis Request Table Starts here
 echo ========== Checking the Status for Analysis Request Table ==========
 echo
 echo SELECT status FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%mysql.sql
 CALL mysql %mysqlpath% < %mainpath%mysql.sql > %mainpath%mysql.txt
-if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing	
+if NOT %ERRORLEVEL% == 0 goto:CheckMySQLAgain	
 for /f "skip=1 tokens=* delims=" %%x in (%mainpath%mysql.txt)  do (set "status=%%x" )
 set reportstatus1=Report Created
 set reportstatus2=Completed
@@ -73,7 +75,7 @@ echo ========== Verify the Status for Analysis Request Table ==========
 echo
 echo SELECT case source_spot_status when 'active' then 'active' else 'notactive' end as verify_spot_status FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%myverifysql.sql
 CALL mysql %mysqlpath% < %mainpath%myverifysql.sql > %mainpath%myverifysql.txt
-if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing    
+if NOT %ERRORLEVEL% == 0 goto:CheckMySQLAgain    
 for /f "skip=1 tokens=* delims=" %%x in (%mainpath%myverifysql.txt)  do (set "status=%%x" )
 set reportstatusActive=active
 set reportstatusNotActive=notactive
