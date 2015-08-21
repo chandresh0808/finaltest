@@ -44,7 +44,7 @@ set copyauth=-S AMAZONA-OTBCKDN -U DataMatrixAdmin -P DataMatrix#1%%1
 set rss_std=C:\AuditCompanionScripts\auditcompanion-portal\RSS_STD\
 set reports=C:\AuditCompanionScripts\auditcompanion-portal\Reports\
 set bcpcommand="C:\Program Files\Microsoft SQL Server\110\Tools\Binn\bcp.exe"
-set mysqlpath=--host=%DB_HOST% --port=%DB_PORT% --user=%DB_USER% --password=%DB_PWD% -o %DB_NAME%
+set mysqlpath=--host=%DB_HOST% --port=%DB_PORT% --user=%DB_USER% --password=%DB_PWD% -o %DB_NAME% --wait
 
 		
 if %req_id%=="" goto:ErrorQuit
