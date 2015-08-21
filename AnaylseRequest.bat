@@ -146,7 +146,10 @@ echo
 echo 
 :: Deleting Extracted Files from Directory Ends here 
  
- 
+
+echo UPDATE auditcompanion.analysis_request set status='RetrievingExtract' where id =%req_id%; > %mainpath%mysql.sql
+CALL mysql %mysqlpath% < %mainpath%mysql.sql
+  
 :: Extracting Files from S3 into Local Directory Starts here  
 if %system_salt_id% == 0 goto:downloadfromS3WithOutSalt
 goto:ExtractAndDownloadS3
@@ -188,7 +191,7 @@ echo
 echo
 :: Extracting Files from S3 into Local Directory Ends here  
 
-echo UPDATE auditcompanion.analysis_request set status='S3uploaded' where id =%req_id%; > %mainpath%mysql.sql
+echo UPDATE auditcompanion.analysis_request set status='RetrievingRulebook' where id =%req_id%; > %mainpath%mysql.sql
 CALL mysql %mysqlpath% < %mainpath%mysql.sql
   
  
@@ -281,7 +284,7 @@ echo
 echo ========== Retrieving Data from MySql Server Ends here ==========
 :: Retrieving Data from MySql Server Ends here
 
-echo UPDATE auditcompanion.analysis_request set status='RulebookRead' where id =%req_id%; > %mainpath%mysql.sql
+echo UPDATE auditcompanion.analysis_request set status='LoadingData' where id =%req_id%; > %mainpath%mysql.sql
   CALL mysql %mysqlpath% < %mainpath%mysql.sql
   
 
@@ -507,7 +510,7 @@ echo
 	set doscommandSOD_MST_RuleBookRisk=%bcpcommand% Datamatrix_sapdb.dbo.SOD_MST_RuleBookRisk in  %rss_std%SOD_MST_RuleBookRisk.DAT %copyauth% -c -T
 	%doscommandSOD_MST_RuleBookRisk%	
 echo
-echo UPDATE auditcompanion.analysis_request set status='DBtablesloaded' where id =%req_id%; > %mainpath%mysql.sql
+echo UPDATE auditcompanion.analysis_request set status='BeginAnalysis' where id =%req_id%; > %mainpath%mysql.sql
 CALL mysql %mysqlpath% < %mainpath%mysql.sql  
 goto:Analyze
 :: Creating SAP Tables Structure definition and Importing data to respective table Ends here
@@ -526,7 +529,7 @@ echo
 	echo
     sqlcmd %auth% -Q "EXEC SOD2BAnalysis_Raju '%rulebook_name%'"	    
     echo
-    echo UPDATE auditcompanion.analysis_request set status='AnalysisExecuted' where id =%req_id%; > %mainpath%mysql.sql
+    echo UPDATE auditcompanion.analysis_request set status='EndAnalysis' where id =%req_id%; > %mainpath%mysql.sql
     CALL mysql %mysqlpath% < %mainpath%mysql.sql
     echo SELECT is_free_trial_request FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%mysql.sql
 	CALL mysql %mysqlpath% < %mainpath%mysql.sql > %mainpath%mysql.txt
@@ -561,17 +564,19 @@ echo
    echo
    set doscommandA_UsersWithConflicts="select 'BNAME' as BNAME,'GLTGV' as GLTGV,'GLTGB' as GLTGB,'USTYPDESC' as USTYPDESC,'CompRole' as CompRole,'CompRoleDesc' as CompRoleDesc,'Role' as Role,'Function' as [Function],'TcodesAll' as TcodesAll,'ConflictingTcodesAll' as ConflictingTcodesAll,'ConflictingRole' as ConflictingRole,'ConflictingFunction' as ConflictingFunction union all select BNAME,GLTGV,GLTGB,USTYPDESC,CompRole,CompRoleDesc,Role,[Function],TcodesAll,ConflictingTcodesAll,ConflictingRole,ConflictingFunction from Datamatrix_sapdb.dbo.A_UsersWithConflicts"
    %bcpcommand% %doscommandA_UsersWithConflicts% queryout %reports%Users_With_Conflicts.csv %copyauth% -c -t, -T
-   echo UPDATE auditcompanion.analysis_request set status='CSVGenerated' where id =%req_id%; > %mainpath%mysql.sql
-   CALL mysql %mysqlpath% < %mainpath%mysql.sql
    goto:UploadToS3
 
 :UploadToS3
     ::Uploading reports to S3
     echo
+    echo UPDATE auditcompanion.analysis_request set status='CSVGenerated' where id =%req_id%; > %mainpath%mysql.sql
+    CALL mysql %mysqlpath% < %mainpath%mysql.sql
 	echo ========== Uploading reports to S3 ==========
     powershell.exe -NoProfile -NonInteractive -ExecutionPolicy ByPass -file %mainpath%UploadToS3.ps1 %uploadfilejobid% %aws_region% %aws_access_key% %aws_secret_access_key% %aws_bucket_name%
 	if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing
 	echo
+    echo UPDATE auditcompanion.analysis_request set status='CSVuploaded' where id =%req_id%; > %mainpath%mysql.sql
+    CALL mysql %mysqlpath% < %mainpath%mysql.sql
 	
     :: Updating Status for Mysql Tables after uploading reports to S3
 	echo
@@ -635,7 +640,7 @@ echo
   
 :ErrorInProcessing
   :: Generic function that updates analysis_request tabled with 'failed' status in case script fails to execute successfully Starts here
-  echo UPDATE auditcompanion.analysis_request set status='Failed' where id =%req_id%; > %mainpath%mysql.sql
+  echo UPDATE `auditcompanion`.`analysis_request` as a inner join `auditcompanion`.`analysis_request` as b SET a.`instance_failure_count` = a.`instance_failure_count` +1, a.`spot_instance_req_id` = (case b.`instance_failure_count` when 0 then NULL when 1 then NULL when 2 then NULL else b.`spot_instance_req_id` end), a.`status` = (case b.`instance_failure_count` when 0 then 'Pending' when 1 then 'Pending' when 2 then 'Pending' else 'Failed' end) WHERE a.id = b.id and id =%req_id%; > %mainpath%mysql.sql
   CALL mysql %mysqlpath% < %mainpath%mysql.sql
   echo ====================
   echo Error while processing.....
