@@ -187,7 +187,10 @@ echo
 %mainpath%7-Zip\7z.exe e %extracteddir%*.zip -y -o%extractednewdir%
 echo
 :: Extracting Files from S3 into Local Directory Ends here  
- 
+
+echo UPDATE auditcompanion.analysis_request set status='S3uploaded' where id =%req_id%; > %mainpath%mysql.sql
+CALL mysql %mysqlpath% < %mainpath%mysql.sql
+  
  
 :: Retrieving Data from MySql Server Starts here
 echo ========== Retrieving Data from MySql Server Starts here ==========
@@ -278,6 +281,9 @@ echo
 echo ========== Retrieving Data from MySql Server Ends here ==========
 :: Retrieving Data from MySql Server Ends here
 
+echo UPDATE auditcompanion.analysis_request set status='RulebookRead' where id =%req_id%; > %mainpath%mysql.sql
+  CALL mysql %mysqlpath% < %mainpath%mysql.sql
+  
 
 :: Creating SAP Tables Structure definition and Importing data to respective table Starts here
 echo
@@ -501,6 +507,8 @@ echo
 	set doscommandSOD_MST_RuleBookRisk=%bcpcommand% Datamatrix_sapdb.dbo.SOD_MST_RuleBookRisk in  %rss_std%SOD_MST_RuleBookRisk.DAT %copyauth% -c -T
 	%doscommandSOD_MST_RuleBookRisk%	
 echo
+echo UPDATE auditcompanion.analysis_request set status='DBtablesloaded where id =%req_id%; > %mainpath%mysql.sql
+CALL mysql %mysqlpath% < %mainpath%mysql.sql  
 goto:Analyze
 :: Creating SAP Tables Structure definition and Importing data to respective table Ends here
 
@@ -518,6 +526,8 @@ echo
 	echo
     sqlcmd %auth% -Q "EXEC SOD2BAnalysis_Raju '%rulebook_name%'"	    
     echo
+    echo UPDATE auditcompanion.analysis_request set status='AnalysisExecuted' where id =%req_id%; > %mainpath%mysql.sql
+    CALL mysql %mysqlpath% < %mainpath%mysql.sql
     echo SELECT is_free_trial_request FROM auditcompanion.analysis_request where id =%req_id%; > %mainpath%mysql.sql
 	CALL mysql %mysqlpath% < %mainpath%mysql.sql > %mainpath%mysql.txt
 	if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing
@@ -551,6 +561,8 @@ echo
    echo
    set doscommandA_UsersWithConflicts="select 'BNAME' as BNAME,'GLTGV' as GLTGV,'GLTGB' as GLTGB,'USTYPDESC' as USTYPDESC,'CompRole' as CompRole,'CompRoleDesc' as CompRoleDesc,'Role' as Role,'Function' as [Function],'TcodesAll' as TcodesAll,'ConflictingTcodesAll' as ConflictingTcodesAll,'ConflictingRole' as ConflictingRole,'ConflictingFunction' as ConflictingFunction union all select BNAME,GLTGV,GLTGB,USTYPDESC,CompRole,CompRoleDesc,Role,[Function],TcodesAll,ConflictingTcodesAll,ConflictingRole,ConflictingFunction from Datamatrix_sapdb.dbo.A_UsersWithConflicts"
    %bcpcommand% %doscommandA_UsersWithConflicts% queryout %reports%Users_With_Conflicts.csv %copyauth% -c -t, -T
+   echo UPDATE auditcompanion.analysis_request set status='CSVGenerated' where id =%req_id%; > %mainpath%mysql.sql
+   CALL mysql %mysqlpath% < %mainpath%mysql.sql
    goto:UploadToS3
 
 :UploadToS3
@@ -578,7 +590,9 @@ echo
 	if NOT %ERRORLEVEL% == 0 goto:ErrorInProcessing
 	IF %is_free_trial_request%==0 goto:InsertIntoAnalystReports
 	goto:ErrorQuit
-
+    echo UPDATE auditcompanion.analysis_request set status='S3uploaded' where id =%req_id%; > %mainpath%mysql.sql
+    CALL mysql %mysqlpath% < %mainpath%mysql.sql
+  
 :InsertIntoAnalystReports
     :: Inserting into Analysis Request Report File table
     echo
