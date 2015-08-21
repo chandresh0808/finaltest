@@ -507,7 +507,7 @@ echo
 	set doscommandSOD_MST_RuleBookRisk=%bcpcommand% Datamatrix_sapdb.dbo.SOD_MST_RuleBookRisk in  %rss_std%SOD_MST_RuleBookRisk.DAT %copyauth% -c -T
 	%doscommandSOD_MST_RuleBookRisk%	
 echo
-echo UPDATE auditcompanion.analysis_request set status='DBtablesloaded where id =%req_id%; > %mainpath%mysql.sql
+echo UPDATE auditcompanion.analysis_request set status='DBtablesloaded' where id =%req_id%; > %mainpath%mysql.sql
 CALL mysql %mysqlpath% < %mainpath%mysql.sql  
 goto:Analyze
 :: Creating SAP Tables Structure definition and Importing data to respective table Ends here
