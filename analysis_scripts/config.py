@@ -17,8 +17,7 @@ aws_secret_access_key = "TJTIEBmL4vVMGRP7AKsfUxxliRQF5uEnKHXSKPTR"
 aws_bucket_name = "stg.wadyaknow"
 
 # Spot instance configuration
-#image_id = "ami-77de221c"
-image_id  = "ami-c3e545a8"
+image_id = "ami-fb17a790"
 spot_request_region = "us-east-1a"
 instance_type = "m3.medium"
 #instance_type = "t1.micro"

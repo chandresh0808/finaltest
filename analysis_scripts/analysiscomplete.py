@@ -30,8 +30,7 @@ def main():
         _cursor.execute("SELECT id, analysis_request_name, spot_instance_req_id, instance_id, user_id FROM analysis_request WHERE (status = 'Report Created') AND delete_flag = FALSE")
         requests = _cursor.fetchall()
         _log.debug("requests fetched")
-
-        _log.info("Canceling spot instances request")
+        _log.info("Terminating analysis requests with reports already created")
         for request in requests:
             try:
                 _is_terminated = spotinstance.SpotInstance.cancel_spot_instance(str(request[2]), request[3])
