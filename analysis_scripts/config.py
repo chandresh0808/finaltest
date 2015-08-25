@@ -18,6 +18,7 @@ aws_bucket_name = "prd.wadyaknow"
 
 # Spot instance configuration
 image_id  = "ami-c3e545a8"
+# Spot instance configuration
 spot_request_region = "us-east-1a"
 instance_type = "m3.medium"
 #instance_type = "t1.micro"
