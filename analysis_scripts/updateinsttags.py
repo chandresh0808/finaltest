@@ -48,12 +48,12 @@ def main():
                         if webserver_spot_status == constants.SPOT_STATUS_FULFILLED
                             for names in reqname:
                                 cursor_empty = 0
-                                selectstring = "(Stg)-" + str(names[0])
+                                selectstring = "(Prod)-" + str(names[0])
                                 _log.info("The name of request found was |*{}*|".format(selectstring))  
                                 inst.add_tag(str(constants.TAG_INDEX_NAME),selectstring)
                         
                             if cursor_empty == 1:
-                                selectstring = "(Stg)-UNKNOWN" 
+                                selectstring = "(Prod)-UNKNOWN" 
                                 _log.info("The name of request found was |*{}*|".format(selectstring))
                                 inst.add_tag(str(constants.TAG_INDEX_NAME),selectstring)
                     finally:
