@@ -19,13 +19,13 @@
 define('DB_NAME', 'auditcompanion');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'pr0droot');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'audit098$');
+define('DB_PASSWORD', 'aud1tc0mpan10n098');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'auditcompanionprod.ch8u7og6vrzm.us-east-1.rds.amazonaws.com');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
